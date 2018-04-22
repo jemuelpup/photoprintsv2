@@ -1,0 +1,37 @@
+.h4-design, .data-header h4 {
+  color: #fff;
+  margin: 0; }
+
+.banner-container {
+  position: relative; }
+  .banner-container .logout {
+    display: inline-flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #c3c3c3;
+    cursor: pointer; }
+    .banner-container .logout p {
+      margin: 2px; }
+    .banner-container .logout:hover {
+      color: #c3c3c3; }
+
+.table-data tr:not(:first-child):hover {
+  background-color: #ebebeb;
+  cursor: pointer; }
+
+.data-header {
+  background-color: #7c43bd;
+  padding: 15px 10px;
+  overflow: hidden;
+  color: #fff; }
+  .data-header .headerInput input,
+  .data-header .headerSearch input {
+    color: #fff;
+    height: 30px;
+    margin-bottom: 0; }
+
+.w50p {
+  width: 50%; }
+
+/*# sourceMappingURL=common.css.map */

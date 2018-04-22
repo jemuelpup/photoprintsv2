@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tool developer</title>
+	<link rel="stylesheet" href="/common/css/reset.css">
+	<link rel="stylesheet" href="/toolDevelopment/style.css">
+</head>
+<body>
+	
+	<div class="container">
+		<h1>The html output for this needs materializecss framework</h1>
+		<div class="queryinput">
+			<p>Input the create query here</p>
+			<input type="text" class="createQueryText">
+			<button class="generate-code">Generate</button>
+			<p>to remove a field in query table, just remove the whole line</p>
+		</div>
+		<div class="row">
+			<h2>Input generator</h2>
+			<div class="w50p">
+				<div class="code-snippet input-snippet">
+					input fields here
+				</div>
+			</div>
+			<div class="w50p">
+				<textarea name="code" id="code-input" cols="30" rows="10"></textarea>
+			</div>
+		</div>
+		<div class="row">
+			<h2>Table generator</h2>
+			<div class="w50p">
+				<div class="code-snippet data-table">
+					table here
+				</div>
+			</div>
+			<div class="w50p">
+				<textarea name="code" id="data-table-code" cols="30" rows="10"></textarea>
+			</div>
+		</div>
+		<div class="row">
+			<h2>Views php code</h2>
+			<textarea name="code" class="view-data-table-function" cols="30" rows="10"></textarea>
+		</div>
+		<div class="row">
+			<h2>Views update modal code</h2>
+			<textarea name="codeModalUpdate" class="views-update-modal-code" cols="30" rows="10"></textarea>
+		</div>
+
+		<p class="selectQuery">SelectQuery</p><br>
+		<p class="insertQuery">InsertQuery</p><br>
+		<p class="updateQuery">UpdateQuery</p><br>
+		<p class="updateQueryStoredProcedure">updateQueryStoredProcedure</p><br>
+		
+	</div>
+	<script src="/plugin/jquery/dist/jquery.min.js"></script>
+	<script src="/toolDevelopment/main.js"></script>
+</body>
+</html>

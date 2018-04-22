@@ -1,0 +1,35 @@
+h1{
+	font-size: 28px;
+    margin: 35px 0;
+}
+h2{
+	font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.row{
+	overflow: hidden;
+}
+.w50p{
+	width: 50%;
+	float: left;
+	padding: 10px;
+	box-sizing: border-box;
+}
+.code-snippet{
+	border: 0.5px solid #ccc;
+	padding: 5px 10px;
+}
+.code-snippet:hover{
+	border: 0.5px solid #1e87f1;
+}
+textarea{
+	width: 100%;
+	box-sizing: border-box;
+}
+.container{
+	width: 960px;
+	margin: 0 auto;	
+}
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cashier</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/plugin/materialize-css/dist/css/materialize.min.css">
+	<link rel="stylesheet" href="/plugin/materialize/css/materialFont.css">
+	<link rel="stylesheet" href="/common/css/common.css">
+	<script src="/plugin/angular/angular.min.js"></script>
+	<style>
+	@media print {
+		h2{
+			font-size: 17px;
+	    	margin: 0;
+		}
+		td,th {
+		    padding: 0;
+		    font-size: 10px;
+		}
+	}
+	</style>
+</head>
+<body ng-app="operations">
+	<main>
+		<section class="reports-management" ng-controller="reports">
+			<div class="container">
+				<div class="row">
+					<div class="col s12">
+						<h2>Transactions</h2>
+						<table class="table-data">
+							<tr>
+								<th>ID</th>
+								<th>branch</th>
+								<th>Cashier</th>
+								<th>Operator</th>
+								<th>Customer</th>
+								<th>DP</th>
+								<th>payment</th>
+								<th>amount</th>
+								<th>change</th>
+								<th>received_date</th>
+							</tr>
+							<tr ng-repeat="transaction in transactions" ng-click="getTransactionNotes($index)" ng-class="transaction.notes.length>0 ? 'hasOrderNotes':''">
+								<td>{{transaction.id}}</td>
+								<td>{{transaction.branch_name}}</td>
+								<td>{{transaction.cashier_name}}</td>
+								<td>{{transaction.operator_name}}</td>
+								<td>{{transaction.customer_name}}</td>
+								<td>{{transaction.down_payment}}</td>
+								<td>{{transaction.payment}}</td>
+								<td>{{transaction.total_amount}}</td>
+								<td>{{transaction.total_amount-transaction.payment-transaction.down_payment}}</td>
+								<td>{{transaction.received_date | date}}</td>
+							</tr>
+						</table>
+						<p><b>Total Sales: </b>{{totalSales}}</p>
+						<h2>Void Transactions</h2>
+							<div class="data-table-container">
+								<table class="table-data">
+									<tr>
+										<th>ID</th>
+										<th>branch</th>
+										<th>Cashier</th>
+										<th>Operator</th>
+										<th>Customer</th>
+										<th>DP</th>
+										<th>payment</th>
+										<th>amount</th>
+									</tr>
+									<tr ng-repeat="void in voidTransactions" ng-class="transaction.notes.length>0 ? 'hasOrderNotes':''">
+										<td>{{void.id}}</td>
+										<td>{{void.branch_name}}</td>
+										<td>{{void.cashier_name}}</td>
+										<td>{{void.operator_name}}</td>
+										<td>{{void.customer_name}}</td>
+										<td>{{void.down_payment}}</td>
+										<td>{{void.payment}}</td>
+										<td>{{void.total_amount}}</td>
+									</tr>
+								</table>
+							</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<script src="/plugin/jquery/dist/jquery.min.js"></script>
+	<script src="/common/js/angularFiles/modules.js"></script>
+	<script src="/common/js/angularFiles/services.js"></script>
+	<script src="/common/js/angularFiles/commonController.js"></script>
+	<script>
+		operations.controller("reports",reports);
+	</script>
+
+</body>
+</html>

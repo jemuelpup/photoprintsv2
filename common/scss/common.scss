@@ -1,0 +1,57 @@
+$themeColor: #4a148c;
+$themeColorLight: #7c43bd;
+$themeColorDark: #12005e;
+$menuPadding:  15px 10px;
+
+.h4-design{
+	color: #fff;
+	margin: 0;
+}
+.banner-container{
+	position: relative;
+	.logout{
+		display: inline-flex;
+		position: absolute;
+	    right: 0;
+    	bottom: 0;
+    	color: #c3c3c3;
+    	cursor: pointer;
+		p{
+			margin: 2px;
+		}
+		&:hover{
+    		color: #c3c3c3;
+		}
+	}
+}
+
+.table-data{
+	tr:not(:first-child){
+		&:hover{
+			background-color: #ebebeb;
+			cursor: pointer;
+		}
+	}
+}
+
+.data-header{
+	background-color: $themeColorLight;
+	padding: $menuPadding;
+	overflow:hidden;
+	color: #fff;	
+	h4{
+		@extend .h4-design;
+	}
+	.headerInput,
+	.headerSearch{
+		input{
+			color: #fff;
+			height: 30px;
+			margin-bottom: 0;
+		}
+	}
+}
+
+.w50p{
+	width: 50%;
+}

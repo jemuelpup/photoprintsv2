@@ -1,0 +1,28 @@
+.data-table-container{
+  height: 500px;
+  overflow: scroll;
+  margin-bottom: 10px;
+}
+.refreshOrders{
+  cursor: pointer;
+}
+.mb10{
+  margin-bottom: 10px;
+}
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #section-to-print, #section-to-print * {
+    visibility: visible;
+  }
+  #section-to-print {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  @page {
+    size: auto;   /* auto is the initial value */
+    margin: 0;  /* this affects the margin in the printer settings */
+  }
+}

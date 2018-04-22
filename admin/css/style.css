@@ -1,0 +1,166 @@
+.hide {
+  display: none; }
+
+header, main {
+  padding-left: 300px;
+  -webkit-transition: padding 250ms ease;
+  -moz-transition: padding 250ms ease;
+  -ms-transition: padding 250ms ease;
+  -o-transition: padding 250ms ease;
+  transition: padding 250ms ease; }
+
+header {
+  display: block; }
+
+.sidenav.fixed {
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  -webkit-transition: left 250ms ease;
+  -moz-transition: left 250ms ease;
+  -ms-transition: left 250ms ease;
+  -o-transition: left 250ms ease;
+  transition: left 250ms ease; }
+
+.container {
+  width: 85%; }
+
+.navigation li a {
+  display: table;
+  padding: 0 34px;
+  height: 64px; }
+  .navigation li a i, .navigation li a span {
+    display: table-cell;
+    vertical-align: middle; }
+  .navigation li a i {
+    width: 50px;
+    margin-right: 24px;
+    color: #000; }
+  .navigation li a span {
+    color: #565656; }
+
+h1 {
+  text-align: center; }
+
+h2 {
+  font-size: 3rem; }
+
+h3 {
+  color: #12005e;
+  font-size: 2rem;
+  padding: 10px 0;
+  border-bottom: 1px solid #d0d0d0; }
+
+h4 {
+  font-size: 1.7rem; }
+
+.banner-area {
+  background-color: #4a148c;
+  color: #fff; }
+  .banner-area h2 {
+    margin: 0;
+    padding: 2.1rem 0 1.68rem 0; }
+  .banner-area .banner {
+    position: relative; }
+    .banner-area .banner .logout {
+      display: inline-flex;
+      position: absolute;
+      right: 0;
+      bottom: 20px;
+      cursor: pointer; }
+      .banner-area .banner .logout p {
+        margin: 2px; }
+
+.employee-management,
+.buisness-management {
+  display: none; }
+
+.fixed-bottom-right {
+  position: fixed;
+  bottom: 45px;
+  right: 25px;
+  background-color: #4a148c; }
+
+.data-clickable tr {
+  -webkit-transition: background 500ms ease;
+  -moz-transition: background 500ms ease;
+  -ms-transition: background 500ms ease;
+  -o-transition: background 500ms ease;
+  transition: background 500ms ease;
+  cursor: pointer; }
+  .data-clickable tr.active {
+    background-color: #7c43bd;
+    color: #fff; }
+  .data-clickable tr:hover {
+    opacity: 0.5; }
+  .data-clickable tr td, .data-clickable tr th {
+    border-radius: 0; }
+
+.gender {
+  padding: 0 .75rem; }
+
+.data-table-container {
+  height: 500px;
+  overflow: scroll;
+  margin-bottom: 10px; }
+
+.showOnPC {
+  display: block; }
+
+.showOnSP {
+  display: none; }
+
+.btn {
+  margin-bottom: 5px; }
+
+.hasOrderNotes {
+  background-color: #f9f9f9; }
+
+@media screen and (max-width: 900px) {
+  h2 {
+    font-size: 2.2rem; }
+
+  .banner-area .container {
+    position: relative; }
+  .banner-area .banner {
+    position: unset; }
+    .banner-area .banner .logout {
+      top: 1.1em;
+      bottom: unset; }
+
+  .showOnSP {
+    display: block; }
+
+  .showOnPC {
+    display: none; }
+
+  .navBarShadow.active {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    z-index: 1;
+    opacity: 0.5; }
+
+  header .sidenav.fixed {
+    left: -320px;
+    z-index: 2; }
+    header .sidenav.fixed.active {
+      left: 0; }
+
+  main {
+    padding-left: 0; }
+    main .menu-btn {
+      padding-top: 1em;
+      margin: 0;
+      cursor: pointer; } }
+@media screen and (max-width: 600px) {
+  h2 {
+    font-size: 1.5rem; } }
+
+/*# sourceMappingURL=style.css.map */

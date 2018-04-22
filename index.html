@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Photoprints</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/plugin/materialize-css/dist/css/materialize.min.css">
+	<link rel="stylesheet" href="/plugin/materialize/css/materialFont.css">
+	<link rel="stylesheet" href="/common/css/login.css">
+	<script src="/plugin/angular/angular.min.js"></script>
+</head>
+
+<body ng-app="operations">
+	<main>
+		<div class="container">
+			<div class="row">
+				<div class="login" ng-controller="login">
+					<div class="login-card" ng-class="shake ? 'shake':''">
+						<div class="col s12">
+							<h1><img src="/common/images/logo.png" alt=""></h1>
+						</div>
+						<form ng-submit="validateAcess()">
+							<div class="input-field col s12">
+								<input id="uName" type="text" class="validate" ng-model="loginForm.username">
+								<label for="uName">Username</label>
+							</div>
+							<div class="input-field col s12">
+								<input id="pWord" type="password" class="validate" ng-model="loginForm.password">
+								<label for="pWord">Password:</label>
+							</div>
+							<button class="btn waves-effect waves-light right login-button" type="submit" name="action">Submit
+								<i class="material-icons right">send</i>
+							</button>
+						</form>
+						<p class="login-message" ng-class="validAcess? 'invalid':''">{{loginMessage}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<script src="/plugin/jquery/dist/jquery.min.js"></script>
+	<script src="/plugin/materialize-css/dist/js/materialize.min.js"></script>
+	<script src="/common/js/angularFiles/modules.js"></script>
+	<script src="/common/js/angularFiles/services.js"></script>
+	<script src="/common/js/angularFiles/loginController.js"></script>
+
+</body>
+
+</html>

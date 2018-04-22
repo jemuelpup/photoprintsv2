@@ -1,0 +1,243 @@
+/*
+	This is the data for document categories
+*/
+
+
+INSERT INTO `item_tbl`(`name`, `item_code`, `category_fk`, `date_modified`, `modified_by_fk`, `price`) 
+VALUES 
+('Black short plain text: (Php 1.50)','d0',1,NOW(),1,1.50),
+('A4 plain text: (A4-Php2.00)','d0',1,NOW(),1,2.00),
+('Black long plain text: (Long-Php3.00)','d0',1,NOW(),1,3),
+('Black short with FULL image (Php3.00) ','d0',1,NOW(),1,3),
+('A4 with FULL image (A4-Php5.00)','d0',1,NOW(),1,5),
+('Long with FULL  image (Long-Php5.00)','d0',1,NOW(),1,5),
+('Short Colored plain text/resume plain white background  P5.00 - MINIMUM PRICE','d0',1,NOW(),1,5),
+('Short Colored 1/4 image P10.00','d0',1,NOW(),1,10),
+('Short Colored 1/2 image P15.00','d0',1,NOW(),1,15),
+('Short Colored full color P20.00','d0',1,NOW(),1,20),
+('Long/A4 Colored  plain text /resume plain white background  P6.00 - MINIMUM PRICE','d0',1,NOW(),1,6),
+('Long/a4 Colored 1/4 image P12.00','d0',1,NOW(),1,12),
+('Long/a4 Colored 1/2 image P18.00','d0',1,NOW(),1,18),
+('Long/a4 Colored Full color P25.00','d0',1,NOW(),1,25),
+('MP  Board (Php29.00) 1 side print','d0',1,NOW(),1,29),
+('MP  Board (Php 45.00) 2 side print COLORED front and back   ','d0',1,NOW(),1,45),
+('MP  Board (Php 29.00 + black print price) 2 sided print FRONT COLORED ; BACK BLACK PRINT','d0',1,NOW(),1,29),
+('MP PAPER (Php15.00) 1 side print','d0',1,NOW(),1,15),
+('Glossy paper (Php25.00) 1 side print','d0',1,NOW(),1,25),
+('Parchment COLORED Printing  MINIMUM PRICE  (short/a4/long)  P15.00','d0',1,NOW(),1,15),
+('Parchment COLORED  Printing  P20.00  FULL COLOR short | P25.00 FULL COLOR a4/long','d0',1,NOW(),1,25),
+('Parchment BLACK Printing  MINIMUM P8.00 - SMALL IMAGE OR PLAIN TEXT  (short/a4/long)','d0',1,NOW(),1,8),
+('Parchment BLACK Printing  P10.00 - FULL IMAGE BLACK (short/a4/long)','d0',1,NOW(),1,10),
+('A3 board paper black (Php 20.00) fixed price wala ng mababa','d0',1,NOW(),1,20),
+('A3 board paper colored (Php 30.00) minimum (plain text, 1/4 image)','d0',1,NOW(),1,30),
+('A3 board paper colored (Php 35.00) FULL COLOR','d0',1,NOW(),1,35),
+('1 SIDE PRINT - MP BOARD','d0',1,NOW(),1,3),
+('2 SIDE PRINT - MP BOARD','d0',1,NOW(),1,4),
+('1 SIDE PRINT - GLOSSY PHOTOPAPER','d0',1,NOW(),1,4),
+('2 SIDE PRINT - GLOSSY PHOTOPAPER','d0',1,NOW(),1,5),
+('Photosticker (P60.00/ a4)  - photo setting ','d0',1,NOW(),1,60),
+('Transparent sticker with laminate (P120.00/ a4) ','d0',1,NOW(),1,120),
+('Colored photocopy P20.00 full color','d0',1,NOW(),1,20),
+('Black photocopy P1.50 (plain text or small image) * full image xerox refer to print price','d0',1,NOW(),1,1.5)
+
+
+
+
+
+
+
+
+INSERT INTO `item_tbl`
+(`name`, `item_code`, `category_fk`, `date_modified`, `modified_by_fk`, `price`) 
+VALUES 
+('Wallet size - Econo (2x3 inches | 14 pcs minimum)','phpr01',3,NOW(),1,3),
+('Wallet size - Satin (2x3 inches | 14 pcs minimum)','phpr02',3,NOW(),1,5),
+('Wallet size - Kodak  (2x3 inches | 4 pcs minimum)','phpr03',3,NOW(),1,7),
+('3x4 inches  size Econo - 6 pcs minimum','phpr04',3,NOW(),1,5),
+('3x4 inches  size Satin  - 6 pcs minimum','phpr05',3,NOW(),1,8),
+('3 x 4 inches Kodak - 2 pcs minimum','phpr06',3,NOW(),1,10),
+('3r  size econo- 4 pcs minimum','phpr07',3,NOW(),1,7),
+('3r  size Satin - 4 pcs minimum','phpr08',3,NOW(),1,12),
+('3r  size Kodak - 2 pcs minimum','phpr09',3,NOW(),1,15),
+('4r  size econo - 3 pcs minimum','phpr10',3,NOW(),1,8),
+('4r  size Satin  - 3 pcs minimum','phpr11',3,NOW(),1,13),
+('4r  size Kodak  - 2 pcs minimum','phpr12',3,NOW(),1,17),
+('5r  size econo  - 2 pcs minimum','phpr13',3,NOW(),1,15),
+('5r  size Satin - 2 pcs minimum','phpr14',3,NOW(),1,25),
+('5r  size Kodak  - 1 pc minimum','phpr15',3,NOW(),1,30),
+('6r Kodak/Satin  - 1 pc minimum','phpr16',3,NOW(),1,40),
+('8r econo  - 1 pc minimum','phpr17',3,NOW(),1,40),
+('8r Satin  - 1 pc minimum','phpr18',3,NOW(),1,60),
+('A3 econo  - 1 pc minimum','phpr19',3,NOW(),1,70),
+('A3 satin  - 1 pc minimum','phpr20',3,NOW(),1,100),
+('Mosaic (8r size)','phpr21',3,NOW(),1,120),
+('Mosaic  (12x17 size)','phpr22',3,NOW(),1,260),
+('Mosaic (18x24 size)','phpr23',3,NOW(),1,600),
+('Mosaic (22x34 size)','phpr24',3,NOW(),1,1000),
+('Mosaic (8r size) with sinta board','phpr25',3,NOW(),1,300),
+('Mosaic  (12x17 size) with sinta board','phpr26',3,NOW(),1,500),
+('Mosaic (18x24 size) with sinta board','phpr27',3,NOW(),1,950),
+('Mosaic (22x34 size) with sinta board','phpr28',3,NOW(),1,1799)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO `item_tbl`
+(`name`, `item_code`, `category_fk`, `date_modified`, `modified_by_fk`, `price`) 
+VALUES 
+('a3 1 side 1 pcs up','M01',7,NOW(),1,60),
+('a3 1 side 500 pcs up','M02',7,NOW(),1,50),
+('a3 1 side 1000 pcs up','M03',7,NOW(),1,45),
+('a3 1 side 3000 pcs up','M04',7,NOW(),1,40),
+('a3 2 sided 100 pcs up','M05',7,NOW(),1,89),
+('a3 2 sided 500 pcs up','M06',7,NOW(),1,85),
+('a3 2 sided 1000 pcs up','M07',7,NOW(),1,79),
+('a3 2 sided 3000 pcs up','M08',7,NOW(),1,69),
+('a4 1 side 1 pcs up','M091',7,NOW(),1,50),
+('a4 1 side 100 pcs up','M09',7,NOW(),1,35),
+('a4 1 side 500 pcs up','M10',7,NOW(),1,33),
+('a4 1 side 1000 pcs up','M12',7,NOW(),1,30),
+('a4 1 side 5000 pcs up','M13',7,NOW(),1,27),
+('a4 2 sided 1 pcs up ','M141',7,NOW(),1,60),
+('a4 2 sided 100 pcs up ','M14',7,NOW(),1,55),
+('a4 2 sided 500 pcs up ','M15',7,NOW(),1,50),
+('a4 2 sided 1000 pcs up','M16',7,NOW(),1,45),
+('a4 2 sided 5000 pcs up','M17',7,NOW(),1,40)
+
+
+
+
+
+
+
+
+
+
+INSERT INTO `item_tbl`
+(`name`, `item_code`, `category_fk`, `date_modified`, `modified_by_fk`, `price`) 
+VALUES
+('Tarpulin','W07',4,NOW(),1,0),
+('Matte paper','W01',4,NOW(),1,0),
+('Matte w/Laminate','W02',4,NOW(),1,0),
+('Matte w/laminate and sintra','W03',4,NOW(),1,0),
+('Photopaper','W04',4,NOW(),1,0),
+('Photopaper w/ Lamination','W05',4,NOW(),1,0),
+('Photopaper  w/Sintra board and Lamination','W06',4,NOW(),1,0)
+
+
+
+
+
+
+
+
+INSERT INTO `item_tbl`
+(`name`, `item_code`, `category_fk`, `date_modified`, `modified_by_fk`, `price`) 
+VALUES
+('Tarpulin','W07',4,NOW(),1,0),
+('Matte paper','W01',4,NOW(),1,0),
+('Matte w/Laminate','W02',4,NOW(),1,0),
+('Matte w/laminate and sintra','W03',4,NOW(),1,0),
+('Photopaper','W04',4,NOW(),1,0),
+('Photopaper w/ Lamination','W05',4,NOW(),1,0),
+('Photopaper  w/Sintra board and Lamination','W06',4,NOW(),1,0)
+
+
+
+
+
+
+INSERT INTO `item_tbl`
+(`name`, `item_code`, `category_fk`, `date_modified`, `modified_by_fk`, `price`) 
+VALUES
+
+('photo mosaic 8r','per01',5,NOW(),1,120),
+('photo mosaic a3','per02',5,NOW(),1,260),
+('photo mosaic 18x24','per03',5,NOW(),1,600),
+('photo mosaic 22x34','per04',5,NOW(),1,1000),
+('pvc bagtag','per05',5,NOW(),1,39),
+('planner','per06',5,NOW(),1,59),
+('notepad','per07',5,NOW(),1,39),
+('bookmark pvc','per08',5,NOW(),1,50),
+('bookmark magnetic','per09',5,NOW(),1,40),
+('ballpen','per10',5,NOW(),1,35),
+('calendar wall','per11',5,NOW(),1,89),
+('calendar desktop','per12',5,NOW(),1,150),
+('keychain','per13',5,NOW(),1,25),
+('button pin','per14',5,NOW(),1,30),
+('notebook','per15',5,NOW(),1,79),
+('photomagnet','per16',5,NOW(),1,19),
+('signiture frame','per17',5,NOW(),1,199)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
