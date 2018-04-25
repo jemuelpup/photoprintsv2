@@ -1,0 +1,21 @@
+<div class="categoryList">
+	<h3>Item category</h3>
+	<div class="data-table-container">
+		<table class="data-clickable">
+			<tbody>
+				<tr>
+					<th>name</th>
+					<th>category_code</th>
+					<th>description</th>
+				</tr>
+				<tr ng-repeat="x in categories" data-id="{{x.id}}" ng-click="categoryIndex($index,x.id)">
+					<td name="name">{{x.name}}</td>
+					<td name="category_code">{{x.category_code}}</td>
+					<td name="description">{{x.description}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<button class="waves-effect waves-light btn" id="edit-category-trigger">Edit</button>
+	<a class="waves-effect waves-light btn" ng-click="deleteCategory()">Delete</a>
+</div>

@@ -2,6 +2,7 @@
 
 session_start();
 require $_SERVER['DOCUMENT_ROOT'].'/common/dbconnect.php';
+include $_SERVER['DOCUMENT_ROOT'].'/common/commonFunctions.php';
 
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
@@ -75,49 +76,6 @@ function getSessionId(){
 function getAccessPosition(){
 	$accessPosition = isset($_SESSION["position"]) ? $_SESSION["position"] : 0;
 	echo $accessPosition;
-}
-
-
-/*
-	FUNCTIONS AREA
-	- these functions are not affected by the switch at the start
-*/
-
-// if string is empty, return "" string
-function validateData($d){
-	if(isset($d)){
-		return $d;
-	}
-	return "";
-}
-
-// if date is not valid, return "0000-00-00"
-function validateDate($d){
-	if(isset($d)){
-		return date("Y-m-d", strtotime(str_replace('/', '-',$d)));
-	}
-	return "0000-00-00";
-}
-
-// get the rows of the query
-function selectQuery($c,$sql){
-	$resultSetArray = [];
-	$res = $c->query($sql);
-	if($res->num_rows>0){
-		while($row = $res->fetch_assoc()){
-			array_push($resultSetArray,$row);
-		}
-		return $resultSetArray;
-	}
-	return "";
-}
-// check if query produces output
-function hasRows($c,$sql){
-	$res = $c->query($sql);
-	if($res->num_rows>0){
-		return true;
-	}
-	return false;
 }
 
 ?>

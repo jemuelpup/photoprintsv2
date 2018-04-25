@@ -36,6 +36,7 @@ app.controller("buisnessManagement",function($scope,$http,dbOperations){
 	$scope.positionFields = {};
 	$scope.positions = [];
 	$scope.editBranchFields = {};
+	$scope.orderItems = [];
 
 	$scope.branchIndex = function(i,id){
 		$scope.editBranchFields = ($scope.branches)[i];
@@ -252,8 +253,10 @@ app.controller("employeeManagement",function($scope,$http,dbOperations){
 	}
 
 	$scope.newEmployee = function(){
+
+		// console.log($("#addEmployee"));
 		$scope.employeeFields = {};
-		$("#add-employee").modal("open");
+		$("#addEmployee").modal("open");
 		$scope.addEmployeeCommand = true;
 		$scope.editEmployeeCommand = false;
 	}
@@ -265,7 +268,7 @@ app.controller("employeeManagement",function($scope,$http,dbOperations){
 			$scope.addEmployeeCommand = false;
 			$scope.editEmployeeCommand = true;
 			$('select').material_select();
-			$("#add-employee").modal("open");
+			$("#addEmployee").modal("open");
 		}
 	}
 	$scope.updateEmployeeData = function(){
@@ -282,8 +285,6 @@ app.controller("employeeManagement",function($scope,$http,dbOperations){
 			getEmployees();//$("#add-employee").modal("close");
 		});
 	}
-
-
 	$scope.getEmployeeInfo = function(dataId){
 		console.log($scope.employees);
 		($scope.employees).forEach(function(e){// loop  to all the employee data
@@ -304,7 +305,7 @@ app.controller("employeeManagement",function($scope,$http,dbOperations){
 		else{
 			$scope.employeeFields = $scope.employeeData;
 			$('select').material_select();
-			$("#add-access").modal("open");
+			$("#addAccess").modal("open");
 		}
 	}
 	$scope.addEmployeeAccess = function(){
@@ -319,14 +320,12 @@ app.controller("employeeManagement",function($scope,$http,dbOperations){
 		}
 		else{
 			// console.log($scope.employeeFields);
-			dbOperations.processData("AddEmployee",$scope.employeeFields).then(function(res){getEmployees();$("#add-employee").modal("close");});
+			dbOperations.processData("AddEmployee",$scope.employeeFields).then(function(res){
+				getEmployees();
+				$("#addEmployee").modal("close");
+			});
 			$scope.employeeFields={};
 		}
-
-		/**/
-		// console.log($scope.employeeFields);
-
-		// alert();
 	}
 	getEmployees();
 	$scope.employeeManagementInit = function(){
@@ -348,8 +347,10 @@ app.controller("reports",function($scope,$http,dbOperations,$interval){
 		{"name":"Monthly","id":"d3","val":3},
 		{"name":"Yearly","id":"d4","val":4},
 	];
-	$scope.fromdateInput = new Date();
+	// $scope.fromdateInput = new Date();
+	$scope.fromdateInput = new Date(2018, 2, 24, 10, 33, 30, 0);// for testing purposes
 	$scope.todateInput = new Date(($scope.fromdateInput).getTime() + (24 * 60 * 60 * 1000));
+
 
 	// .from = new Date();
 	// $scope.dateInput.to = new Date();
@@ -383,8 +384,13 @@ app.controller("reports",function($scope,$http,dbOperations,$interval){
 			console.log(res);
 		});
 	}
-	$scope.getTransactionNotes = function(i){
+	$scope.getTransactionDetails = function(i){
 		$scope.transactionNotes = $scope.transactions[i].notes;
+		dbOperations.getData('getOrderData',{"orderID":$scope.transactions[i].id}).then(function(res) {
+			$scope.orderItems = res.data;
+			console.log(res);
+		});
+		console.log($scope.transactions[i].id);
 	}
 	$scope.getTransactionData = function(){
 		getTotalSalesOn();

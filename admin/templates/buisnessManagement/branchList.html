@@ -1,0 +1,23 @@
+<div class="branchList">
+	<h4>Branch list</h4>
+	<div class="data-table-container branch">
+		<table class="data-clickable">
+			<tbody>
+				<tr>
+					<th>name</th>
+					<th>address</th>
+					<th>description</th>
+					<th>branch_code</th>
+				</tr>
+				<tr ng-repeat="branch in branches" data-id="{{branch.id}}" ng-click="branchIndex($index,branch.id)">
+					<td name="name">{{branch.name}}</td>
+					<td name="address">{{branch.address}}</td>
+					<td name="description">{{branch.description}}</td>
+					<td name="branch_code">{{branch.branch_code}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<a class="waves-effect waves-light btn" id="edit-branch-trigger">Edit</a>
+	<a class="waves-effect waves-light btn">Delete</a>
+</div>

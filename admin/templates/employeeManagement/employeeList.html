@@ -1,0 +1,35 @@
+<div class="employee-list">
+	<h3>Employee list</h3>
+	<div class="data-table-container">
+		<table class="data-clickable">
+			<tbody>
+				<tr>
+					<th>name</th>
+					<th>address</th>
+					<th>contact_number</th>
+					<th>email</th>
+					<th>position</th>
+					<th>branch_fk</th>
+					<th>salary</th>
+					<th>birth_day</th>
+					<th>gender</th>
+				</tr>
+				<tr ng-click="getEmployeeInfo(employee.id)" ; ng-repeat="employee in employees" data-id="{{employee.id}}">
+					<!-- <td>{{employee}}</td> -->
+					<td>{{employee.name}}</td>
+					<td>{{employee.address}}</td>
+					<td>{{employee.contact_number}}</td>
+					<td>{{employee.email}}</td>
+					<td>{{employee.position_name}}</td>
+					<td>{{employee.branch_name}}</td>
+					<td>{{employee.salary}}</td>
+					<td>{{employee.birth_day|shortDateFromat}}</td>
+					<td>{{employee.gender|gender}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<a class="waves-effect waves-light btn" ng-click="editEmployeeData()">Edit</a>
+	<a class="waves-effect waves-light btn" ng-click="deleteEmployee()">Delete</a>
+	<a class="waves-effect waves-light btn" ng-click="newEmployeeAccess()">Add Access</a>
+</div>

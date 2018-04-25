@@ -1,0 +1,58 @@
+<div class="reportVoidTransactionTable">
+	<h3>Void Transaction details</h3>
+	<div class="row">
+		<div class="col s8">
+			<div class="data-table-container">
+				<table class="table-data">
+					<tr>
+						<th>branch</th>
+						<th>Cashier</th>
+						<th>Operator</th>
+						<th>Customer</th>
+						<th>DP</th>
+						<th>payment</th>
+						<th>amount</th>
+					</tr>
+					<tr ng-repeat="void in voidTransactions" ng-click="getVoidReason($index)">
+						<td>{{void.branch_name}}</td>
+						<td>{{void.cashier_name}}</td>
+						<td>{{void.operator_name}}</td>
+						<td>{{void.customer_name}}</td>
+						<td>{{void.down_payment}}</td>
+						<td>{{void.payment}}</td>
+						<td>{{void.total_amount}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="col s4">
+			<h4>Ordered Items</h4>
+			<table class="orderDetails">
+				<tr>
+					<th>Item</th>
+					<th>Price</th>
+					<th>Qty</th>
+					<th>Disc</th>
+					<th>Total</th>
+				</tr>
+				<tr ng-repeat="orderItem in voidOrderItems" class="show-on-hover" ng-init="active = false" ng-class="{'noHover':disableEditting}">
+					<td>{{orderItem.name}}</td>
+					<!-- <td>{{orderItem.itemName}}</td> -->
+					<td>{{orderItem.price}}
+						<div class="customPrice" ng-class="{'active': active === true}">
+						</div>
+					</td>
+					<td> x {{orderItem.quantity}}</td>
+					<td>{{orderItem.discount}}%</td>
+					<td><span class="b">{{orderItem.quantity*orderItem.price*(1-(orderItem.discount/100))}}</span></td>
+				</tr>
+			</table>
+			<p class="largeLetter">Total: Php. <span class="b">{{totalPrice}}</span></p>
+			<p>Down payment: Php. <span class="b">{{downPayment ? downPayment : 0}}</span></p>
+			<h4>Transaction notes</h4>
+			<textarea rows="4" cols="50">{{transactionNotes}}</textarea>
+			<h4>Void reason</h4>
+			<textarea rows="4" cols="50">{{voidReason}}</textarea>
+		</div>
+	</div>
+</div>

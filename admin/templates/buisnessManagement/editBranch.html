@@ -1,0 +1,26 @@
+<div id='editBranch' class='modal edit-branch'>
+	<form ng-submit='editBranch()'>
+		<div class='modal-content'>
+			<h2>Update name here</h2>
+			<div class='input-field col s12'>
+				<input placeholder='' ng-model='editBranchFields.name' value='' type='text' class='validate' maxlength='50' required/>
+				<label for='name'>name</label>
+			</div>
+			<div class='input-field col s12'>
+				<input placeholder='' ng-model='editBranchFields.address' value='' type='text' class='validate' maxlength='200' />
+				<label for='address'>address</label>
+			</div>
+			<div class='input-field col s12'>
+				<input placeholder='' ng-model='editBranchFields.description' value='' type='text' class='validate' maxlength='200' />
+				<label for='description'>description</label>
+			</div>
+			<div class='input-field col s12'>
+				<input placeholder='' ng-model='editBranchFields.branch_code' value='' type='text' class='validate' maxlength='10' required/>
+				<label for='branch_code'>branch_code</label>
+			</div>
+		</div>
+		<div class='modal-footer'>
+			<button class='waves-effect waves-light btn' type='submit'>Update</button>
+		</div>
+	</form>
+</div>

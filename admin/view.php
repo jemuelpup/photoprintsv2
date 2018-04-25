@@ -2,6 +2,7 @@
 /* This file contains the elements for viewing */
 
 require $_SERVER['DOCUMENT_ROOT'].'/common/dbconnect.php';
+include $_SERVER['DOCUMENT_ROOT'].'/common/commonFunctions.php';
 // 
 
 $process="";
@@ -41,12 +42,25 @@ switch($process){
 	case "getVoidTransactionsOn":{
 		getVoidTransactionsOn($conn,$data);
 	}break;
-	
+	case "getOrderData":{
+		getOrderData($conn,$data);
+	}break;
+	case "GetMaterial":{
+		selectMaterial($conn);
+	}break;
+
 }
 
 /*
 	QUERY AREA
 */
+
+/* This function needs some edit*/
+function selectMaterial($c){
+	$sql = "SELECT id,name,description,quantity,modified_by,date_modified FROM material_tbl WHERE active = 1";
+	print_r(hasRows($c,$sql) ? json_encode(selectQuery($c,$sql)) : "");
+}
+
 
 // selectItemCategory($conn);
 function selectItemCategory($c){
@@ -99,30 +113,10 @@ function getVoidTransactionsOn($c,$data){
 	// echo "$sql";
 	print_r(hasRows($c,$sql) ? json_encode(selectQuery($c,$sql)) : "");
 }
-
-
-/*
-	FUNCTIONS AREA
-*/
-// get the rows of the query
-function selectQuery($c,$sql){
-	$resultSetArray = [];
-	$res = $c->query($sql);
-	if($res->num_rows>0){
-		while($row = $res->fetch_assoc()){
-			array_push($resultSetArray,$row);
-		}
-		return $resultSetArray;
-	}
-	return "";
-}
-// check if query produces output
-function hasRows($c,$sql){
-	$res = $c->query($sql);
-	if($res->num_rows>0){
-		return true;
-	}
-	return false;
+/* common I think */
+function getOrderData($c,$data){
+	$sql = "SELECT name,code,quantity,price,discount FROM order_line_tbl WHERE order_id_fk = $data->orderID";
+	print_r(hasRows($c,$sql) ? json_encode(selectQuery($c,$sql)) : "");
 }
 
 ?>

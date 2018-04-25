@@ -1,0 +1,23 @@
+<div class="addMaterial">
+	<h3>material_tbl</h3>
+	<form action="#" ng-submit="addMaterial()">
+		
+	<div class="input-field col s12">
+	    <input ng-model="materialFields.name" name="name" value="" type="text" class="validate" maxlength="50" required>
+	    <label for="name">name</label>
+	</div>
+	
+	<div class="input-field col s12">
+	    <input ng-model="materialFields.description" name="description" value="" type="text" class="validate" maxlength="50">
+	    <label for="description">description</label>
+	</div>
+	
+	<div class="input-field col s12">
+	    <input ng-model="materialFields.quantity" name="quantity" value="" type="number" class="validate" maxlength="50">
+	    <label for="quantity">quantity</label>
+	</div>
+	
+		<button class="waves-effect waves-light btn" type="submit">Add</button>
+		<button class="waves-effect waves-light btn">Clear</button>
+	</form>
+</div>

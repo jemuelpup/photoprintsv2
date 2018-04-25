@@ -85,28 +85,7 @@
 	}
   function getCategoryUpdateModal(){
     echo '
-      <div id="edit-category" class="modal edit-category">
-        <form action="#" ng-submit="editCategory()">
-          <div class="modal-content">
-            <h4>Edit category</h4>
-            <div class="input-field col s12">
-              <input placeholder="" ng-model="editCategoryFields.name" name="name" type="text" class="validate" maxlength="50" required>
-              <label for="name">name</label>
-            </div>
-            <div class="input-field col s12">
-              <input placeholder="" ng-model="editCategoryFields.code" name="category_code" type="text" class="validate" maxlength="10">
-              <label for="category_code">category_code</label>
-            </div>
-            <div class="input-field col s12">
-              <input placeholder="" ng-model="editCategoryFields.description" name="description" type="text" class="validate" maxlength="500">
-              <label for="description">description</label>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button class="waves-effect waves-light btn" type="submit">Update</button>
-          </div>
-        </form>
-      </div>
+      
     ';
   }
   function getBranchListUpdateModal(){
@@ -161,35 +140,7 @@
 
   function getItemUpdateModal(){
     echo '
-      <div id="edit-item" class="modal edit-item">
-        <form ng-submit="editItem()">
-          <div class="modal-content">
-            <h4>Edit Item</h4>
-            <div class="input-field col s12">
-              <input placeholder="" ng-model="editItemFields.name" type="text" class="validate" maxlength="50" required>
-              <label for="name" class="active">name</label>
-            </div>
-            <div class="input-field col s12">
-              <input placeholder="" ng-model="editItemFields.item_code" type="text" class="validate" maxlength="10">
-              <label for="item_code" class="active">item_code</label>
-            </div>
-            <div class="input-field col s12">
-              <select name="itemCategory" id="categoryUpdate">
-                <option value="" disabled selected>Choose your option</option>
-                <option value="{{c.id}}" ng-repeat="c in categories">{{c.name}}</option>
-              </select>
-              <label>Category</label>
-            </div>
-            <div class="input-field col s12">
-              <input placeholder="" ng-model="editItemFields.price" type="number" class="validate" maxlength="11" step="0.01">
-              <label for="price" class="active">price</label>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button class="waves-effect waves-light btn" type="submit" ng-click="editItem()">Update</button>
-          </div>
-        </form>
-      </div>
+      
     ';
   }
 

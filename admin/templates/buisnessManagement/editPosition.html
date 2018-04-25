@@ -1,0 +1,18 @@
+<div id='editPosition' class='modal edit-position'>
+    <form ng-submit='editPosition()'>
+        <div class='modal-content'>
+            <h2>Update name here</h2>
+            <div class='input-field col s12'>
+                <input placeholder='' ng-model='editPositionFields.name' value='' type='text' class='validate' maxlength='50' required/>
+                <label for='name'>name</label>
+            </div>
+            <div class='input-field col s12'>
+                <input placeholder='' ng-model='editPositionFields.description' value='' type='text' class='validate' maxlength='500' />
+                <label for='description'>description</label>
+            </div>
+        </div>
+        <div class='modal-footer'>
+            <button class='waves-effect waves-light btn' type='submit'>Update</button>
+        </div>
+    </form>
+</div>

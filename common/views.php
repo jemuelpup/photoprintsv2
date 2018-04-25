@@ -1,6 +1,8 @@
 <?php
 	
 require $_SERVER['DOCUMENT_ROOT'].'/common/dbconnect.php';
+include $_SERVER['DOCUMENT_ROOT'].'/common/commonFunctions.php';
+
 
 $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
@@ -145,31 +147,5 @@ function selectUnclaimedOrders($c){
 		print_r(json_encode($orders));
 	}
 }
-
-
-/*
-FUNCTIONS AREA
-*/
-// get the rows of the query
-function selectQuery($c,$sql){
-	$resultSetArray = [];
-	$res = $c->query($sql);
-	if($res->num_rows>0){
-		while($row = $res->fetch_assoc()){
-			array_push($resultSetArray,$row);
-		}
-		return $resultSetArray;
-	}
-	return "";
-}
-// check if query produces output
-function hasRows($c,$sql){
-$res = $c->query($sql);
-	if($res->num_rows>0){
-		return true;
-	}
-	return false;
-}
-
 
 ?>

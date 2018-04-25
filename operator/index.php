@@ -96,10 +96,9 @@
 											</td>
 											<td> x {{order.quantity}}</td>
 											<td>{{order.discount}}%</td>
-											<td><span class="b">{{order.itemTotalPrice}}</span><button class="close-btn" ng-click="removeItem(orders.indexOf(order),order.itemTotalPrice);">x</button></td>
+											<td><span class="b">{{order.price*order.quantity*((1-order.discount/100))}}</span><button class="close-btn" ng-click="removeItem(orders.indexOf(order),order.itemTotalPrice);">x</button></td>
 										</tr>
 									</table>
-
 									<p class="largeLetter">Total: Php. <span class="b">{{totalPrice}}</span></p>
 									<p>Down payment: Php. <span class="b">{{downPayment ? downPayment : 0}}</span></p>
 									<p>------------------------</p>

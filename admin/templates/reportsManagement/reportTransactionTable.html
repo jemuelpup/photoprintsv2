@@ -1,0 +1,59 @@
+<div class="reportTransactionTable">
+	<h3>Transaction details</h3>
+	<div class="row">
+		<div class="col s8">
+			<h4>Transaction table</h4>
+			<div class="data-table-container">
+				<table class="table-data">
+					<tr>
+						<th>branch</th>
+						<th>Cashier</th>
+						<th>Operator</th>
+						<th>Customer</th>
+						<th>DP</th>
+						<th>payment</th>
+						<th>amount</th>
+						<th>received_date</th>
+					</tr>
+					<tr ng-repeat="transaction in transactions" ng-click="getTransactionDetails($index)" ng-class="transaction.notes.length>0 ? 'hasOrderNotes':''">
+						<td>{{transaction.branch_name}}</td>
+						<td>{{transaction.cashier_name}}</td>
+						<td>{{transaction.operator_name}}</td>
+						<td>{{transaction.customer_name}}</td>
+						<td>{{transaction.down_payment}}</td>
+						<td>{{transaction.payment}}</td>
+						<td>{{transaction.total_amount}}</td>
+						<td>{{transaction.received_date | date}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="col s4">
+			<h4>Ordered Items</h4>
+			<table class="orderDetails">
+				<tr>
+					<th>Item</th>
+					<th>Price</th>
+					<th>Qty</th>
+					<th>Disc</th>
+					<th>Total</th>
+				</tr>
+				<tr ng-repeat="orderItem in orderItems" class="show-on-hover" ng-init="active = false" ng-class="{'noHover':disableEditting}">
+					<td>{{orderItem.name}}</td>
+					<!-- <td>{{orderItem.itemName}}</td> -->
+					<td>{{orderItem.price}}
+						<div class="customPrice" ng-class="{'active': active === true}">
+						</div>
+					</td>
+					<td> x {{orderItem.quantity}}</td>
+					<td>{{orderItem.discount}}%</td>
+					<td><span class="b">{{orderItem.quantity*orderItem.price*(1-(orderItem.discount/100))}}</span></td>
+				</tr>
+			</table>
+			<p class="largeLetter">Total: Php. <span class="b">{{totalPrice}}</span></p>
+			<p>Down payment: Php. <span class="b">{{downPayment ? downPayment : 0}}</span></p>
+			<h4>Transaction notes</h4>
+			<textarea rows="4" cols="50">{{transactionNotes}}</textarea>
+		</div>
+	</div>
+</div>

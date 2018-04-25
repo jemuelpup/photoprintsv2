@@ -60,6 +60,12 @@ switch($process){
 	case "RemoveCategory":{
 		deleteCategory($conn,$data);
 	}break;
+	case "AddMaterial":{
+		insertMaterial($conn,$data);
+	}break;
+	case "EditMaterial":{
+		updateMaterial($conn,$data);
+	}break;
 }
 
 
@@ -108,6 +114,12 @@ function insertAccess($c,$d){
 	$msg = ($sql->execute() === TRUE) ? "Adding new Category success" : "Error: " . $sql . "<br>" . $c->error;
 	$sql->close();
 }
+function insertMaterial($c,$d){
+	$sql = $c->prepare("INSERT INTO material_tbl(name,description,quantity)VALUES(?,?,?)");
+	$sql->bind_param('ssd',$d->name,$d->description,$d->quantity);
+	$msg = ($sql->execute() === TRUE) ? "Adding new Material success" : "Error: " . $sql . "<br>" . $c->error;
+	$sql->close();
+}
 
 /* UPDATE */
 function updateEmployee($c,$d){
@@ -116,7 +128,6 @@ function updateEmployee($c,$d){
 	$msg = ($sql->execute() === TRUE) ? "Adding new Category success" : "Error: " . $sql . "<br>" . $c->error;
 	$sql->close();
 }
-
 function updateCategory($c,$d){
 	$sql = $c->prepare("UPDATE category_tbl SET name = ? ,category_code = ? ,description = ?  WHERE id = ?");
 	$sql->bind_param('sssi',validateData($d->name),validateData($d->category_code),validateData($d->description),validateData($d->id));
@@ -132,21 +143,24 @@ function updateBranch($c,$d){
 	$sql->close();
 	// }
 }
-
 function updateItem($c,$d){
 	$sql = $c->prepare("UPDATE item_tbl SET name = ? ,item_code = ? ,category_fk = ?,price = ? WHERE id = ?");
 	$sql->bind_param('ssidi',validateData($d->name),validateData($d->item_code),validateData($d->category_fk),validateData($d->price),validateData($d->id));
 	$msg = ($sql->execute() === TRUE) ? "Adding new Category success" : "Error: " . $sql . "<br>" . $c->error;
 	$sql->close();
 }
-
 function updatePosition($c,$d){
 	$sql = $c->prepare("UPDATE position_tbl SET name = ?,description = ? WHERE id = ?");
 	$sql->bind_param('ssi',validateData($d->name),validateData($d->description),validateData($d->id));
 	$msg = ($sql->execute() === TRUE) ? "Updating position success" : "Error: " . $sql . "<br>" . $c->error;
 	$sql->close();
 }
-
+function updateMaterial($c,$d){
+	$sql = $c->prepare("UPDATE material_tbl SET name = ?, description = ?, quantity = ? WHERE id=?"); 
+	$sql->bind_param('ssdi',$d->name,$d->description,$d->quantity,$d->id);
+	$msg = ($sql->execute() === TRUE) ? "Updating material success" : "Error: " . $sql . "<br>" . $c->error;
+	$sql->close();
+}
 
 /* DELETE */
 function deleteCategory($c,$d){

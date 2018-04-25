@@ -1,0 +1,19 @@
+<div class="addCategory">
+	<h3>Category</h3>
+	<form action="#" ng-submit="addNewCategory()">
+		<div class="input-field col s12">
+			<input ng-model="categoryFields.name" value="" type="text" class="validate" maxlength="50" required>
+			<label for="name">name</label>
+		</div>
+		<div class="input-field col s12">
+			<input ng-model="categoryFields.category_code" value="" type="text" class="validate" maxlength="10">
+			<label for="category_code">category_code</label>
+		</div>
+		<div class="input-field col s12">
+			<input ng-model="categoryFields.description" value="" type="text" class="validate" maxlength="500">
+			<label for="description">description</label>
+		</div>
+		<button class="waves-effect waves-light btn" type="submit">Add</button>
+		<a class="waves-effect waves-light btn">Clear</a>
+	</form>
+</div>

@@ -35,7 +35,7 @@ $(document).ready(function(){
 // hideAll();
 // $(".product-management").show();
 	hideAll();
-	$(".reports-management").show();
+	$(".inventory-management").show();
 	$(".product-management-btn").click(function(){
 		hideAll();
 		$(".product-management").show();
@@ -52,12 +52,15 @@ $(document).ready(function(){
 		hideAll();
 		$(".reports-management").show();
 	});
-
+	$(".inventory-btn").click(function(){
+		hideAll();
+		$(".inventory-management").show();
+	});
 
 
 	// hideAll();
 	function hideAll(){
-		$(".product-management,.employee-management,.buisness-management,.reports-management").hide();
+		$(".product-management,.employee-management,.buisness-management,.reports-management,.inventory-management").hide();
 	}
 /********************************************/
 /*

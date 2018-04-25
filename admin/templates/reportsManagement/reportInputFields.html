@@ -1,0 +1,17 @@
+<div class="fromToInputReport">
+	<h3>Get transactions on</h3>
+	<div class="row">
+		<div class="col m4">
+			<input type="date" ng-model="fromdateInput" class="datepicker">
+		</div>
+		<div class="col m4">
+			<input type="date" ng-model="todateInput" class="datepicker">
+		</div>
+		<div class="col m4">
+			<button class="waves-effect waves-light btn" ng-click="getTransactionData()">VIEW</button>
+		</div>
+		<div class="col s12">
+			<p>Total sales : {{totalSales}}</p>
+		</div>
+	</div>
+</div>

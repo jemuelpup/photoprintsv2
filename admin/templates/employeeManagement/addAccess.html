@@ -1,0 +1,17 @@
+<div id="addAccess" class="modal">
+    <div class="modal-content">
+        <h4>Add access</h4>
+        <div class="input-field col s12">
+            <input ng-model="employeeAccessFields.username" type="text" class="validate" maxlength="50" required>
+            <label for="username">username</label>
+        </div>
+        <div class="input-field col s12">
+            <input ng-model="employeeAccessFields.password" type="text" class="validate" maxlength="50" required>
+            <label for="password">password</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Clear</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="addEmployeeAccess()">Add</a>
+    </div>
+</div>

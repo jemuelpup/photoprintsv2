@@ -1,0 +1,23 @@
+<div class="addBranch">
+	<h4>Add Branch</h4>
+	<form action="#" ng-submit="newBranch()">
+		<div class="input-field col s12">
+			<input ng-model="branchFields.name" value="" type="text" class="validate" maxlength="50" required>
+			<label for="name">name</label>
+		</div>
+		<div class="input-field col s12">
+			<input ng-model="branchFields.address" value="" type="text" class="validate" maxlength="200">
+			<label for="address">address</label>
+		</div>
+		<div class="input-field col s12">
+			<input ng-model="branchFields.description" value="" type="text" class="validate" maxlength="200">
+			<label for="description">description</label>
+		</div>
+		<div class="input-field col s12">
+			<input ng-model="branchFields.branch_code" value="" type="text" class="validate" maxlength="10" required>
+			<label for="branch_code">branch_code</label>
+		</div>
+		<button class="waves-effect waves-light btn" type="submit">Add</button>
+		<a class="waves-effect waves-light btn">Clear</a>
+	</form>
+</div>

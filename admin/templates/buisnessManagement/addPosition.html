@@ -1,0 +1,15 @@
+<div class="addPosition">
+	<form action="#" ng-submit="newPosition()">
+		<h4>Add Employee Position</h4>
+		<div class="input-field col s12">
+			<input ng-model="positionFields.name" value="" type="text" class="validate" maxlength="50" required>
+			<label for="name">name</label>
+		</div>
+		<div class="input-field col s12">
+			<input ng-model="positionFields.description" value="" type="text" class="validate" maxlength="500">
+			<label for="description">description</label>
+		</div>
+		<button class="waves-effect waves-light btn" type="submit">Add</button>
+		<a class="waves-effect waves-light btn">Clear</a>
+	</form>
+</div>

@@ -137,6 +137,17 @@ h4{
 .hasOrderNotes{
 	background-color: #f9f9f9;
 }
+.orderDetails{
+	
+	th{
+		padding: 5px 0;
+	}
+	td{
+		font-size: 12px;
+		padding: 0 3px 0 0;
+		max-width: 75px;
+	}
+}
 @media screen and (max-width: 900px) {
 	h2{
 		font-size: 2.2rem;
