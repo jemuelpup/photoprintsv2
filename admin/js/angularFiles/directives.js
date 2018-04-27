@@ -99,6 +99,11 @@ app.directive("addMaterial",function(){
 		templateUrl: '/admin/templates/inventoryManagement/addMaterial.html'
 	}
 });
+app.directive("editMaterial",function(){
+	return {
+		templateUrl: '/admin/templates/inventoryManagement/editMaterial.html'
+	}
+});
 
 app.directive("materialList",function(){
 	return {

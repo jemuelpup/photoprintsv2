@@ -45,7 +45,7 @@ switch($process){
 	case "getOrderData":{
 		getOrderData($conn,$data);
 	}break;
-	case "GetMaterial":{
+	case "GetMaterials":{
 		selectMaterial($conn);
 	}break;
 

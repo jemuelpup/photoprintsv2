@@ -142,7 +142,7 @@
 					</div>
 				</div>
 			</section>
-			<section class="inventory-management">
+			<section class="inventory-management" ng-controller="inventoryManagement">
 				<div class="container">
 					<h2>Inventory</h2>
 					<div class="row">
@@ -152,6 +152,7 @@
 									<add-material></add-material>
 								</div>
 								<div class="col m6 s12">
+									<edit-material></edit-material>
 									<material-list></material-list>
 								</div>
 							</div>
@@ -176,7 +177,12 @@
 		<script src="/admin/js/angularFiles/directives.js"></script>
 		<script src="/admin/js/angularFiles/filters.js"></script>
 		
-		<script src="/admin/js/angularFiles/controllers.js"></script>		
+		<script src="/admin/js/angularFiles/controllers.js"></script>
+		<script src="/admin/js/angularFiles/controllers/buisnessManagement.controller.js"></script>
+		<script src="/admin/js/angularFiles/controllers/productManagement.controller.js"></script>
+		<script src="/admin/js/angularFiles/controllers/employeeManagement.controller.js"></script>
+		<script src="/admin/js/angularFiles/controllers/reportManagement.controller.js"></script>
+		<script src="/admin/js/angularFiles/controllers/inventoryManagement.controller.js"></script>		
 		<!-- <script src="/common/js/operations.js"></script> -->
 		<script src="/admin/js/main.js"></script>
 		<!-- <script src="http://localhost:3000/socket.io/socket.io.js"></script>

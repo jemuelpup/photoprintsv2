@@ -1,28 +1,33 @@
-var loginEnabled = 1;
-var strictModeEnabled = 1;
-
-
 app.controller("inventoryManagement",function($scope,$http,dbOperations){
 	$scope.materials = [];
-	$scope.materialFields = {};
+	$scope.addMaterialFields = {};
 	$scope.editMaterialFields = {};
+	$scope.selectedMaterialIndex = 1;
 
 	function getMaterials(){
-		dbOperations.views("getMaterials","").then(function(res){
-			$scope.Materials = res;
+		dbOperations.views("GetMaterials","").then(function(res){
+			$scope.materials = res;
 			$('select').material_select();
+			$('.modal').modal();
 		});
 	}
 
-	$scope.materialIndex = function(i,id){
-		$scope.editMaterialFields = ($scope.materials)[i];
+	$scope.materialIndex = function(i){
+
+		console.log($scope.selectedMaterialIndex);
+		
 	}
 	$scope.editMaterialTrigger = function(){
-		$('#editMaterial').modal('open');
+		if($scope.selectedMaterialIndex == -1){
+			alert("Select material first");
+		}
+		else{
+			$('#editMaterial').modal('open');
+		}
 	}
 	$scope.editMaterial = function(){
 		dbOperations.processData("EditMaterial",$scope.editMaterialFields).then(function(res){
-			getMaterial();
+			getMaterials();
 		});
 	}
 	$scope.deleteMaterial = function(){
@@ -30,9 +35,11 @@ app.controller("inventoryManagement",function($scope,$http,dbOperations){
 			getMaterials();
 		});
 	}
-	$scope.addNewMaterial = function(){
-		dbOperations.processData("AddMaterial",$scope.materialFields).then(function(res){
+	$scope.addNewMaterial = function(e){
+		e.preventDefault();
+		dbOperations.processData("AddNewMaterial",$scope.addMaterialFields).then(function(res){
 			alert("New material available.")
 			getMaterials();});
 	}
+	getMaterials();
 });

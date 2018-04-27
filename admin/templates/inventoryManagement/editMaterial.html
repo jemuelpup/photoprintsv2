@@ -1,22 +1,22 @@
 <div id="editMaterial" class="modal editMaterial">
 	<form ng-submit="editMaterial()">
 		<div class="modal-content">
-			<h4>editmaterial</h4>
+			<h4>material</h4>
 			<div class="input-field col s12">
-				<input ng-model="editMaterialFields.name" name="name" value="" type="text" class="validate" maxlength="50" required>
+				<input ng-model="editMaterialFields.name" name="name" value="" type="text" class="validate" maxlength="50" placeholder='name' required>
 				<label for="name">name</label>
 			</div>
 			<div class="input-field col s12">
-				<input ng-model="editMaterialFields.description" name="description" value="" type="text" class="validate" maxlength="50">
+				<input ng-model="editMaterialFields.description" name="description" value="" type="text" class="validate" maxlength="50" placeholder='description'>
 				<label for="description">description</label>
 			</div>
 			<div class="input-field col s12">
-				<input ng-model="editMaterialFields.quantity" name="quantity" value="" type="number" class="validate" maxlength="50">
+				<input ng-model="editMaterialFields.quantity" name="quantity" value="" type="number" class="validate" maxlength="50" placeholder='quantity'>
 				<label for="quantity">quantity</label>
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button class="waves-effect waves-light btn" type="submit" ng-click="editMaterial()">Update</button>
+			<button class="waves-effect waves-light btn modal-action modal-close" type="submit" ng-click="editMaterial()">Update</button>
 		</div>
 	</form>
 </div>
