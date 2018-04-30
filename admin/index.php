@@ -11,6 +11,19 @@
 		<link rel="stylesheet" href="/plugin/materialize/css/materialFont.css">
 		<link rel="stylesheet" href="/common/css/common.css">
 		<link rel="stylesheet" href="/admin/css/style.css">
+		<style>
+			.select-browser-default select {
+    position: static;
+    pointer-events: all;
+    opacity: 1;
+    background-color: rgba(255,255,255,0.9) !important;
+    width: 100% !important;
+    padding: 5px !important;
+    border: 1px solid #f2f2f2 !important;
+    border-radius: 2px !important;
+    height: 3rem !important;
+}
+		</style>
 		<script src="/plugin/angular/angular.min.js"></script>
 	</head>
 	<body ng-app="photoPrints" ng-controller="adminController">

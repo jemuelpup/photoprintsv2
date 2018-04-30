@@ -2,7 +2,7 @@ app.controller("inventoryManagement",function($scope,$http,dbOperations){
 	$scope.materials = [];
 	$scope.addMaterialFields = {};
 	$scope.editMaterialFields = {};
-	$scope.selectedMaterialIndex = 1;
+	$scope.selectedMaterialIndex = -1;
 
 	function getMaterials(){
 		dbOperations.views("GetMaterials","").then(function(res){
@@ -12,10 +12,9 @@ app.controller("inventoryManagement",function($scope,$http,dbOperations){
 		});
 	}
 
-	$scope.materialIndex = function(i){
-
-		console.log($scope.selectedMaterialIndex);
-		
+	$scope.materialIndex = function(i,id){
+		$scope.editMaterialFields = ($scope.materials)[i];
+		$scope.selectedMaterialIndex = $scope.selectedMaterialIndex===i ? -1 : i;
 	}
 	$scope.editMaterialTrigger = function(){
 		if($scope.selectedMaterialIndex == -1){

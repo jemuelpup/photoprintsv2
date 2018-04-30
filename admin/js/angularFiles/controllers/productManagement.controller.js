@@ -5,6 +5,7 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 	$scope.itemFields = {};
 	$scope.editItemFields = {};
 	$scope.editCategoryFields = {};
+	$scope.selectedItemIndex = -1;
 
 	$scope.deleteCategory = function(){
 		dbOperations.processData("RemoveCategory",$scope.editCategoryFields).then(function(res){
@@ -30,6 +31,8 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 
 	$scope.itemIndex = function(i,id){
 		$scope.editItemFields = ($scope.items)[i];
+		console.log($scope.editItemFields);
+		$scope.selectedItemIndex = $scope.selectedItemIndex===i ? -1 : i;
 		// $(".categoryUpdate [value="+$scope.editItemFields.category_fk+"]").attr("selected='selected'");
 	}
 
@@ -39,7 +42,13 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 	}
 
 	$scope.editItemsTrigger = function(){
-		$('#edit-item').modal('open');
+		if($scope.selectedItemIndex == -1){
+			alert("Select item first");
+		}
+		else{
+			$('#editItem').modal('open');
+			// $('#editItem select').material_select();
+		}
 	}
 
 	$scope.editCategoryTrigger = function(){
@@ -82,7 +91,7 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 		}).then(function success(res){
 			$scope.categories = res.data;
 			// console.log(res.data,'nandit yun')
-			$('select').material_select();
+			// $('select').material_select();
 		}, function myError(response) {
 	    });
     }
@@ -97,7 +106,7 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 				return e
 			});
 			$scope.items = res.data;
-			$('select').material_select();
+			// $('select').material_select();
 			// $scope.items.price = Number(res.data.price);
 		}, function myError(response) {
 	    });

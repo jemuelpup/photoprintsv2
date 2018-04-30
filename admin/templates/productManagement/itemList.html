@@ -11,12 +11,12 @@
 					<th>date_modified</th>
 					<th>price</th>
 				</tr>
-				<tr ng-repeat="i in items | filter:itemFilter" data-id="{{i.id}}" ng-click="itemIndex($index,i.id)">
-					<td>{{i.name}}</td>
-					<td>{{i.item_code}}</td>
-					<td>{{i.category_fk}}</td>
-					<td>{{i.date_modified}}</td>
-					<td>{{i.price}}</td>
+				<tr ng-repeat="x in items" ng-click="itemIndex($index)" ng-class="{'active': $index === selectedItemIndex}">
+					<td>{{x.name}}</td>
+					<td>{{x.item_code}}</td>
+					<td>{{x.category_fk}}</td>
+					<td>{{x.date_modified}}</td>
+					<td>{{x.price}}</td>
 				</tr>
 			</tbody>
 		</table>

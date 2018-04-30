@@ -22,14 +22,14 @@
                       <input ng-model="employeeFields.email" type="text" class="validate" maxlength="50">
                       <label ng-class="employeeFields.email.length>0 ? \'active\':\'\'" for="email">email</label>
                     </div>
-                    <div class="input-field col s12">
+                    <div class="input-field col s12 select-browser-default">
                       <select name="positionField">
                         <option selected>Choose position</option>
                         <option value="{{c.id}}" ng-repeat="c in positions">{{c.name}}</option>
                       </select>
                       <label for="position_fk">position_fk</label>
                     </div>
-                    <div class="input-field col s12">
+                    <div class="input-field col s12 select-browser-default">
                       <select id="addEmployeeBranchField" name="branchField">
                         <option selected>Choose branch</option>
                         <option value="{{branch.id}}" ng-repeat="branch in branches">{{branch.name}}</option>

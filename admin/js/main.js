@@ -35,7 +35,7 @@ $(document).ready(function(){
 // hideAll();
 // $(".product-management").show();
 	hideAll();
-	$(".inventory-management").show();
+	$(".product-management").show();
 	$(".product-management-btn").click(function(){
 		hideAll();
 		$(".product-management").show();
@@ -148,15 +148,7 @@ $(".edit-category form").submit(function(e){
 	System Operations
 */
 // This function highlight the row selected
-$(".data-clickable").on("click", "tr", function(){
-	if($(this).index()!=0){
-		if($(this).hasClass("active")){ $(this).removeClass("active"); }
-		else{
-			$(this).parent().children().removeClass("active");
-			$(this).addClass("active");
-		}
-	}
-});
+
 $(".modal-trigger").on("click",function(){
 	$('select').material_select();
 });
@@ -181,7 +173,8 @@ function dbOperations(processName,dataInputs,callback){
 */	
 
 	$('.modal').modal();
-	$('select').material_select();
+	// $('select').material_select();
+	// $('select').material_select('destroy');
 	
 	// $('.datepicker').pickadate({
 	//     selectMonths: true, // Creates a dropdown to control month
