@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2018 at 08:55 AM
--- Server version: 5.6.20
--- PHP Version: 5.5.15
+-- Generation Time: May 08, 2018 at 12:53 PM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `branch_tbl` (
   `branch_code` varchar(10) NOT NULL,
   `modified_by_fk` int(11) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `branch_tbl`
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `category_tbl` (
   `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_by_fk` int(11) DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `category_tbl`
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `employee_tbl` (
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `birth_day` date DEFAULT NULL,
   `gender` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee_tbl`
@@ -142,7 +142,37 @@ INSERT INTO `employee_tbl` (`id`, `name`, `address`, `contact_number`, `email`, 
 (10, 'trainee', '123', '123', '3211', 2, 2, '123.00', '2018-02-26 01:03:14', 0, 1, '2000-10-09', 1),
 (11, 'genericbs', '123', '123', '123', 6, 2, '123.00', '2018-02-26 01:03:55', 0, 1, '2000-10-09', 1),
 (12, 'marie', '324', '234', '324', 2, 2, '234.00', '2018-02-26 01:04:34', 0, 1, '2000-10-09', 0),
-(13, 'romar', '234', '234', '234', 2, 2, '234.00', '2018-02-26 01:05:19', 0, 1, '2000-10-09', 1);
+(13, 'romar', '234', '234', '234', 2, 2, '234.00', '2018-02-26 01:05:19', 0, 1, '2000-10-09', 1),
+(14, 'jenny', '123123', '12313123', 'jen@gmail.com', 5, 1, '123.00', '2018-04-23 05:33:05', 0, 1, '1992-05-04', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_line_tbl`
+--
+
+CREATE TABLE IF NOT EXISTS `item_line_tbl` (
+`id` int(11) NOT NULL,
+  `item_id_fk` smallint(6) NOT NULL,
+  `material_id_fk` smallint(6) NOT NULL,
+  `material_quantity_needed` float NOT NULL DEFAULT '0',
+  `modified_by` smallint(6) NOT NULL DEFAULT '0',
+  `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` tinyint(4) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `item_line_tbl`
+--
+
+INSERT INTO `item_line_tbl` (`id`, `item_id_fk`, `material_id_fk`, `material_quantity_needed`, `modified_by`, `date_modified`, `active`) VALUES
+(1, 1, 1, 1, 0, '2018-05-02 08:43:36', 1),
+(3, 1, 2, 1, 0, '2018-05-04 07:53:06', 0),
+(8, 9, 3, 0.5, 0, '2018-05-07 07:52:44', 1),
+(9, 29, 3, 1, 0, '2018-05-07 08:04:57', 1),
+(10, 3, 4, 1, 0, '2018-05-07 08:24:34', 1),
+(12, 132, 5, 1, 0, '2018-05-08 09:44:04', 1),
+(13, 132, 3, 1, 0, '2018-05-08 09:44:11', 1);
 
 -- --------------------------------------------------------
 
@@ -160,17 +190,17 @@ CREATE TABLE IF NOT EXISTS `item_tbl` (
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `price` decimal(11,2) DEFAULT NULL,
   `price_changing` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=133 ;
+) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_tbl`
 --
 
 INSERT INTO `item_tbl` (`id`, `name`, `item_code`, `category_fk`, `date_modified`, `modified_by_fk`, `active`, `price`, `price_changing`) VALUES
-(1, 'Black short plain text: (Php 1.50)', 'd0', 1, '2018-02-04 00:04:54', 1, 1, '1.50', 0),
+(1, 'Black short plain text: (Php 1.50)', 'd0', 1, '2018-05-04 09:53:18', 1, 1, '1.50', 0),
 (2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2018-02-04 00:04:54', 1, 1, '2.00', 0),
 (3, 'Black long plain text: (Long-Php3.00)', 'd0', 1, '2018-02-04 00:04:54', 1, 1, '3.00', 0),
-(4, 'Black short with FULL image (Php3.00) ', 'd0', 1, '2018-02-04 00:04:54', 1, 1, '3.00', 0),
+(4, 'Black short with FULL image (Php3.00) ', 'd0', 5, '2018-02-04 00:04:54', 1, 1, '6.00', 0),
 (5, 'A4 with FULL image (A4-Php5.00)', 'd0', 1, '2018-02-04 00:04:54', 1, 1, '5.00', 0),
 (6, 'Long with FULL  image (Long-Php5.00)', 'd0', 1, '2018-02-04 00:04:54', 1, 1, '5.00', 0),
 (7, 'Short Colored plain text/resume plain white backgr', 'd0', 1, '2018-02-04 00:04:54', 1, 1, '5.00', 0),
@@ -311,7 +341,34 @@ CREATE TABLE IF NOT EXISTS `log_tbl` (
   `event` varchar(1000) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `active` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `material_tbl`
+--
+
+CREATE TABLE IF NOT EXISTS `material_tbl` (
+`id` int(11) NOT NULL,
+  `name` varchar(70) NOT NULL,
+  `description` varchar(150) DEFAULT NULL,
+  `quantity` float DEFAULT '0',
+  `modified_by` smallint(6) NOT NULL DEFAULT '0',
+  `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` tinyint(4) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `material_tbl`
+--
+
+INSERT INTO `material_tbl` (`id`, `name`, `description`, `quantity`, `modified_by`, `date_modified`, `active`) VALUES
+(1, 'Short bond paper', '', 950, 0, '2018-04-30 06:38:01', 1),
+(2, 'tarpulin roll', 'tarp', 733, 0, '2018-05-04 07:51:33', 1),
+(3, 'photo paper', '123', 459.5, 0, '2018-05-07 07:28:53', 1),
+(4, 'long bond paper', NULL, 1185, 0, '2018-05-07 08:11:32', 1),
+(5, 'plastic tumbler', NULL, 48, 0, '2018-05-08 09:43:43', 1);
 
 -- --------------------------------------------------------
 
@@ -5564,7 +5621,16 @@ INSERT INTO `order_line_tbl` (`order_id_fk`, `item_id_fk`, `name`, `code`, `quan
 (3522, 121, 'pc rental', 'o01', 1, '5.00', '0.00', '0.00'),
 (3523, 7, 'Short Colored plain text/resume plain white backgr', 'd0', 1, '5.00', '0.00', '0.00'),
 (3523, 8, 'Short Colored 1/4 image P10.00', 'd0', 1, '10.00', '0.00', '0.00'),
-(3524, 37, 'Wallet size - Kodak  (2x3 inches | 4 pcs minimum)', 'phpr03', 12, '7.00', '0.00', '0.00');
+(3524, 37, 'Wallet size - Kodak  (2x3 inches | 4 pcs minimum)', 'phpr03', 12, '7.00', '0.00', '0.00'),
+(3525, 81, 'Tarpulin', 'W07', 12, '500.00', '0.00', '0.00'),
+(13, 9, 'Short Colored 1/2 image P15.00', 'd0', 1, '15.00', '0.00', '0.00'),
+(13, 9, 'Short Colored 1/2 image P15.00', 'd0', 1, '15.00', '0.00', '0.00'),
+(3526, 1, 'Black short plain text: (Php 1.50)', 'd0', 7, '1.50', '0.00', '0.00'),
+(3527, 1, 'Black short plain text: (Php 1.50)', 'd0', 80, '1.50', '0.00', '0.00'),
+(3528, 1, 'Black short plain text: (Php 1.50)', 'd0', 10, '1.50', '0.00', '0.00'),
+(3529, 1, 'Black short plain text: (Php 1.50)', 'd0', 100, '1.50', '0.00', '0.00'),
+(3530, 132, 'Tumbler', 't01', 2, '180.00', '0.00', '0.00'),
+(3530, 1, 'Black short plain text: (Php 1.50)', 'd0', 50, '1.50', '0.00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -5586,7 +5652,7 @@ CREATE TABLE IF NOT EXISTS `order_tbl` (
   `down_payment` decimal(11,2) NOT NULL DEFAULT '0.00',
   `received_date` datetime DEFAULT NULL,
   `void_reason` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3525 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3531 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `order_tbl`
@@ -9123,7 +9189,13 @@ INSERT INTO `order_tbl` (`id`, `order_date`, `cashier_fk`, `branch_fk`, `operato
 (3521, '2018-04-21 06:25:31', 7, 1, 7, 0, '16.50', '', '17.00', '', '0.00', '2018-04-21 14:26:04', NULL),
 (3522, '2018-04-21 06:35:34', 7, 1, 10, 0, '51.50', '', '60.00', '', '0.00', '2018-04-21 14:37:24', NULL),
 (3523, '2018-04-21 06:37:58', 7, 1, 10, 0, '15.00', '', '15.00', '', '0.00', '2018-04-21 14:38:32', NULL),
-(3524, '2018-04-21 06:48:31', 1, 1, 9, 0, '84.00', '', NULL, '', '0.00', NULL, NULL);
+(3524, '2018-04-21 06:48:31', 11, 1, 9, 0, '84.00', '', '100.00', '', '0.00', '2018-05-08 16:34:33', NULL),
+(3525, '2018-04-24 06:35:58', 11, 1, 10, 0, '6250.00', '', '7000.00', '', '0.00', '2018-05-08 16:35:53', NULL),
+(3526, '2018-05-08 02:29:20', 11, 1, 13, 0, '10.50', '', '100.00', '', '0.00', '2018-05-08 16:36:13', NULL),
+(3527, '2018-05-08 02:30:24', 11, 1, 13, 0, '120.00', '', '150.00', '', '0.00', '2018-05-08 16:36:20', NULL),
+(3528, '2018-05-08 05:15:59', 11, 1, 13, 0, '15.00', '', '100.00', '', '0.00', '2018-05-08 16:36:30', NULL),
+(3529, '2018-05-08 08:35:22', 11, 1, 11, 0, '150.00', '', '200.00', '', '0.00', '2018-05-08 16:36:37', NULL),
+(3530, '2018-05-08 09:46:26', 11, 1, 11, 0, '435.00', '', '500.00', '', '0.00', '2018-05-08 18:18:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -9136,7 +9208,7 @@ CREATE TABLE IF NOT EXISTS `position_tbl` (
   `name` varchar(50) NOT NULL,
   `description` varchar(500) DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `position_tbl`
@@ -9179,6 +9251,12 @@ ALTER TABLE `employee_tbl`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `item_line_tbl`
+--
+ALTER TABLE `item_line_tbl`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `unique_item_and_material` (`item_id_fk`,`material_id_fk`);
+
+--
 -- Indexes for table `item_tbl`
 --
 ALTER TABLE `item_tbl`
@@ -9188,6 +9266,12 @@ ALTER TABLE `item_tbl`
 -- Indexes for table `log_tbl`
 --
 ALTER TABLE `log_tbl`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `material_tbl`
+--
+ALTER TABLE `material_tbl`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -9220,6 +9304,11 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT for table `employee_tbl`
 --
 ALTER TABLE `employee_tbl`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
+-- AUTO_INCREMENT for table `item_line_tbl`
+--
+ALTER TABLE `item_line_tbl`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `item_tbl`
@@ -9232,10 +9321,15 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=133;
 ALTER TABLE `log_tbl`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `material_tbl`
+--
+ALTER TABLE `material_tbl`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT for table `order_tbl`
 --
 ALTER TABLE `order_tbl`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3525;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3531;
 --
 -- AUTO_INCREMENT for table `position_tbl`
 --
