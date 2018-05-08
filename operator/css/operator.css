@@ -9,24 +9,22 @@ input[type=number]::-webkit-outer-spin-button {
 .noHover {
   pointer-events: none !important; }
 
-.categories {
-  display: none; }
-  .categories .menu {
-    padding: 8px 15px;
-    overflow: hidden;
-    -webkit-transition: max-height 1s ease;
-    -moz-transition: max-height 1s ease;
-    -ms-transition: max-height 1s ease;
-    -o-transition: max-height 1s ease;
-    transition: max-height 1s ease; }
-  .categories table input[type='number'] {
-    height: 20px;
-    margin: 0;
-    width: 60px; }
-  .categories table th, .categories table td {
-    padding: 5px 5px; }
-  .categories.active {
-    display: block; }
+.categories .menu {
+  padding: 8px 15px;
+  overflow: hidden;
+  -webkit-transition: max-height 1s ease;
+  -moz-transition: max-height 1s ease;
+  -ms-transition: max-height 1s ease;
+  -o-transition: max-height 1s ease;
+  transition: max-height 1s ease; }
+.categories table input[type='number'] {
+  height: 20px;
+  margin: 0;
+  width: 60px; }
+.categories table th, .categories table td {
+  padding: 5px 5px; }
+.categories.active {
+  display: block; }
 
 .category-list {
   padding: 8px 15px; }

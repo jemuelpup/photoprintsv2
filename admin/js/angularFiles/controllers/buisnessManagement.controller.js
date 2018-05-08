@@ -54,7 +54,7 @@ app.controller("buisnessManagement",function($scope,$http,dbOperations){
 	function getBranches(){
 		dbOperations.views("getBranches","").then(function(res){
 			$scope.branches = res;
-			$('select').material_select();
+			// $('select').material_select();
 		});
 	}
 	function getPositions(){
@@ -62,7 +62,7 @@ app.controller("buisnessManagement",function($scope,$http,dbOperations){
 			// console.log("nasa position");
 			// console.log(res,"position");
 			$scope.positions = res;
-			$('select').material_select();
+			// $('select').material_select();
 		});
 	}
 	getBranches();

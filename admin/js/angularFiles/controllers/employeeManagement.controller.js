@@ -60,7 +60,7 @@ app.controller("employeeManagement",function($scope,$http,dbOperations){
 		else{
 			$scope.addEmployeeCommand = false;
 			$scope.editEmployeeCommand = true;
-			$('select').material_select();
+			// $('select').material_select();
 			$("#addEmployee").modal("open");
 		}
 	}
@@ -97,7 +97,7 @@ app.controller("employeeManagement",function($scope,$http,dbOperations){
 		}
 		else{
 			$scope.employeeFields = $scope.employeeData;
-			$('select').material_select();
+			// $('select').material_select();
 			$("#addAccess").modal("open");
 		}
 	}

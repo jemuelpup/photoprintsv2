@@ -18,37 +18,18 @@ else{
 }
 
 switch($process){
-	case "getItems":{
-		selectItem($conn);
-	}break;
-	case "getItemCategory":{
-		selectItemCategory($conn);
-	}break;
-	case "getBranches":{
-		selectBranch($conn);
-	}break;
-	case "getPositions":{
-		selectPosition($conn);
-	}break;
-	case "getEmployees":{
-		selectEmployee($conn);
-	}break;
-	case "getTotalSales":{
-		getTotalSalesOn($conn,$data);
-	}break;
-	case "getTransationsData":{
-		getTransationsDataOn($conn,$data);
-	}break;
-	case "getVoidTransactionsOn":{
-		getVoidTransactionsOn($conn,$data);
-	}break;
-	case "getOrderData":{
-		getOrderData($conn,$data);
-	}break;
-	case "GetMaterials":{
-		selectMaterial($conn);
-	}break;
-
+	case "getItems":{selectItem($conn);}break;
+	case "getItemCategory":{selectItemCategory($conn);}break;
+	case "getBranches":{selectBranch($conn);}break;
+	case "getPositions":{selectPosition($conn);}break;
+	case "getEmployees":{selectEmployee($conn);}break;
+	case "getTotalSales":{getTotalSalesOn($conn,$data);}break;
+	case "getTransationsData":{getTransationsDataOn($conn,$data);}break;
+	case "getVoidTransactionsOn":{getVoidTransactionsOn($conn,$data);}break;
+	case "getOrderData":{getOrderData($conn,$data);}break;
+	case "GetMaterials":{selectMaterial($conn);}break;
+	case "GetItemMaterials":{selectItemMaterials($conn,$data);}break;
+	case "GetItemSummarySold":{selectItemSummarySold($conn,$data);}break;
 }
 
 /*
@@ -56,6 +37,12 @@ switch($process){
 */
 
 /* This function needs some edit*/
+function selectItemMaterials($c,$d){
+	$sql = "SELECT il.id, il.item_id_fk, il.material_id_fk, ( SELECT name FROM material_tbl WHERE id = il.material_id_fk ) as material_name, il.material_quantity_needed FROM item_line_tbl il WHERE il.item_id_fk=$d->itemId AND il.active = 1";
+
+	// echo "$sql";
+	print_r(hasRows($c,$sql) ? json_encode(selectQuery($c,$sql)) : "");
+}
 function selectMaterial($c){
 	$sql = "SELECT id,name,description,quantity,modified_by,date_modified FROM material_tbl WHERE active = 1";
 	print_r(hasRows($c,$sql) ? json_encode(selectQuery($c,$sql)) : "");
@@ -93,11 +80,13 @@ function selectEmployee($c){
 function getTotalSalesOn($c,$data){
 	print_r(getTotalSales($c,$data));
 }
+
+function selectItemSummarySold($c,$data){
+	$sql = "SELECT ol.name, SUM(ol.quantity) as quantity_sold, SUM(ol.price*ol.quantity*(1-((ol.discount)/100))) as total_price FROM order_line_tbl ol, order_tbl o WHERE o.void_fk = 0 AND o.received_date BETWEEN '".substr($data->from,0,10)."' AND '".substr($data->to,0,10)."' AND o.received_date IS NOT NULL and o.id = ol.order_id_fk GROUP BY ol.item_id_fk ORDER BY quantity_sold DESC";
+	print_r(hasRows($c,$sql) ? json_encode(selectQuery($c,$sql)) : "");
+}
+
 function getTotalSales($c,$data){
-	// echo $date;
-	// $from = substr($data->from,0,10);
-	// $to = substr($data->to,0,10);
-	// return "$from, $to";
 	$sql = "SELECT SUM(total_amount) as totalSales FROM `order_tbl` WHERE void_fk = 0 AND received_date BETWEEN '".substr($data->from,0,10)."' AND '".substr($data->to,0,10)."' AND received_date IS NOT NULL";
 	// echo "$sql";
 	$totalSales = selectQuery($c,$sql)[0]["totalSales"];

@@ -1,0 +1,13 @@
+<div id="editMaterialQuantityInItem" class="modal">
+	<form action="#" ng-submit="setMaterialQuantityInItem($event,material_quantity)">
+		<div class="modal-content">
+			<h4>Set Material Quantity in Item</h4>
+
+			<div class="input-field col s6">
+				<input ng-model="material_quantity" name="material_quantity" value="" type="number" class="validate" maxlength="50" required>
+				<label for="material_quantity">material_quantity</label>
+			</div>
+			<button class="waves-effect waves-light btn" type="submit">Update</button>
+		</div>
+	</form>
+</div>

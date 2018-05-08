@@ -10,4 +10,10 @@ app.filter('gender',function(){
 	}
 });
 
-
+// app.filter('ucFirst',function(){
+// 	return function(str){
+// 		if(str.length())
+// 			return str.replace(/^./, str[0].toUpperCase());
+// 		return '';
+// 	}
+// });

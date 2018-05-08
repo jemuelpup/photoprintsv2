@@ -18,15 +18,16 @@
 			</div>
 		</div>
 		<ul class="category-list">
-			<li ng-repeat="category in catAndItems" ng-click="showCategoryIndex($index)">{{category.categoryName}}</li>
+			<li ng-click="showCategoryIndex('','All')">All</li>
+			<li ng-repeat="category in categories" ng-click="showCategoryIndex(category.id,category.name)">{{category.name}}</li>
 		</ul>
 		<div class="row">
 			<div class='col l7 ms12'>
 				<div class="row">
-					<div class='col s12' ng-repeat="category in catAndItems">
-						<div class='categories z-depth-2' ng-class="{active: $index==activeCategoryIndex}">
+					<div class='col s12'>
+						<div class='categories z-depth-2'>
 							<div class="data-header">
-								<h4 class="left w50p">{{category.categoryName}}</h4>
+								<h4 class="left w50p">{{categoryName}}</h4>
 								<div class="headerSearch right w50p">
 									<input placeholder="Search" id="{{category.categoryName}}" type="text" class="validate" ng-model="itemFilter" ng-focus="focus=true" ng-blur="focus=false">
 								</div>
@@ -35,12 +36,14 @@
 								<table>
 									<tr>
 										<th>Name</th>
+										<th>Code</th>
 										<th>Price</th>
 										<th>Quantity</th>
 										<th>Discount(%)</th>
 									</tr>
-									<tr ng-repeat="item in category.items | filter:itemFilter">
+									<tr ng-repeat="item in itemsWithCategory | filter:itemFilter | filter:{category_fk:selectedCategory}">
 										<td>{{item.name}}</td>
+										<td>{{item.item_code}}</td>
 										<td>{{item.price}}</td>
 										<td><input ng-model="quantity" type='number'/></td>
 										<td><input ng-model="discount" type='number'/></td>

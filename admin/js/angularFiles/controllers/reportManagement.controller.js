@@ -5,6 +5,7 @@ app.controller("reports",function($scope,$http,dbOperations,$interval){
 	$scope.totalSales = 0;
 	$scope.transactionNotes = "";
 	$scope.voidReason = "";
+	$scope.itemSummary = [];
 	$scope.reportFilters = [
 		{"name":"Daily","id":"d1","val":1},
 		{"name":"Weekly","id":"d2","val":2},
@@ -16,10 +17,15 @@ app.controller("reports",function($scope,$http,dbOperations,$interval){
 	$scope.todateInput = new Date(($scope.fromdateInput).getTime() + (24 * 60 * 60 * 1000));
 
 
-	// .from = new Date();
-	// $scope.dateInput.to = new Date();
-	
-	// console.log($scope.selectedDate);
+	function getItemSummarySold(){
+		dbOperations.getData('GetItemSummarySold',{
+			"from":$scope.fromdateInput,
+			"to":$scope.todateInput
+		}).then(function(res) {
+			$scope.itemSummary = res.data;
+			console.log(res)
+		});
+	}
 	function getTotalSalesOn(){
 		dbOperations.getData('getTotalSales',{
 			"from":$scope.fromdateInput,
@@ -65,6 +71,7 @@ app.controller("reports",function($scope,$http,dbOperations,$interval){
 		$scope.voidReason = $scope.voidTransactions[i].void_reason;
 	}
 	getTotalSalesOn();
+	getItemSummarySold();
 	getVoidTransactionsOn();
 	getTransationsOn();
 });

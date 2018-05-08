@@ -12,17 +12,7 @@
 		<link rel="stylesheet" href="/common/css/common.css">
 		<link rel="stylesheet" href="/admin/css/style.css">
 		<style>
-			.select-browser-default select {
-    position: static;
-    pointer-events: all;
-    opacity: 1;
-    background-color: rgba(255,255,255,0.9) !important;
-    width: 100% !important;
-    padding: 5px !important;
-    border: 1px solid #f2f2f2 !important;
-    border-radius: 2px !important;
-    height: 3rem !important;
-}
+			
 		</style>
 		<script src="/plugin/angular/angular.min.js"></script>
 	</head>
@@ -69,22 +59,27 @@
 						<div class="col s12">
 							</edit-category></edit-category>
 							<div class="row">
-								<div class="col m6 s12">
+								<div class="col m4 s12">
 									<add-category></add-category>
-										</div>
-									<div class="col m6 s12">
-										<category-list></category-list>
-									</div>
+								</div>
+								<div class="col m8 s12">
+									<category-list></category-list>
+								</div>
 							</div>
 						</div>
 						<div class="col s12">
 							<div class="row">
-								<div class="col m6 s12">
+								<div class="col m3 s12">
 									<add-item></add-item>
 								</div>
-								<div class="col m6 s12">
+								<div class="col m5 s12">
 									<edit-item></edit-item>
 									<item-list></item-list>
+								</div>
+								<div class="col m4 s12">
+									<edit-material-quantity-in-item></edit-material-quantity-in-item>
+									<add-material-in-item></add-material-in-item>
+									<item-material-list></item-material-list>
 								</div>
 							</div>
 						</div>
@@ -152,6 +147,9 @@
 						<div class="col s12">
 							<report-void-transaction-table></report-void-transaction-table>
 						</div>
+						<div class="col s12">
+							<report-item-summary></report-item-summary>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -161,20 +159,15 @@
 					<div class="row">
 						<div class="col s12">
 							<div class="row">
-								<div class="col m6 s12">
+								<div class="col m4 s12">
 									<add-material></add-material>
 								</div>
-								<div class="col m6 s12">
+								<div class="col m8 s12">
+									<add-material-stock></add-material-stock>
 									<edit-material></edit-material>
 									<material-list></material-list>
 								</div>
 							</div>
-						</div>
-						<div class="col s12">
-							
-						</div>
-						<div class="col s12">
-							
 						</div>
 					</div>
 				</div>

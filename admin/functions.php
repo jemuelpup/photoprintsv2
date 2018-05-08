@@ -1,9 +1,10 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'].'/common/dbconnect.php';
+include $_SERVER['DOCUMENT_ROOT'].'/common/commonFunctions.php';
 session_start();
 $process="";
 $data = "";
-
+//*
 if(isset($_POST['process'])){
 	$process = $_POST['process'];
 }
@@ -17,54 +18,43 @@ else{
 switch($process){
 	case "Logout":{
 		session_destroy(); // php code
-	}
-	case "AddCategory": {
-		insertCategory($conn,$data);
 	}break;
-	case "AddItem":{
-		insertItem($conn,$data);
-	}break;
-	case "AddPosition":{
-		insertPosition($conn,$data);
-	}break;
-	case "AddBranch":{
-		insertBranch($conn,$data);
-	}break;
-	case "AddEmployee": {
-		insertEmployee($conn,$data);
-	}break;
-	case "AddAccess": {
-		insertAccess($conn,$data);
-	}break;
-	case "EditEmployee": {
-		updateEmployee($conn,$data);
-	}break;
-	case "EditCategory": {
-		updateCategory($conn,$data);
-	}break;
-	case "EditItem": {
-		updateItem($conn,$data);
-	}break;
-	case "EditBranch": {
-		updateBranch($conn,$data);
-	}break;
-	case "EditPosition": {
-		updatePosition($conn,$data);
-	}break;
-	case "RemoveEmployee":{
-		deleteEmployee($conn,$data);
-	}break;
-	case "RemoveItem":{
-		deleteItem($conn,$data);
-	}break;
-	case "RemoveCategory":{
-		deleteCategory($conn,$data);
-	}break;
+	case "AddCategory": {insertCategory($conn,$data);}break;
+	case "AddItem":{insertItem($conn,$data);}break;
+	case "AddPosition":{insertPosition($conn,$data);}break;
+	case "AddBranch":{insertBranch($conn,$data);}break;
+	case "AddEmployee": {insertEmployee($conn,$data);}break;
+	case "AddAccess": {insertAccess($conn,$data);}break;
+	case "EditEmployee": {updateEmployee($conn,$data);}break;
+	case "EditCategory": {updateCategory($conn,$data);}break;
+	case "EditItem": {updateItem($conn,$data);}break;
+	case "EditBranch": {updateBranch($conn,$data);}break;
+	case "EditPosition": {updatePosition($conn,$data);}break;
+	case "RemoveEmployee":{deleteEmployee($conn,$data);}break;
+	case "RemoveItem":{deleteItem($conn,$data);}break;
+	case "RemoveCategory":{deleteCategory($conn,$data);}break;
 	case "AddNewMaterial":{insertMaterial($conn,$data);}break;
-		case "EditMaterial":{updateMaterial($conn,$data);}break;
-	
+	case "EditMaterial":{updateMaterial($conn,$data);}break;
+	case "EditMaterialAffectedPerItem":{updateMaterialAffectedPerItem($conn,$data);}break;
+	case "RemoveMaterialAffectedPerItem":{deleteMaterialAffectedPerItem($conn,$data);}break;
+}
+/**/
+
+
+
+function deleteMaterialAffectedPerItem($c,$d){
+	$sql = $c->prepare("UPDATE item_line_tbl SET active = 0 WHERE item_id_fk = ? AND material_id_fk=?");
+	$sql->bind_param('ii',validateData($d->itemID),validateData($d->materialID));
+	$msg = ($sql->execute() === TRUE) ? "Adding new Material affected on product success" : "Error: " . $sql . "<br>" . $c->error;
+	$sql->close();
 }
 
+function updateMaterialAffectedPerItem($c,$d){
+	$sql = $c->prepare("INSERT INTO item_line_tbl (item_id_fk,material_id_fk,material_quantity_needed) VALUES (?,?,?) ON DUPLICATE KEY UPDATE material_quantity_needed=?,active=1");
+	$sql->bind_param('iidd',validateData($d->itemID),validateData($d->materialID),validateData($d->quantity),validateData($d->quantity));
+	$msg = ($sql->execute() === TRUE) ? "Adding new Material affected on product success" : "Error: " . $sql . "<br>" . $c->error;
+	$sql->close();
+}
 
 /****************************************************************************
 	Database operations
@@ -136,7 +126,7 @@ function updateEmployee($c,$d){
 	$sql->close();
 }
 function updateCategory($c,$d){
-	$sql = $c->prepare("UPDATE category_tbl SET name = ? ,category_code = ? ,description = ?  WHERE id = ?");
+	$sql = $c->prepare("UPDATE category_tbl SET name = ? ,category_code = ? ,description = ? WHERE id = ?");
 	$sql->bind_param('sssi',validateData($d->name),validateData($d->category_code),validateData($d->description),validateData($d->id));
 	$msg = ($sql->execute() === TRUE) ? "Adding new Category success" : "Error: " . $sql . "<br>" . $c->error;
 	$sql->close();
@@ -189,18 +179,18 @@ function deleteEmployee($c,$d){
 
 /**************************************************************************/
 
-function validateData($d){
-	if(isset($d)){
-		return $d;
-	}
-	return "";
-}
-function validateDate($d){
-	if(isset($d)){
-		return date("Y-m-d", strtotime(str_replace('/', '-',$d)));
-	}
-	return "0000-00-00";
-}
+// function validateData($d){
+// 	if(isset($d)){
+// 		return $d;
+// 	}
+// 	return "";
+// }
+// function validateDate($d){
+// 	if(isset($d)){
+// 		return date("Y-m-d", strtotime(str_replace('/', '-',$d)));
+// 	}
+// 	return "0000-00-00";
+// }
 
 
 

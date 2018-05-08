@@ -1,7 +1,20 @@
+$themeColor: #4a148c;
+$themeColorLight: #7c43bd;
+$themeColorDark: #12005e;
 .data-table-container{
   height: 500px;
   overflow: scroll;
   margin-bottom: 10px;
+}
+.data-clickable tr{
+  cursor: pointer;
+  &.active{
+    background-color: $themeColorLight!important;
+    color: #fff;
+  }
+  tr,td{
+    border-radius: 0;
+  }
 }
 .refreshOrders{
   cursor: pointer;

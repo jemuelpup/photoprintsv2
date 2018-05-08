@@ -7,6 +7,7 @@ app.controller("adminController",function($scope,dbOperations){
 		$scope.sideNavActive = true;
 	}
 	$scope.shadowClick = function(){
+		$('.modal').modal();
 		$scope.sideNavActive = false;
 	}
 	$scope.logout = function(){

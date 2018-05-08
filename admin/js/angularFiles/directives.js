@@ -30,6 +30,17 @@ app.directive("itemList",function(){
 		templateUrl: '/admin/templates/productManagement/itemList.html'
 	}
 });
+app.directive("itemMaterialList",function(){
+	return {
+		templateUrl: '/admin/templates/productManagement/itemMaterialList.html'
+	}
+});
+app.directive("addMaterialInItem",function(){
+	return {
+		templateUrl: '/admin/templates/productManagement/addMaterialInItem.html'
+	}
+});
+
 /* Employee management */
 app.directive("addEmployee",function(){
 	return {
@@ -93,6 +104,11 @@ app.directive("reportVoidTransactionTable",function(){
 		templateUrl: '/admin/templates/reportsManagement/reportVoidTransactionTable.html'
 	}
 });
+app.directive("reportItemSummary",function(){
+	return {
+		templateUrl: '/admin/templates/reportsManagement/reportItemSummary.html'
+	}
+});
 /* Inventory management */
 app.directive("addMaterial",function(){
 	return {
@@ -104,12 +120,24 @@ app.directive("editMaterial",function(){
 		templateUrl: '/admin/templates/inventoryManagement/editMaterial.html'
 	}
 });
+app.directive("addMaterialStock",function(){
+	return {
+		templateUrl: '/admin/templates/inventoryManagement/addMaterialStock.html'
+	}
+});
 
 app.directive("materialList",function(){
 	return {
 		templateUrl: '/admin/templates/inventoryManagement/materialList.html'
 	}
 });
+
+app.directive("editMaterialQuantityInItem",function(){
+	return {
+		templateUrl: '/admin/templates/productManagement/editMaterialQuantityInItem.html'
+	}
+});
+
 
 
 /* Reports management 

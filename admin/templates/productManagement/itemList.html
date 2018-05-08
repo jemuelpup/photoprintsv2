@@ -1,6 +1,6 @@
 <div class="item-list-table">
 	<h3>Item list</h3>
-	<input ng-model="itemFilter" type="text" placeholder="item filter">
+	<input ng-model="itemFilter" type="text" placeholder="item filter" ng-keypress="removeSelectedHighlight($event)" >
 	<div class="data-table-container">
 		<table class="data-clickable">
 			<tbody>
@@ -11,7 +11,7 @@
 					<th>date_modified</th>
 					<th>price</th>
 				</tr>
-				<tr ng-repeat="x in items" ng-click="itemIndex($index)" ng-class="{'active': $index === selectedItemIndex}">
+				<tr ng-repeat="x in items | filter : itemFilter" ng-click="itemIndex($index,x)" ng-class="{'active': $index === selectedItemIndex}">
 					<td>{{x.name}}</td>
 					<td>{{x.item_code}}</td>
 					<td>{{x.category_fk}}</td>

@@ -1,0 +1,31 @@
+<div id="addMaterialInItem" class="modal">
+	<form action="#" ng-submit="addNewMaterialInItem($event)">
+		<div class="modal-content">
+			<h4>Add itemInMaterial</h4>
+			<div class="input-field col s6">
+				<input ng-model="materialFilter" type="text">
+				<label for="materialFilter">Material filter</label>
+			</div>
+			<div class="input-field col s6">
+				<input ng-model="addItemInMaterialFields.material_quantity" name="material_quantity" value="" type="number" class="validate" maxlength="50" step="0.01"  required>
+				<label for="material_quantity">material_quantity</label>
+			</div>
+			<div class="col s12">
+				<div class="data-table-container">
+					<table class="data-clickable" ng-init="selectedMaterialIndex=-1">
+						<tbody>
+							<tr>
+								<th>Material Name</th>
+							</tr>
+							<tr ng-repeat="x in materials | filter : materialFilter" ng-click="materialIndex($index)" ng-class="{'active': $index === selectedMaterialIndex}">
+								<td>{{x.name}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<button class="waves-effect waves-light btn" type="submit">Add</button>
+			<button class="waves-effect waves-light btn" type="reset">Clear</button>
+		</div>
+	</form>
+</div>

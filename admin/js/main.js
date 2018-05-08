@@ -65,7 +65,7 @@ $(document).ready(function(){
 /********************************************/
 /*
 	Database Operations
-*/
+
 // EDIT TRIGGERS
 $("#edit-category-trigger").click(function(){
 	var activeRow = $(".category-list-table table tr.active");
@@ -116,7 +116,7 @@ $(".edit-category form").submit(function(e){
 });
 
 
-/**/
+/*
 	// FOR ADDING
 	$(".category form").submit(function(e){
 		e.preventDefault();
@@ -146,7 +146,7 @@ $(".edit-category form").submit(function(e){
 /********************************************/
 /*
 	System Operations
-*/
+
 // This function highlight the row selected
 
 $(".modal-trigger").on("click",function(){

@@ -7,7 +7,7 @@ app.controller("inventoryManagement",function($scope,$http,dbOperations){
 	function getMaterials(){
 		dbOperations.views("GetMaterials","").then(function(res){
 			$scope.materials = res;
-			$('select').material_select();
+			// $('select').material_select();
 			$('.modal').modal();
 		});
 	}
@@ -39,6 +39,19 @@ app.controller("inventoryManagement",function($scope,$http,dbOperations){
 		dbOperations.processData("AddNewMaterial",$scope.addMaterialFields).then(function(res){
 			alert("New material available.")
 			getMaterials();});
+	}
+	$scope.addMaterialStockTrigger = function(e){
+		e.preventDefault();
+		if($scope.selectedMaterialIndex == -1){
+			alert("Select material first");
+		}
+		else{
+			console.log("Dumaan dito");
+			$('#addMaterialStock').modal('open');
+		}
+	}
+	$scope.addMaterialStock = function(e){
+		console.log(editMaterialFields);
 	}
 	getMaterials();
 });

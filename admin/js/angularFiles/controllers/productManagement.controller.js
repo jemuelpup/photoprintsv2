@@ -4,8 +4,76 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 	$scope.categoryFields = {};
 	$scope.itemFields = {};
 	$scope.editItemFields = {};
+	$scope.editAffectedMaterial = {};
 	$scope.editCategoryFields = {};
 	$scope.selectedItemIndex = -1;
+	$scope.productMaterials = [];
+	$scope.itemMaterials = [];
+	$scope.materials = [];
+	$scope.selectedMaterialFields = {};
+	$scope.selectedMaterialIndex = -1;
+
+
+	$scope.removeSelectedHighlight = function(e){
+		console.log("dumaan dito");
+		$scope.selectedItemIndex = -1;
+		$scope.editItemFields = {};
+		$scope.itemMaterials = [];
+	}
+	$scope.removeItemAffectedInMaterial = function(e,itemId){
+		if(confirm("Are you sure you want to remove the material in item?")){
+			e.preventDefault();
+			var data = {"materialID":$scope.editAffectedMaterial.id,
+							"itemID":$scope.editItemFields.id};
+			dbOperations.processData("RemoveMaterialAffectedPerItem",data).then(function(res){
+				getItemMaterials($scope.editItemFields.id);
+				alert("Editting Material affected on product success.");
+			});
+		}
+	}
+
+	$scope.setMaterialQuantityInItem = function(e,material_quantity){
+		e.preventDefault();
+		var data = {"materialID":$scope.editAffectedMaterial.id,
+						"quantity":material_quantity,
+						"itemID":$scope.editItemFields.id};
+		dbOperations.processData("EditMaterialAffectedPerItem",data).then(function(res){
+			getItemMaterials($scope.editItemFields.id);
+			alert("Editting Material affected on product success.");
+		});
+	}
+
+	$scope.editItemMaterialsTrigger = function(){
+		if($scope.selectedMaterialIndex>-1){
+			$('#editMaterialQuantityInItem').modal('open');
+			console.log("call the edit trigger");
+		}
+		else{
+			alert("Select product material to edit");
+		}
+	}
+	$scope.addNewMaterialInItem = function(e){
+		e.preventDefault();
+		//check if there is selected material
+		if($scope.selectedMaterialFields.id){
+			var data = {"materialID":$scope.selectedMaterialFields.id,
+						"quantity":$scope.addItemInMaterialFields.material_quantity,
+						"itemID":$scope.editItemFields.id};
+			dbOperations.processData("EditMaterialAffectedPerItem",data).then(function(res){
+				// console.log(res);
+				getItemMaterials($scope.editItemFields.id);
+				alert("Adding new Material affected on product success");
+			});
+		}
+		else{
+			alert("Select material and set material quantity needed per item.");
+		}
+	}
+	$scope.itemMaterialIndex = function(i,id){
+		$scope.editAffectedMaterial = ($scope.items)[i];
+		// use the id for editting
+		$scope.selectedMaterialIndex = $scope.selectedMaterialIndex===i ? -1 : i;
+	}
 
 	$scope.deleteCategory = function(){
 		dbOperations.processData("RemoveCategory",$scope.editCategoryFields).then(function(res){
@@ -29,13 +97,15 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 		});
 	}
 
-	$scope.itemIndex = function(i,id){
-		$scope.editItemFields = ($scope.items)[i];
-		console.log($scope.editItemFields);
+	$scope.itemIndex = function(i,item){
+		$scope.editItemFields = item;
 		$scope.selectedItemIndex = $scope.selectedItemIndex===i ? -1 : i;
-		// $(".categoryUpdate [value="+$scope.editItemFields.category_fk+"]").attr("selected='selected'");
+		getItemMaterials($scope.editItemFields.id);
 	}
-
+	$scope.materialIndex = function(i,id){
+		$scope.selectedMaterialFields = ($scope.materials)[i];
+		$scope.selectedMaterialIndex = $scope.selectedMaterialIndex===i ? -1 : i;
+	}
 	$scope.categoryIndex = function(i,id){
 		$scope.editCategoryFields = ($scope.categories)[i];
 		// console.log($scope.editCategoryFields);
@@ -48,6 +118,18 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 		else{
 			$('#editItem').modal('open');
 			// $('#editItem select').material_select();
+		}
+	}
+
+
+	$scope.addItemMaterialTrigger = function(){
+		if($scope.selectedItemIndex == -1){
+			alert("Select item first");
+		}
+		else{
+			// dbOperations.views("GetMaterials","").then(function(res){ $scope.materials = res; });
+			$('#addMaterialInItem').modal('open');
+			// getMaterials();
 		}
 	}
 
@@ -82,7 +164,12 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 			});
 		}
 	}
-
+	function getItemMaterials(item_id){
+		dbOperations.views("GetItemMaterials",{"itemId":item_id}).then(function(res){
+			$scope.itemMaterials = res;
+			console.log(res);
+		});
+	}
 
 	function getCategories(){
 		$http({
@@ -95,6 +182,13 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 		}, function myError(response) {
 	    });
     }
+    function getMaterials(){
+		dbOperations.views("GetMaterials","").then(function(res){
+			$scope.materials = res;
+			// $('select').material_select();
+			// $('.modal').modal();
+		});
+	}
 	function getItems(){
 		$http({
 			method:"POST", url:"/admin/view.php",
@@ -106,11 +200,13 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 				return e
 			});
 			$scope.items = res.data;
+			// $('.modal').modal();
 			// $('select').material_select();
 			// $scope.items.price = Number(res.data.price);
 		}, function myError(response) {
 	    });
     }
+    getMaterials();
 	getCategories();
 	getItems();
 

@@ -18,23 +18,21 @@ operations.controller('operator',function($scope,$http,$timeout,dbOperations,sys
 			if(!(res.data==='2'||res.data==='6')){ window.location.href = '/'; }
 		});
 	}
-	/* Initial datas: */
-	var initCatAndItems = [];
 	/* /Testing sessions */
-	$scope.catAndItems = [];
+	$scope.itemsWithCategory = [];
+	$scope.categoryName = "All";
+	$scope.categories = [];
 	$scope.orders = [];
 	$scope.totalPrice = 0;
 	$scope.wordSearch = "";
 	$scope.customerName = "";
 	$scope.databaseData = {};
-	$scope.activeCategoryIndex = 0;
 	$scope.disableEditting = false;
 	$scope.orderID = "";
 	$scope.showQueuedMessage = false;
 	$scope.orderNotes = "";
 	$scope.employeeData = {};
-	
-
+	$scope.selectedCategory = "";
  	dbOperations.view("getEmployeeData",{}).then(function(res){
 		console.log("nasa get employee datas");
 		console.log(res);
@@ -42,17 +40,18 @@ operations.controller('operator',function($scope,$http,$timeout,dbOperations,sys
 	},function(res){
 		alert(res);
 	});
- 	dbOperations.items("getCategoriesAndItems","").then(function(res) {
- 		initCatAndItems = res;
- 		$scope.catAndItems = res;
- 		// console.log(res);
+	dbOperations.view("getCategories","").then(function(res) {
+ 		$scope.categories = res;
+ 		console.log($scope.categories);
  	})
-
+ 	dbOperations.view("getItemsWithCategory","").then(function(res) {
+ 		console.log("Dumaan dito")
+ 		$scope.itemsWithCategory = res;
+ 		console.log($scope.itemsWithCategory);
+ 	})
 	$scope.searchKeyword = function(){
 		console.log($scope.wordSearch);
 	}
-	
-
 	$scope.addToOrder = function(itemID,quantity=1,itemName,code,discount=0,price){
 		// discount = !discount ? 1 : discount;
 		if(!newOrderQueued){
@@ -78,14 +77,12 @@ operations.controller('operator',function($scope,$http,$timeout,dbOperations,sys
 		// console.log(price);
 		updateTotal();
 	}
-
 	function updateTotal(){
 		$scope.totalPrice = 0;
 		($scope.orders).forEach(function(e){
 			$scope.totalPrice += (e.price*e.quantity*(100-e.discount)/100);
 		});
 	}
-
 	$scope.done = function(){
 		if(orderPrinted){
 			console.log(($scope.orders).length);
@@ -158,8 +155,10 @@ operations.controller('operator',function($scope,$http,$timeout,dbOperations,sys
 		}
 		else{	alert("place order first");	}
 	}
-	$scope.showCategoryIndex = function(index){
-		$scope.activeCategoryIndex=index;
+	$scope.showCategoryIndex = function(categoryID,categoryName){
+		console.log("Dumaan dito: "+categoryID)
+		$scope.selectedCategory=categoryID;
+		$scope.categoryName = categoryName;
 	}
 	$scope.removeItem = function(index,itemTotalPrice){
 		// $scope.totalPrice -= itemTotalPrice; 

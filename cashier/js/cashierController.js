@@ -14,6 +14,7 @@ operations.controller('cashier',function($scope,$http,$interval,dbOperations,sys
 	}
 	$scope.orders = [];
 	$scope.order = {};
+	$scope.selectedOrder = {};
 	$scope.orderItems = [];
 	$scope.change = 0;
 	// check the update per second
@@ -42,9 +43,18 @@ operations.controller('cashier',function($scope,$http,$interval,dbOperations,sys
 		getUnclaimedOrders();
 	}
 	$scope.viewItemsOrdered = function(order,orderLine){
-		$scope.order = order;
-		$scope.orderItems = orderLine;
-		$scope.change = $scope.order.down_payment - $scope.order.total_amount;
+		if($scope.selectedOrder!=order){
+			$scope.selectedOrder =  order;
+			$scope.order = order;
+			$scope.orderItems = orderLine;
+			$scope.change = $scope.order.down_payment - $scope.order.total_amount;
+		}
+		else{
+			$scope.selectedOrder = {};
+			$scope.order = {};
+			$scope.orderItems = [];
+			$scope.change = 0;
+		}
 	}
 	$scope.printReceipt = function(){
 		if(($scope.cash-$scope.order.total_amount)>-1){

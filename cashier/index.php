@@ -30,7 +30,7 @@
 						</div>
 					</div>
 					<div class="data-table-container">
-						<table class="table-data">
+						<table class="table-data data-clickable">
 							<tr>
 								<th>Order id</th>
 								<th>Customer name</th>
@@ -39,7 +39,7 @@
 								<th>Operator</th>
 								<th>Order date</th>
 							</tr>
-							<tr ng-repeat="order in orders|filter:orderFilter" ng-click="viewItemsOrdered(order,order.order_line)">
+							<tr ng-repeat="order in orders|filter:orderFilter" ng-click="viewItemsOrdered(order,order.order_line)" ng-class="{'active': order===selectedOrder}">
 								<td>{{order.id}}</td>
 								<td>{{order.customer_name}}</td>
 								<td>{{order.total_amount}}</td>

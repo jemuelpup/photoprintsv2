@@ -16,7 +16,7 @@ switch($process){
 	case "getCategories":{
 		selectCategory($conn);
 	}break;
-	case "getCategoriesAndItems":{
+	case "getItemsWithCategory":{
 		selectCategoriesAndItems($conn);
 	}break;
 	case "getUnclaimedOrders":{

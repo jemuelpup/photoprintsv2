@@ -3,6 +3,14 @@
   overflow: scroll;
   margin-bottom: 10px; }
 
+.data-clickable tr {
+  cursor: pointer; }
+  .data-clickable tr.active {
+    background-color: #7c43bd !important;
+    color: #fff; }
+  .data-clickable tr tr, .data-clickable tr td {
+    border-radius: 0; }
+
 .refreshOrders {
   cursor: pointer; }
 
