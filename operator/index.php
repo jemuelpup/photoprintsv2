@@ -22,7 +22,7 @@
 			<li ng-repeat="category in categories" ng-click="showCategoryIndex(category.id,category.name)">{{category.name}}</li>
 		</ul>
 		<div class="row">
-			<div class='col l7 ms12'>
+			<div class='col m7 ms12 hideOnPrint'>
 				<div class="row">
 					<div class='col s12'>
 						<div class='categories z-depth-2'>
@@ -32,31 +32,36 @@
 									<input placeholder="Search" id="{{category.categoryName}}" type="text" class="validate" ng-model="itemFilter" ng-focus="focus=true" ng-blur="focus=false">
 								</div>
 							</div>
-							<div class='menu'>
+							<div class='menu' ng-init="hideItems=false;">
 								<table>
-									<tr>
-										<th>Name</th>
-										<th>Code</th>
-										<th>Price</th>
-										<th>Quantity</th>
-										<th>Discount(%)</th>
-									</tr>
-									<tr ng-repeat="item in itemsWithCategory | filter:itemFilter | filter:{category_fk:selectedCategory}">
-										<td>{{item.name}}</td>
-										<td>{{item.item_code}}</td>
-										<td>{{item.price}}</td>
-										<td><input ng-model="quantity" type='number'/></td>
-										<td><input ng-model="discount" type='number'/></td>
-										<td><button ng-click='addToOrder(item.id,quantity,item.name,item.item_code,discount,item.price,itemDesc)'>Add</button></td>
-										<td></td>
-									</tr>
+									<thead ng-class="{'hideItems': hideItems === true}">
+										<tr>
+											<th>Name</th>
+											<th>Code</th>
+											<th>Price</th>
+											<th>Quantity</th>
+											<th>Discount(%)</th>
+											<th><button class="waves-effect waves-light btn" ng-click='hideItems = !hideItems'>{{hideItems ? 'SHOW' : 'HIDE'}}</button></td></th>
+										</tr>
+									</thead>
+									<tbody ng-class="{'hideItems': hideItems === true}">
+										<tr ng-repeat="item in itemsWithCategory | filter:itemFilter | filter:{category_fk:selectedCategory}">
+											<td>{{item.name}}</td>
+											<td>{{item.item_code}}</td>
+											<td>{{item.price}}</td>
+											<td><input ng-model="quantity" type='number'/></td>
+											<td><input ng-model="discount" type='number'/></td>
+											<td><button class="waves-effect waves-light btn" ng-click='addToOrder(item.id,quantity,item.name,item.item_code,discount,item.price,itemDesc)'>Add</button></td>
+											<td></td>
+										</tr>
+									</tbody>
 								</table>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col l5 ms12">
+			<div class="col m5 ms12">
 				<div class="row">
 					<div class="col s12">
 						<div id="section-to-print" class="" ng-class="onHardPrintNoDisplay===true ? 'noDisplayOnHardPrint':''">
@@ -67,12 +72,12 @@
 								<div class="data-header pr-pb0">
 									<div class="showOnPrint center-align">
 										<!-- <img src="/common/images/logoForReceipt.png" alt="PHOTOPRINTS"> -->
-										<p class="largeLetter">PHOTOPRINTS</p>
+										<p class="largeLetter">CLAIM STUB</p>
 									</div>
 									<div class="showOnPrint">
-										<p class="centerOnPrint pr-mb4">OrderSlip</p>
+										<!-- <p class="centerOnPrint pr-mb4">OrderSlip</p> -->
 										<p class="left-align b">Operator name: {{employeeData[0].name}}</p>
-										<p class="left-align b largeLetter">Order id: {{orderID}}</p>
+										<p class="left-align b largeLetter">CLAIM STUB NUMBER: {{orderID}}</p>
 									</div>
 									<h4 class="hideOnPrint">Ordered Items</h4>
 								</div>
@@ -80,8 +85,8 @@
 									<p class="showOnPrint pr-m0">Cutomer name:</p>
 			        		<input placeholder="Customer name" id="customer-name" type="text" class="validate" ng-model="customerName">
 			        		<input placeholder="Down payment" id="down-payment" type="number" class="validate hideOnPrint" ng-model="downPayment" min="0">
-			        		<h4 class="text14pxOnPrint showOnPrint">Ordered Items</h4>
-									<table>
+			        		<!-- <h4 class="text14pxOnPrint showOnPrint">Ordered Items</h4> -->
+									<table class="hideOnPrint">
 										<tr>
 											<th>Item</th>
 											<th>Price</th>
@@ -127,6 +132,7 @@
 	<!-- <div class="category" ng-repeat=""></div> -->
 
 	<script src="/plugin/jquery/dist/jquery.min.js"></script>
+	<script src="/plugin/materialize-css/dist/js/materialize.min.js"></script>
 	<script src="/common/js/angularFiles/modules.js"></script>
 	<script src="/common/js/angularFiles/services.js"></script>
 	<!-- <script src="/common/js/angularFiles/directives.js"></script>

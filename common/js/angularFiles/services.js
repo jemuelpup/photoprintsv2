@@ -17,6 +17,8 @@ operations.service('dbOperations',function($http){
 		}).then(function success(res){
 			return res.data;
 		}, function err(response) {
+			console.log("err");
+			console.log(response);
 			return "Something wrong in intranet connection. Check the server.";
 	    });
 	}

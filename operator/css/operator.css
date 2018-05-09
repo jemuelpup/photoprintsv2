@@ -3,6 +3,10 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0; }
 
+.container {
+  max-width: 1110px;
+  width: 90%; }
+
 .b {
   font-weight: 700; }
 
@@ -21,15 +25,41 @@ input[type=number]::-webkit-outer-spin-button {
   height: 20px;
   margin: 0;
   width: 60px; }
+.categories table thead {
+  border-bottom: 0; }
 .categories table th, .categories table td {
   padding: 5px 5px; }
+  .categories table th button.btn, .categories table td button.btn {
+    width: 59px;
+    padding: 5px;
+    line-height: 1;
+    height: 22px;
+    font-size: 12px;
+    background-color: #4a148c; }
+    .categories table th button.btn:hover, .categories table td button.btn:hover {
+      background-color: #7c43bd; }
+.categories table thead.hideItems {
+  width: 100%;
+  display: table;
+  float: right; }
+.categories table tbody {
+  -webkit-transition: height 500s linear;
+  -moz-transition: height 500s linear;
+  -ms-transition: height 500s linear;
+  -o-transition: height 500s linear;
+  transition: height 500s linear; }
+  .categories table tbody.hideItems {
+    display: block;
+    height: 0;
+    overflow: hidden; }
 .categories.active {
   display: block; }
 
 .category-list {
-  padding: 8px 15px; }
+  padding: 8px 15px;
+  overflow: hidden; }
   .category-list li {
-    display: inline;
+    float: left;
     margin-right: 20px;
     font-size: 24px;
     cursor: pointer;
@@ -81,7 +111,8 @@ input[type=number]::-webkit-outer-spin-button {
           .ordered-items .orders tr td .customPrice.active, .ordered-items .orders tr th .customPrice.active {
             bottom: -20px; }
           .ordered-items .orders tr td .customPrice input, .ordered-items .orders tr th .customPrice input {
-            border-bottom-color: #309b1c; }
+            border-bottom-color: #309b1c;
+            height: 31px; }
         .ordered-items .orders tr td .itemDesc, .ordered-items .orders tr th .itemDesc {
           position: absolute;
           background-color: #000;
@@ -145,12 +176,21 @@ input[type=number]::-webkit-outer-spin-button {
 .b {
   font-weight: 700; }
 
-@media only screen and (max-width: 1150px) {
-  .ms12 {
-    width: 100%; } }
 @media only screen and (max-width: 820px) {
-  .ms12 {
+  .row .col.ms12 {
     width: 100%; } }
+@media only screen and (max-width: 700px) {
+  .categories table th, .categories table td {
+    font-size: 12px; }
+
+  .category-list li {
+    font-size: 16px; }
+
+  .data-header {
+    padding: 5px 10px; }
+    .data-header h4 {
+      font-size: 20px;
+      padding-top: 3px; } }
 @media print {
   .noDisplayOnHardPrint {
     display: none; }

@@ -37,7 +37,7 @@ function updateInventory($c,$orderID){
 	$multiUpdateQuery = "";
 	foreach ($orderedMaterials as $orderedMaterial) { $multiUpdateQuery .= "WHEN (id=".$orderedMaterial['material_id_fk'].") THEN ".$orderedMaterial['material_used']." "; }
 	$materialUpdateQuery = "UPDATE material_tbl SET quantity = quantity - ( CASE ".$multiUpdateQuery." ELSE 0 END )";
-	echo $materialUpdateQuery;
+	// echo $materialUpdateQuery;
 	$sql = $c->prepare($materialUpdateQuery);
 	$sql->execute();
 	$sql->close();
