@@ -57,7 +57,7 @@
 					<h2>Product management</h2>
 					<div class="row">
 						<div class="col s12">
-							</edit-category></edit-category>
+							<edit-category></edit-category>
 							<div class="row">
 								<div class="col m4 s12">
 									<add-category></add-category>
@@ -91,6 +91,7 @@
 					<h2>Employee management</h2>
 					<div class="row">
 						<div class="col s12" ng-controller="buisnessManagement">
+							<edit-employee></edit-employee>
 							<add-employee></add-employee>
 							<add-access></add-access>
 							<a class="btn-floating btn-large waves-effect waves-light fixed-bottom-right" ng-click="newEmployee()"><i class="material-icons">add</i></a>

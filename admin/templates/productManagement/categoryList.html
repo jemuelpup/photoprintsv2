@@ -8,7 +8,7 @@
 					<th>category_code</th>
 					<th>description</th>
 				</tr>
-				<tr ng-repeat="x in categories" data-id="{{x.id}}" ng-click="categoryIndex($index,x.id)">
+				<tr ng-repeat="x in categories" data-id="{{x.id}}" ng-click="categoryIndex(x)" ng-class="{'active': editCategoryFields==x}">
 					<td name="name">{{x.name}}</td>
 					<td name="category_code">{{x.category_code}}</td>
 					<td name="description">{{x.description}}</td>
@@ -16,6 +16,6 @@
 			</tbody>
 		</table>
 	</div>
-	<button class="waves-effect waves-light btn" id="edit-category-trigger">Edit</button>
-	<a class="waves-effect waves-light btn" ng-click="deleteCategory()">Delete</a>
+	<button class="waves-effect waves-light btn" ng-click="editCategoryTrigger()">Edit</button>
+	<button class="waves-effect waves-light btn" ng-click="deleteCategory()">Delete</button>
 </div>

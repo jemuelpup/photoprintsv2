@@ -11,9 +11,9 @@
         <label for="item_code" class="active">item_code</label>
       </div>
       <div class="input-field col s12" class="select-browser-default" >
-        <label>Category</label>
-        <select name="itemCategory" id="categoryUpdate">
-          <option value="{{c.id}}" ng-repeat="c in categories" ng-selected="{{editItemFields.category_fk==c.id}}">{{c.name}}</option>
+        <label for="item_code" class="active">item_code</label>
+        <select  ng-model="editItemFields.category_fk">
+          <option ng-repeat="c in categories" value={{c.id}} {{c.id===editItemFields.category_fk ? 'selected' : ''}}>{{c.name}}</option>
         </select>
       </div>
       <div class="input-field col s12">

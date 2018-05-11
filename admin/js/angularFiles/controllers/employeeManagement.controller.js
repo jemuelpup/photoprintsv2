@@ -4,6 +4,9 @@ app.controller("employeeManagement",function($scope,$http,dbOperations){
 	$scope.employees = [];
 	$scope.employeeFields.gender = 1;
 	$scope.employeeFields.checked = 1;
+	$scope.editEmployeeFields = {};
+	$scope.branches = [];
+	$scope.positions = [];
 	
 	// to be update soon - subject to change
 	$scope.addEmployeeCommand = false;
@@ -44,24 +47,18 @@ app.controller("employeeManagement",function($scope,$http,dbOperations){
 			});
 		}
 	}
-
 	$scope.newEmployee = function(){
-
-		// console.log($("#addEmployee"));
 		$scope.employeeFields = {};
 		$("#addEmployee").modal("open");
 		$scope.addEmployeeCommand = true;
 		$scope.editEmployeeCommand = false;
 	}
 	$scope.editEmployeeData = function(){
-		if(employeeId==0){
-			alert("Select employee");
+		if($scope.editEmployeeFields.id){
+			$("#editEmployee").modal("open");
 		}
 		else{
-			$scope.addEmployeeCommand = false;
-			$scope.editEmployeeCommand = true;
-			// $('select').material_select();
-			$("#addEmployee").modal("open");
+			alert("Select employee");
 		}
 	}
 	$scope.updateEmployeeData = function(){
@@ -78,18 +75,10 @@ app.controller("employeeManagement",function($scope,$http,dbOperations){
 			getEmployees();//$("#add-employee").modal("close");
 		});
 	}
-	$scope.getEmployeeInfo = function(dataId){
-		// console.log($scope.employees);
-		($scope.employees).forEach(function(e){// loop  to all the employee data
-			if(e.id==dataId){
-				if(employeeId==dataId){ $scope.employeeData = {}; employeeId = 0;}
-				else{ employeeId = dataId; $scope.employeeData = e;}
-				return false;
-			}
-
-		});
-		$scope.employeeFields = $scope.employeeData;
-		// console.log(employeeId);
+	$scope.getEmployeeInfo = function(employee){
+		$scope.employeeFields = $scope.employeeFields==employee ? {} : employee;
+		$scope.editEmployeeFields = $scope.editEmployeeFields==employee ? {} : employee;
+		console.log(employee);
 	}
 	$scope.newEmployeeAccess = function(){
 		if(employeeId==0){
@@ -121,8 +110,13 @@ app.controller("employeeManagement",function($scope,$http,dbOperations){
 		}
 	}
 	getEmployees();
-	$scope.employeeManagementInit = function(){
+	employeeManagementInit = function(){
 		dbOperations.views("getBranches","").then(function(res){ $scope.branches = res; });
-		dbOperations.views("getPositions","").then(function(res){ $scope.positions = res; });
+		dbOperations.views("getPositions","").then(function(res){
+			console.log(res);
+			$scope.positions = res;
+		});
 	}
+
+	employeeManagementInit();
 })

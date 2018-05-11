@@ -1,6 +1,6 @@
 <div class="addItem">
 	<h3>Item</h3>
-	<form action="#" ng-submit="addNewItem()">
+	<form action="#" ng-submit="addNewItem($event)">
 		<div class="input-field col s12">
 			<input ng-model="itemFields.name" value="" type="text" class="validate" maxlength="50" required>
 			<label for="name">name</label>
@@ -10,11 +10,12 @@
 			<label for="item_code">item_code</label>
 		</div>
 		<div class="input-field col s12">
-			<select name="itemCategory" id="category" ng-model="itemFields.category">
+			<label class="active">Category</label>
+			<select name="itemCategory" id="category" ng-model="itemFields.category" required>
 				<option value="" disabled selected>Choose your option</option>
 				<option value="{{c.id}}" ng-repeat="c in categories">{{c.name}}</option>
 			</select>
-			<label>Category</label>
+			<!-- <label>Category</label> -->
 		</div>
 		<div class="input-field col s12">
 			<input ng-model="itemFields.price" value="" type="number" class="validate" maxlength="11" step="0.01">

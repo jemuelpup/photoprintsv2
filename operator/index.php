@@ -82,7 +82,7 @@
 									<h4 class="hideOnPrint">Ordered Items</h4>
 								</div>
 								<div class="orders pr-pt0">
-									<p class="showOnPrint pr-m0">Cutomer name:</p>
+									<p class="showOnPrint pr-m0">Customer name:</p>
 			        		<input placeholder="Customer name" id="customer-name" type="text" class="validate" ng-model="customerName">
 			        		<input placeholder="Down payment" id="down-payment" type="number" class="validate hideOnPrint" ng-model="downPayment" min="0">
 			        		<!-- <h4 class="text14pxOnPrint showOnPrint">Ordered Items</h4> -->

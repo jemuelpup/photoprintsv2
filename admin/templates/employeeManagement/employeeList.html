@@ -14,17 +14,16 @@
 					<th>birth_day</th>
 					<th>gender</th>
 				</tr>
-				<tr ng-click="getEmployeeInfo(employee.id)" ; ng-repeat="employee in employees" data-id="{{employee.id}}">
-					<!-- <td>{{employee}}</td> -->
-					<td>{{employee.name}}</td>
-					<td>{{employee.address}}</td>
-					<td>{{employee.contact_number}}</td>
-					<td>{{employee.email}}</td>
-					<td>{{employee.position_name}}</td>
-					<td>{{employee.branch_name}}</td>
-					<td>{{employee.salary}}</td>
-					<td>{{employee.birth_day|shortDateFromat}}</td>
-					<td>{{employee.gender|gender}}</td>
+				<tr ng-click="getEmployeeInfo(x)" ; ng-repeat="x in employees" ng-class="{'active': x==employeeFields}" data-id="{{x.id}}">
+					<td>{{x.name}}</td>
+					<td>{{x.address}}</td>
+					<td>{{x.contact_number}}</td>
+					<td>{{x.email}}</td>
+					<td>{{x.position_name}}</td>
+					<td>{{x.branch_name}}</td>
+					<td>{{x.salary}}</td>
+					<td>{{x.birth_day|shortDateFromat}}</td>
+					<td>{{x.gender|gender}}</td>
 				</tr>
 			</tbody>
 		</table>

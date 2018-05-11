@@ -5,16 +5,16 @@
 		<table class="data-clickable">
 			<tbody>
 				<tr>
-					<th>name</th>
-					<th>code</th>
-					<th>category_fk</th>
-					<th>date_modified</th>
-					<th>price</th>
+					<th>Name</th>
+					<th>Code</th>
+					<th>Category</th>
+					<th>Date_modified</th>
+					<th>Price</th>
 				</tr>
 				<tr ng-repeat="x in items | filter : itemFilter" ng-click="itemIndex($index,x)" ng-class="{'active': $index === selectedItemIndex}">
 					<td>{{x.name}}</td>
 					<td>{{x.item_code}}</td>
-					<td>{{x.category_fk}}</td>
+					<td>{{x.category}}</td>
 					<td>{{x.date_modified}}</td>
 					<td>{{x.price}}</td>
 				</tr>
@@ -22,5 +22,6 @@
 		</table>
 	</div>
 	<a class="waves-effect waves-light btn" ng-click="editItemsTrigger()">Edit</a>
+	<a class="waves-effect waves-light btn" ng-click="addItemMaterialTrigger()">Add Material</a>
 	<a class="waves-effect waves-light btn" ng-click="deleteItem()">Delete</a>
 </div>

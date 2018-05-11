@@ -3,13 +3,13 @@
 	<div class="row">
 		<div class="col s8">
 			<div class="data-table-container">
-				<table class="table">
+				<table class="table" ng-init="orderByVar='-quantity_sold'">
 					<tr>
-						<th>name</th>
-						<th>quantity_sold</th>
-						<th>total_price</th>
+						<th class="pointerOnHover" ng-click="orderByVar='name'">name</th>
+						<th class="pointerOnHover" ng-click="orderByVar='-quantity_sold'">quantity_sold</th>
+						<th class="pointerOnHover" ng-click="orderByVar='-total_price'">total_price</th>
 					</tr>
-					<tr ng-repeat="x in itemSummary">
+					<tr ng-repeat="x in itemSummary | orderBy: orderByVar">
 						<td>{{x.name}}</td>
 						<td>{{x.quantity_sold}}</td>
 						<td>{{x.total_price}}</td>

@@ -12,8 +12,8 @@ app.controller("reports",function($scope,$http,dbOperations,$interval){
 		{"name":"Monthly","id":"d3","val":3},
 		{"name":"Yearly","id":"d4","val":4},
 	];
-	$scope.fromdateInput = new Date();
-	// $scope.fromdateInput = new Date(2018, 2, 24, 10, 33, 30, 0);// for testing purposes
+	// $scope.fromdateInput = new Date();
+	$scope.fromdateInput = new Date(2018, 2, 24, 10, 33, 30, 0);// for testing purposes
 	$scope.todateInput = new Date(($scope.fromdateInput).getTime() + (24 * 60 * 60 * 1000));
 
 
@@ -23,7 +23,7 @@ app.controller("reports",function($scope,$http,dbOperations,$interval){
 			"to":$scope.todateInput
 		}).then(function(res) {
 			$scope.itemSummary = res.data;
-			console.log(res)
+			// console.log(res)
 		});
 	}
 	function getTotalSalesOn(){

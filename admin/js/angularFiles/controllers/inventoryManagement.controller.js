@@ -30,9 +30,12 @@ app.controller("inventoryManagement",function($scope,$http,dbOperations){
 		});
 	}
 	$scope.deleteMaterial = function(){
-		dbOperations.processData("RemoveMaterial",$scope.editMaterialFields).then(function(res){
-			getMaterials();
-		});
+		if(confirm("Are you sure you want to delete this material?")){
+			dbOperations.processData("RemoveMaterial",$scope.editMaterialFields).then(function(res){
+				getMaterials();
+				alert("Material deleted");
+			});
+		}
 	}
 	$scope.addNewMaterial = function(e){
 		e.preventDefault();
@@ -51,6 +54,11 @@ app.controller("inventoryManagement",function($scope,$http,dbOperations){
 		}
 	}
 	$scope.addMaterialStock = function(e){
+		dbOperations.processData("EditMaterialAddStock",$scope.editMaterialFields).then(function(res){
+			alert("Material Stock updated.");
+			getMaterials();
+			$('#addMaterialStock').modal('close');
+		});
 		console.log(editMaterialFields);
 	}
 	getMaterials();

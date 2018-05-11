@@ -57,7 +57,7 @@ function selectItemCategory($c){
 
 /* This function needs some edit*/
 function selectItem($c){
-	$sql = "SELECT id,name,item_code,category_fk,date_modified,price FROM item_tbl WHERE active = 1";
+	$sql = "SELECT i.id,i.name,i.item_code,(SELECT c.name FROM category_tbl c WHERE c.id = i.category_fk) AS category,i.category_fk,i.date_modified,i.price FROM item_tbl i WHERE i.active = 1";
 	print_r(hasRows($c,$sql) ? json_encode(selectQuery($c,$sql)) : "");
 }
 

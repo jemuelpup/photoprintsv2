@@ -34,13 +34,36 @@ switch($process){
 	case "RemoveItem":{deleteItem($conn,$data);}break;
 	case "RemoveCategory":{deleteCategory($conn,$data);}break;
 	case "AddNewMaterial":{insertMaterial($conn,$data);}break;
+	case "EditMaterialAddStock":{updateMaterialAddStock($conn,$data);}break;
 	case "EditMaterial":{updateMaterial($conn,$data);}break;
 	case "EditMaterialAffectedPerItem":{updateMaterialAffectedPerItem($conn,$data);}break;
-	case "RemoveMaterialAffectedPerItem":{deleteMaterialAffectedPerItem($conn,$data);}break;
+	case "RemoveMaterial":{deleteMaterial($conn,$data);}break;
+	case "RemoveMaterialAffectedInItem":{deleteMaterialAffectedInItem($conn,$data);}break;
 }
 /**/
+function deleteMaterialAffectedInItem($c,$d){
+	$sql = $c->prepare("UPDATE item_line_tbl SET active=0 WHERE id=?");
+	$sql->bind_param('i',validateData($d->id));
 
+	$msg = ($sql->execute() === TRUE) ? "Deleting Material success" : "Error: " . $sql . "<br>" . $c->error;
+	$sql->close();
+}
 
+function deleteMaterial($c,$d){
+	$addedQty = $d->addedQuantity;
+	$sql = $c->prepare("UPDATE material_tbl SET active=0 WHERE id=?");
+	$sql->bind_param('i',validateData($d->id));
+	$msg = ($sql->execute() === TRUE) ? "Deleting Material success" : "Error: " . $sql . "<br>" . $c->error;
+	$sql->close();
+}
+
+function updateMaterialAddStock($c,$d){
+	$addedQty = $d->addedQuantity;
+	$sql = $c->prepare("UPDATE material_tbl SET quantity=quantity+? WHERE id=?");
+	$sql->bind_param('di',validateData($d->addedQuantity),validateData($d->id));
+	$msg = ($sql->execute() === TRUE) ? "Adding new Material affected on product success" : "Error: " . $sql . "<br>" . $c->error;
+	$sql->close();
+}
 
 function deleteMaterialAffectedPerItem($c,$d){
 	$sql = $c->prepare("UPDATE item_line_tbl SET active = 0 WHERE item_id_fk = ? AND material_id_fk=?");

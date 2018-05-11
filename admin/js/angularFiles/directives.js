@@ -42,6 +42,11 @@ app.directive("addMaterialInItem",function(){
 });
 
 /* Employee management */
+app.directive("editEmployee",function(){
+	return {
+		templateUrl: '/admin/templates/employeeManagement/editEmployee.html'
+	}
+});
 app.directive("addEmployee",function(){
 	return {
 		templateUrl: '/admin/templates/employeeManagement/addEmployee.html'

@@ -1,0 +1,48 @@
+<div id="editEmployee" class="modal editEmployee">
+    <form ng-submit="editEmployee()">
+        <div class="modal-content">
+            <h4>Edit Employee</h4>
+            <div class="input-field col s12">
+                <input ng-model="editEmployeeFields.name" name="name" value="" type="text" class="validate" maxlength="50" placeholder='name' required>
+                <label for="name">name</label>
+            </div>
+            <div class="input-field col s12">
+                <input ng-model="editEmployeeFields.address" name="address" value="" type="text" class="validate" maxlength="50" placeholder='address'>
+                <label for="address">address</label>
+            </div>
+            <div class="input-field col s12">
+                <input ng-model="editEmployeeFields.contact_number" name="contact_number" value="" type="text" class="validate" maxlength="50" placeholder='contact_number'>
+                <label for="contact_number">contact_number</label>
+            </div>
+            <div class="input-field col s12">
+                <input ng-model="editEmployeeFields.email" name="email" value="" type="text" class="validate" maxlength="50" placeholder='email'>
+                <label for="email">email</label>
+            </div>
+            <!-- UNDER CONSTRUCTION -->
+            <<!-- div class="input-field col s12">
+                <label for="position_fk" class="active">position_fk</label>
+				<select ng-options="p.name for p in positions track by p.id" ng-model="editEmployeeFields.position_fk"></select>
+
+            </div>
+            <div class="input-field col s12">
+                <input ng-model="editEmployeeFields.branch_fk" name="branch_fk" value="" type="number" class="validate" maxlength="50" placeholder='branch_fk'>
+                <label for="branch_fk">branch_fk</label>
+            </div> -->
+            <div class="input-field col s12">
+                <input ng-model="editEmployeeFields.salary" name="salary" value="" type="number" class="validate" maxlength="50" placeholder='salary' required>
+                <label for="salary">salary</label>
+            </div>
+            <div class="input-field col s12">
+                <input ng-model="editEmployeeFields.birth_day" name="birth_day" value="" type="date" class="validate" maxlength="50" placeholder='birth_day'>
+                <label for="birth_day">birth_day</label>
+            </div>
+            <div class="input-field col s12">
+                <input ng-model="editEmployeeFields.gender" name="gender" value="" type="number" class="validate" maxlength="50" placeholder='gender' required>
+                <label for="gender">gender</label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="waves-effect waves-light btn modal-action modal-close" type="submit" ng-click="editEmployee()">Update</button>
+        </div>
+    </form>
+</div>

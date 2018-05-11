@@ -6,6 +6,7 @@
 			<div class="data-table-container">
 				<table class="table-data">
 					<tr>
+						<th>ID</th>
 						<th>branch</th>
 						<th>Cashier</th>
 						<th>Operator</th>
@@ -16,6 +17,7 @@
 						<th>received_date</th>
 					</tr>
 					<tr ng-repeat="transaction in transactions" ng-click="getTransactionDetails($index)" ng-class="transaction.notes.length>0 ? 'hasOrderNotes':''">
+						<td>{{transaction.id}}</td>
 						<td>{{transaction.branch_name}}</td>
 						<td>{{transaction.cashier_name}}</td>
 						<td>{{transaction.operator_name}}</td>

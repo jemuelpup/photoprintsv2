@@ -8,14 +8,13 @@
 					<th>Material</th>
 					<th>Quantity</th>
 				</tr>
-				<tr ng-repeat="x in itemMaterials" ng-click="itemMaterialIndex($index,x.id)" ng-class="{'active': $index === selectedMaterialIndex}">
+				<tr ng-repeat="x in itemMaterials" ng-click="itemMaterialIndex($index,x)" ng-class="{'active': x === editAffectedMaterial}">
 					<td>{{x.material_name}}</td>
 					<td>{{x.material_quantity_needed}}</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	<a class="waves-effect waves-light btn" ng-click="addItemMaterialTrigger()">Add Material</a>
 	<a class="waves-effect waves-light btn" ng-click="editItemMaterialsTrigger()">Edit</a>
 	<a class="waves-effect waves-light btn" ng-click="removeItemAffectedInMaterial($event)">Delete</a>
 </div>

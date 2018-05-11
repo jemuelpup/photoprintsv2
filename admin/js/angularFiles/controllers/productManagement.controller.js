@@ -1,16 +1,16 @@
 app.controller("productManagement",function($scope,$http,dbOperations){
 	$scope.categories = [];
 	$scope.items = [];
+	$scope.productMaterials = [];
+	$scope.itemMaterials = [];
+	$scope.materials = [];
 	$scope.categoryFields = {};
 	$scope.itemFields = {};
 	$scope.editItemFields = {};
 	$scope.editAffectedMaterial = {};
 	$scope.editCategoryFields = {};
-	$scope.selectedItemIndex = -1;
-	$scope.productMaterials = [];
-	$scope.itemMaterials = [];
-	$scope.materials = [];
 	$scope.selectedMaterialFields = {};
+	$scope.selectedItemIndex = -1;
 	$scope.selectedMaterialIndex = -1;
 
 
@@ -19,32 +19,45 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 		$scope.selectedItemIndex = -1;
 		$scope.editItemFields = {};
 		$scope.itemMaterials = [];
+		$scope.itemMaterials = [];
 	}
-	$scope.removeItemAffectedInMaterial = function(e,itemId){
+	// under development
+	$scope.removeItemAffectedInMaterial = function(e){
 		if(confirm("Are you sure you want to remove the material in item?")){
 			e.preventDefault();
-			var data = {"materialID":$scope.editAffectedMaterial.id,
-							"itemID":$scope.editItemFields.id};
-			dbOperations.processData("RemoveMaterialAffectedPerItem",data).then(function(res){
+			var data = $scope.editAffectedMaterial;
+			console.log(data);
+			dbOperations.processData("RemoveMaterialAffectedInItem",data).then(function(res){	
+				// console.log(res);
 				getItemMaterials($scope.editItemFields.id);
+				alert("Deleting Material affected on product success.");
+			});
+		}
+	}
+	$scope.itemMaterialIndex = function(i,itemMaterial){
+		$scope.editAffectedMaterial = $scope.editAffectedMaterial.id == itemMaterial.id ? {} : itemMaterial;
+	}
+	$scope.itemIndex = function(i,item){
+		console.log(item)
+		$scope.editItemFields = item;
+		$scope.selectedItemIndex = $scope.selectedItemIndex===i ? -1 : i;
+		getItemMaterials($scope.editItemFields.id);
+	}
+	$scope.setMaterialQuantityInItem = function(e,material_quantity){
+		e.preventDefault();
+		if($scope.editAffectedMaterial.id){
+			var data = {"materialID":$scope.editAffectedMaterial.material_id_fk,
+							"quantity":material_quantity,
+							"itemID":$scope.editAffectedMaterial.item_id_fk};
+			dbOperations.processData("EditMaterialAffectedPerItem",data).then(function(res){
+				getItemMaterials($scope.editItemFields.id);
+				$("#editMaterialQuantityInItem").modal("close");
 				alert("Editting Material affected on product success.");
 			});
 		}
 	}
-
-	$scope.setMaterialQuantityInItem = function(e,material_quantity){
-		e.preventDefault();
-		var data = {"materialID":$scope.editAffectedMaterial.id,
-						"quantity":material_quantity,
-						"itemID":$scope.editItemFields.id};
-		dbOperations.processData("EditMaterialAffectedPerItem",data).then(function(res){
-			getItemMaterials($scope.editItemFields.id);
-			alert("Editting Material affected on product success.");
-		});
-	}
-
 	$scope.editItemMaterialsTrigger = function(){
-		if($scope.selectedMaterialIndex>-1){
+		if($scope.editAffectedMaterial.id){
 			$('#editMaterialQuantityInItem').modal('open');
 			console.log("call the edit trigger");
 		}
@@ -54,7 +67,6 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 	}
 	$scope.addNewMaterialInItem = function(e){
 		e.preventDefault();
-		//check if there is selected material
 		if($scope.selectedMaterialFields.id){
 			var data = {"materialID":$scope.selectedMaterialFields.id,
 						"quantity":$scope.addItemInMaterialFields.material_quantity,
@@ -63,54 +75,47 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 				// console.log(res);
 				getItemMaterials($scope.editItemFields.id);
 				alert("Adding new Material affected on product success");
+				$("#addMaterialInItem").modal("close");
 			});
 		}
 		else{
 			alert("Select material and set material quantity needed per item.");
 		}
 	}
-	$scope.itemMaterialIndex = function(i,id){
-		$scope.editAffectedMaterial = ($scope.items)[i];
-		// use the id for editting
-		$scope.selectedMaterialIndex = $scope.selectedMaterialIndex===i ? -1 : i;
-	}
-
 	$scope.deleteCategory = function(){
-		dbOperations.processData("RemoveCategory",$scope.editCategoryFields).then(function(res){
-			// console.log("dumaan dito");
-			// console.log($scope.editCategoryFields);
-			// console.log(res);
-			// alert("Category deleted")
-			getCategories();});
+		if($scope.editCategoryFields.id){
+			if(confirm("Are you sure you want to delete "+$scope.editCategoryFields.name+" category?")){
+				dbOperations.processData("RemoveCategory",$scope.editCategoryFields).then(function(res){getCategories();});
+			}
+		}
+		else{
+			alert("Select category first");
+		}
 	}
 	$scope.addNewCategory = function(){
 		dbOperations.processData("AddCategory",$scope.categoryFields).then(function(res){
 			alert("New category available.")
 			getCategories();});
 	}
-
-	$scope.addNewItem = function(){
+	$scope.addNewItem = function(e){
+		e.preventDefault();
 		$scope.itemFields.category = $("select#category").val();
 		dbOperations.processData("AddItem",$scope.itemFields).then(function(res){
 			alert("New item available.");
 			getItems();
+			$scope.itemFields = angular.copy({});
 		});
-	}
-
-	$scope.itemIndex = function(i,item){
-		$scope.editItemFields = item;
-		$scope.selectedItemIndex = $scope.selectedItemIndex===i ? -1 : i;
-		getItemMaterials($scope.editItemFields.id);
 	}
 	$scope.materialIndex = function(i,id){
 		$scope.selectedMaterialFields = ($scope.materials)[i];
 		$scope.selectedMaterialIndex = $scope.selectedMaterialIndex===i ? -1 : i;
 	}
-	$scope.categoryIndex = function(i,id){
-		$scope.editCategoryFields = ($scope.categories)[i];
+	$scope.categoryIndex = function(category){
+		$scope.editCategoryFields = $scope.editCategoryFields == category ? {} : category;
+
+		console.log(category);
 		// console.log($scope.editCategoryFields);
 	}
-
 	$scope.editItemsTrigger = function(){
 		if($scope.selectedItemIndex == -1){
 			alert("Select item first");
@@ -120,37 +125,36 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 			// $('#editItem select').material_select();
 		}
 	}
-
-
 	$scope.addItemMaterialTrigger = function(){
 		if($scope.selectedItemIndex == -1){
 			alert("Select item first");
 		}
 		else{
-			// dbOperations.views("GetMaterials","").then(function(res){ $scope.materials = res; });
 			$('#addMaterialInItem').modal('open');
-			// getMaterials();
+			$scope.editAffectedMaterial = {};
+			$scope.selectedMaterialIndex = -1;
 		}
 	}
-
 	$scope.editCategoryTrigger = function(){
+		console.log("Dumaan sa edit category")
 		$('#edit-category').modal('open');
 	}
 	$scope.editItem = function(){
-		if($scope.editItemFields.category_fk){
-			if(!isNaN($("select#categoryUpdate").val())){
-				$scope.editItemFields.category_fk = $("select#categoryUpdate").val();
-			}
-			dbOperations.processData("EditItem",$scope.editItemFields).then(function(res){getItems();});
-		}
-		else{
-			alert("Put Category");
-		}
+		console.log($scope.editItemFields);
+		// UNDER CONSTRUCTION
+		// if($scope.editItemFields.category_fk){
+		// 		$scope.editItemFields.category_fk = $("select#categoryUpdate").val();
+			
+		// 	dbOperations.processData("EditItem",$scope.editItemFields).then(function(res){getItems();});
+		// }
+		// else{
+		// 	alert("Put Category");
+		// }
 	}
 	$scope.editCategory = function(){
 		// var d = $(this).serializeArray();
-	// d.push({name:"id",value:itemId});// get the id... add to serialize array...
-	// dbOperations("EditCategory",d,function(){v.displayItemCategoryList()});
+		// d.push({name:"id",value:itemId});// get the id... add to serialize array...
+		// dbOperations("EditCategory",d,function(){v.displayItemCategoryList()});
 		dbOperations.processData("EditCategory",$scope.editCategoryFields).then(function(res){
 			// console.log(res);
 			getItems();});
@@ -167,18 +171,19 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 	function getItemMaterials(item_id){
 		dbOperations.views("GetItemMaterials",{"itemId":item_id}).then(function(res){
 			$scope.itemMaterials = res;
+			$scope.editAffectedMaterial = {};
+			$scope.selectedMaterialIndex = -1;
 			console.log(res);
 		});
 	}
-
 	function getCategories(){
 		$http({
 			method:"POST", url:"/admin/view.php",
 			data: { 'process': "getItemCategory",'data':'' }
 		}).then(function success(res){
+			// console.log("kinukuha yung categories")
+			// console.log(res.data)
 			$scope.categories = res.data;
-			// console.log(res.data,'nandit yun')
-			// $('select').material_select();
 		}, function myError(response) {
 	    });
     }
@@ -200,17 +205,12 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 				return e
 			});
 			$scope.items = res.data;
-			// $('.modal').modal();
-			// $('select').material_select();
-			// $scope.items.price = Number(res.data.price);
 		}, function myError(response) {
 	    });
     }
     getMaterials();
 	getCategories();
 	getItems();
-
-
 	$scope.sendMessage = function(){
 
 	}
