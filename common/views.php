@@ -31,6 +31,7 @@ switch($process){
 	case "getEmployeeData":{
 		selectEmployeeData($conn);
 	}
+	case "GetMaterials":{selectMaterial($conn);}break;
 }/**/
 // common function
 function getTotalSalesOn($c,$data){
@@ -46,6 +47,11 @@ function selectEmployeeData($c){
 // selectUnclaimedOrders($conn);
 
 /* This function needs some edit*/
+function selectMaterial($c){
+	$sql = "SELECT id,name,description,quantity,modified_by,date_modified FROM material_tbl WHERE active = 1";
+	print_r(hasRows($c,$sql) ? json_encode(selectQuery($c,$sql)) : "");
+}
+
 function selectItem($c){
 	$sql = "SELECT id,name,item_code,category_fk,date_modified,price FROM item_tbl";
 	print_r(hasRows($c,$sql) ? json_encode(selectQuery($c,$sql)) : "");

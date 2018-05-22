@@ -7,7 +7,6 @@ app.controller("buisnessManagement",function($scope,$http,dbOperations){
 	}
 	if(strictModeEnabled){
 		dbOperations.getAccessPosition().then(function(res){
-			// console.log(res.data);
 			if(!(res.data==='3')){ window.location.href = '/'; }
 		});
 	}
@@ -18,30 +17,60 @@ app.controller("buisnessManagement",function($scope,$http,dbOperations){
 	$scope.positionFields = {};
 	$scope.positions = [];
 	$scope.editBranchFields = {};
+	$scope.editPositionFields = {};
 	$scope.orderItems = [];
 
-	$scope.branchIndex = function(i,id){
-		$scope.editBranchFields = ($scope.branches)[i];
-		// console.log($scope.editBranchFields);
+	$scope.branchIndex = function(branch){
+		$scope.editBranchFields = $scope.editBranchFields == branch ? {} : branch;
 	}
-	$scope.positionIndex = function(i,id){
-		$scope.editPositionFields = ($scope.positions)[i];
-		// console.log($scope.positionFields);
+	$scope.positionIndex = function(position){
+		$scope.editPositionFields = $scope.editPositionFields == position ? {} : position;
 	}
 	$scope.editBranch = function(e){
 		dbOperations.processData("EditBranch",$scope.editBranchFields).then(function(res){
-			// console.log(res);
+			$("#editBranch").modal("close");
 			getBranches();
 		});
 	}
+	$scope.editPositionTrigger = function(){
+		$("#editPosition").modal("open");
+	}
+	$scope.editBranchTrigger = function(){
+		$("#editBranch").modal("open");
+	}
+	$scope.removeBranch = function(){
+		if($scope.editBranchFields.id){
+			if(confirm("Are you sure you want to delete this branch?")){
+				dbOperations.processData("RemoveBranch",$scope.editBranchFields).then(function(res){
+					alert("Branch Deleted");
+					getBranches();
+				});
+			}
+		}
+		else{
+			alert("Select branch first before deleting");
+		}
+	}
+	$scope.removePosition = function(){
+		if($scope.editPositionFields.id){
+			if(confirm("Are you sure you want to delete this Position?")){
+				dbOperations.processData("RemovePosition",$scope.editPositionFields).then(function(res){
+					alert("Position Deleted");
+					getPositions();
+				});
+			}
+		}
+		else{
+			alert("Select Position first before deleting");
+		}
+	}
 	$scope.editPosition = function(){
 		dbOperations.processData("EditPosition",$scope.editPositionFields).then(function(res){
-			// console.log(res);
 			getPositions();
+			$("#editPosition").modal("close");
 		});
 	}
 	$scope.newBranch = function(){
-		// console.log($scope.branchFields);
 		dbOperations.processData("AddBranch",$scope.branchFields).then(function(res){
 			getBranches();
 		});
@@ -54,15 +83,11 @@ app.controller("buisnessManagement",function($scope,$http,dbOperations){
 	function getBranches(){
 		dbOperations.views("getBranches","").then(function(res){
 			$scope.branches = res;
-			// $('select').material_select();
 		});
 	}
 	function getPositions(){
 		dbOperations.views("getPositions","").then(function(res){
-			// console.log("nasa position");
-			// console.log(res,"position");
 			$scope.positions = res;
-			// $('select').material_select();
 		});
 	}
 	getBranches();

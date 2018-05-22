@@ -1,22 +1,22 @@
 <div class="materialList">
     <h3>material list</h3>
     <div class="data-table-container">
-        <table class="data-clickable" ng-init="selectedMaterialIndex=-1">
+        <table class="data-clickable">
             <tbody>
                 <tr>
                     <th>name</th>
                     <th>description</th>
                     <th>quantity</th>
                 </tr>
-                <tr ng-repeat="x in materials" ng-click="materialIndex($index)" ng-class="{'active': $index === selectedMaterialIndex}">
-                    <td>{{x.name}}</td>
-                    <td>{{x.description}}</td>
-                    <td>{{x.quantity}}</td>
+                <tr ng-repeat="material in materials" ng-click="materialIndex(material)" ng-class="{'active': material == editMaterialFields}">
+                    <td>{{material.name}}</td>
+                    <td>{{material.description}}</td>
+                    <td>{{material.quantity}}</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <a class="waves-effect waves-light btn" ng-click="addMaterialStockTrigger($event)">Add Stock</a>
-    <a class="waves-effect waves-light btn" ng-click="editMaterialTrigger()">Edit</a>
-    <a class="waves-effect waves-light btn" ng-click="deleteMaterial()">Delete</a>
+    <button class="waves-effect waves-light btn" ng-click="addMaterialStockTrigger()">Add Stock</button>
+    <button class="waves-effect waves-light btn" ng-click="editMaterialTrigger()">Edit</button>
+    <button class="waves-effect waves-light btn" ng-click="deleteMaterial()">Delete</button>
 </div>

@@ -10,25 +10,20 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 	$scope.editAffectedMaterial = {};
 	$scope.editCategoryFields = {};
 	$scope.selectedMaterialFields = {};
+	$scope.selectedCategory = {};
 	$scope.selectedItemIndex = -1;
 	$scope.selectedMaterialIndex = -1;
-
-
 	$scope.removeSelectedHighlight = function(e){
-		console.log("dumaan dito");
 		$scope.selectedItemIndex = -1;
 		$scope.editItemFields = {};
 		$scope.itemMaterials = [];
 		$scope.itemMaterials = [];
 	}
-	// under development
 	$scope.removeItemAffectedInMaterial = function(e){
 		if(confirm("Are you sure you want to remove the material in item?")){
 			e.preventDefault();
 			var data = $scope.editAffectedMaterial;
-			console.log(data);
-			dbOperations.processData("RemoveMaterialAffectedInItem",data).then(function(res){	
-				// console.log(res);
+			dbOperations.processData("RemoveMaterialAffectedInItem",data).then(function(res){
 				getItemMaterials($scope.editItemFields.id);
 				alert("Deleting Material affected on product success.");
 			});
@@ -38,10 +33,12 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 		$scope.editAffectedMaterial = $scope.editAffectedMaterial.id == itemMaterial.id ? {} : itemMaterial;
 	}
 	$scope.itemIndex = function(i,item){
-		console.log(item)
 		$scope.editItemFields = item;
 		$scope.selectedItemIndex = $scope.selectedItemIndex===i ? -1 : i;
 		getItemMaterials($scope.editItemFields.id);
+		$scope.selectedCategory = $scope.categories.find(function(e){
+			return e.id==item.category_fk;
+		});
 	}
 	$scope.setMaterialQuantityInItem = function(e,material_quantity){
 		e.preventDefault();
@@ -59,7 +56,6 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 	$scope.editItemMaterialsTrigger = function(){
 		if($scope.editAffectedMaterial.id){
 			$('#editMaterialQuantityInItem').modal('open');
-			console.log("call the edit trigger");
 		}
 		else{
 			alert("Select product material to edit");
@@ -72,8 +68,8 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 						"quantity":$scope.addItemInMaterialFields.material_quantity,
 						"itemID":$scope.editItemFields.id};
 			dbOperations.processData("EditMaterialAffectedPerItem",data).then(function(res){
-				// console.log(res);
 				getItemMaterials($scope.editItemFields.id);
+				getItems();
 				alert("Adding new Material affected on product success");
 				$("#addMaterialInItem").modal("close");
 			});
@@ -112,9 +108,6 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 	}
 	$scope.categoryIndex = function(category){
 		$scope.editCategoryFields = $scope.editCategoryFields == category ? {} : category;
-
-		console.log(category);
-		// console.log($scope.editCategoryFields);
 	}
 	$scope.editItemsTrigger = function(){
 		if($scope.selectedItemIndex == -1){
@@ -122,7 +115,6 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 		}
 		else{
 			$('#editItem').modal('open');
-			// $('#editItem select').material_select();
 		}
 	}
 	$scope.addItemMaterialTrigger = function(){
@@ -136,34 +128,21 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 		}
 	}
 	$scope.editCategoryTrigger = function(){
-		console.log("Dumaan sa edit category")
 		$('#edit-category').modal('open');
 	}
 	$scope.editItem = function(){
-		console.log($scope.editItemFields);
-		// UNDER CONSTRUCTION
-		// if($scope.editItemFields.category_fk){
-		// 		$scope.editItemFields.category_fk = $("select#categoryUpdate").val();
-			
-		// 	dbOperations.processData("EditItem",$scope.editItemFields).then(function(res){getItems();});
-		// }
-		// else{
-		// 	alert("Put Category");
-		// }
+		$scope.editItemFields.category_fk = $scope.selectedCategory.id;
+		dbOperations.processData("EditItem",$scope.editItemFields).then(function(res){
+			getItems();
+			$('#editItem').modal('close');
+		});
 	}
 	$scope.editCategory = function(){
-		// var d = $(this).serializeArray();
-		// d.push({name:"id",value:itemId});// get the id... add to serialize array...
-		// dbOperations("EditCategory",d,function(){v.displayItemCategoryList()});
-		dbOperations.processData("EditCategory",$scope.editCategoryFields).then(function(res){
-			// console.log(res);
-			getItems();});
-		// console.log($scope.editCategoryFields);
+		dbOperations.processData("EditCategory",$scope.editCategoryFields).then(function(res){getItems();});
 	}
 	$scope.deleteItem = function(){
 		if (confirm("Are you sure you want to delete this item?")) {
 			dbOperations.processData("RemoveItem",$scope.editItemFields).then(function(res){
-				// console.log(res)
 				getItems();
 			});
 		}
@@ -173,50 +152,25 @@ app.controller("productManagement",function($scope,$http,dbOperations){
 			$scope.itemMaterials = res;
 			$scope.editAffectedMaterial = {};
 			$scope.selectedMaterialIndex = -1;
-			console.log(res);
 		});
 	}
-	function getCategories(){
-		$http({
-			method:"POST", url:"/admin/view.php",
-			data: { 'process': "getItemCategory",'data':'' }
-		}).then(function success(res){
-			// console.log("kinukuha yung categories")
-			// console.log(res.data)
-			$scope.categories = res.data;
-		}, function myError(response) {
-	    });
-    }
     function getMaterials(){
 		dbOperations.views("GetMaterials","").then(function(res){
 			$scope.materials = res;
-			// $('select').material_select();
-			// $('.modal').modal();
 		});
 	}
+	function getCategories(){
+		dbOperations.views("getItemCategory","").then(function(res){
+			$scope.categories = res;
+		});
+    }
 	function getItems(){
-		$http({
-			method:"POST", url:"/admin/view.php",
-			data: { 'process': "getItems",'data':'' }
-		}).then(function success(res){
-			(res.data).map(function(e){
-				e.price = Number(e.price);
-				e.category_fk = Number(e.category_fk);
-				return e
-			});
-			$scope.items = res.data;
-		}, function myError(response) {
-	    });
+		dbOperations.views("getItems","").then(function(res){
+			$scope.items = res;
+			console.log(res)
+		});
     }
     getMaterials();
 	getCategories();
 	getItems();
-	$scope.sendMessage = function(){
-
-	}
-	// $http({
-	// 	method:"GET", url:"http://localhost:3000/",
-	// }).then(function(r){
-	// 	console.log(r);
-	// });
 });

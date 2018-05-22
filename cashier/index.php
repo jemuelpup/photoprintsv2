@@ -14,6 +14,23 @@
 <body ng-app="operations" ng-controller="cashier">
 	
 	<div class="container">
+		<div id="addMaterialStock" class="modal addMaterialStock">
+			<form ng-submit="addMaterialStock($event)">
+				<div class="modal-content">
+					<h4>Material: {{editMaterialFields.name}}</h4>
+					<div class="input-field col m8 s12">
+						<input ng-model="editMaterialFields.addedQuantity" name="quantity" value="0" type="number" class="validate" maxlength="50" step=".01">
+						<label for="quantity">quantity</label>
+					</div>
+					<div class="input-field col m4 s12">
+						<button class="waves-effect waves-light btn modal-action" type="submit">Add</button>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn modal-action modal-close" type="reset">Close</button>
+				</div>
+			</form>
+		</div>
 		<div class="banner-container">
 			<h1>Cashier</h1>
 			<div class="logout" ng-click="logout()">
@@ -87,21 +104,48 @@
 					<div class="col s12 mb10">
 						<button class="btn waves-effect waves-light" name="action" ng-click="setOrderPaid(order.id);">Paid<i class="material-icons right">payment</i></button>
 					</div>
-					<div class="col s12">
-						<a href="reports.html" class="btn waves-effect waves-light">Report<i class="material-icons right">book</i></a>
-					</div>
 				</div>
 				<div class="row">
 					<input type="text" placeholder="Void reason" ng-model="voidReason">
 					<button class="btn waves-effect waves-light right" name="action" ng-click="setOrderVoid(order.id);">Void<i class="material-icons right">cancel</i></button>
 				</div>
+				<div class="row">
+					<div class="col s12">
+						<a href="reports.html" class="btn waves-effect waves-light">Report<i class="material-icons right">book</i></a>
+						<a href="inventory.html" class="btn waves-effect waves-light">Inventory<i class="material-icons right">book</i></a>
+					</div>
+				</div>
 			</div>
 		</div>
-		
+		<div class="row">  
+			<div class="col s12">
+				<div class="materialList">
+				    <h3>material list</h3>
+				    <div class="data-table-container">
+				        <table class="data-clickable">
+				            <tbody>
+				                <tr>
+				                    <th>name</th>
+				                    <th>description</th>
+				                    <th>quantity</th>
+				                </tr>
+				                <tr ng-repeat="material in materials" ng-click="materialIndex(material)" ng-class="{'active': material == editMaterialFields}">
+				                    <td>{{material.name}}</td>
+				                    <td>{{material.description}}</td>
+				                    <td>{{material.quantity}}</td>
+				                </tr>
+				            </tbody>
+				        </table>
+				    </div>
+				    <button class="waves-effect waves-light btn" ng-click="addMaterialStockTrigger()">Add Stock</button>
+				</div>
+			</div>
+		</div>
 	</div>
 
-
+	
 	<script src="/plugin/jquery/dist/jquery.min.js"></script>
+	<script src="/plugin/materialize-css/dist/js/materialize.min.js"></script>
 	<script src="/common/js/angularFiles/modules.js"></script>
 	<script src="/common/js/angularFiles/services.js"></script>
 	<!-- <script src="/common/js/angularFiles/directives.js"></script> -->

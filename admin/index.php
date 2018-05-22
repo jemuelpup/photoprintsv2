@@ -127,7 +127,7 @@
 						  		<add-position></add-position>
 							  </div>
 							  <div class="col m6 s12">
-							  	<editPosition></editPosition>
+							  	<edit-position></edit-position>
 							  	<position-list></position-list>
 								</div>
 						  </div>

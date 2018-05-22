@@ -35,7 +35,7 @@ $(document).ready(function(){
 // hideAll();
 // $(".product-management").show();
 	hideAll();
-	$(".product-management").show();
+	$(".employee-management").show();
 	$(".product-management-btn").click(function(){
 		hideAll();
 		$(".product-management").show();

@@ -11,7 +11,7 @@
 					<th>Date_modified</th>
 					<th>Price</th>
 				</tr>
-				<tr ng-repeat="x in items | filter : itemFilter" ng-click="itemIndex($index,x)" ng-class="{'active': $index === selectedItemIndex}">
+				<tr ng-repeat="x in items | filter : itemFilter" ng-click="itemIndex($index,x)" ng-class="{'active': $index === selectedItemIndex,'red': x.affected_materials < 1 }">
 					<td>{{x.name}}</td>
 					<td>{{x.item_code}}</td>
 					<td>{{x.category}}</td>

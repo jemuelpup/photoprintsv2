@@ -57,12 +57,12 @@ function selectItemCategory($c){
 
 /* This function needs some edit*/
 function selectItem($c){
-	$sql = "SELECT i.id,i.name,i.item_code,(SELECT c.name FROM category_tbl c WHERE c.id = i.category_fk) AS category,i.category_fk,i.date_modified,i.price FROM item_tbl i WHERE i.active = 1";
+	$sql = "SELECT i.id,i.name,i.item_code,(SELECT c.name FROM category_tbl c WHERE c.id = i.category_fk) AS category,i.category_fk,i.date_modified,i.price, (SELECT COUNT(1) from item_line_tbl il where il.item_id_fk = i.id) as affected_materials FROM item_tbl i WHERE i.active = 1";
 	print_r(hasRows($c,$sql) ? json_encode(selectQuery($c,$sql)) : "");
 }
 
 function selectBranch($c){
-	$sql = "SELECT id,name,address,description,branch_code FROM branch_tbl";
+	$sql = "SELECT id,name,address,description,branch_code FROM branch_tbl WHERE active = 1";
 	print_r(hasRows($c,$sql) ? json_encode(selectQuery($c,$sql)) : "");
 }
 
@@ -82,7 +82,7 @@ function getTotalSalesOn($c,$data){
 }
 
 function selectItemSummarySold($c,$data){
-	$sql = "SELECT ol.name, SUM(ol.quantity) as quantity_sold, SUM(ol.price*ol.quantity*(1-((ol.discount)/100))) as total_price FROM order_line_tbl ol, order_tbl o WHERE o.void_fk = 0 AND o.received_date BETWEEN '".substr($data->from,0,10)."' AND '".substr($data->to,0,10)."' AND o.received_date IS NOT NULL and o.id = ol.order_id_fk GROUP BY ol.item_id_fk ORDER BY quantity_sold DESC";
+	$sql = "SELECT ol.name, SUM(ol.quantity) as quantity_sold, SUM(ol.price*ol.quantity*(1-((ol.discount)/100))) as total_price FROM order_line_tbl ol, order_tbl o WHERE o.void_fk = 0  AND o.void_fk = 0 AND o.received_date BETWEEN '".substr($data->from,0,10)."' AND '".substr($data->to,0,10)."' AND o.received_date IS NOT NULL and o.id = ol.order_id_fk GROUP BY ol.item_id_fk ORDER BY quantity_sold DESC";
 	print_r(hasRows($c,$sql) ? json_encode(selectQuery($c,$sql)) : "");
 }
 

@@ -82,10 +82,12 @@
 									<h4 class="hideOnPrint">Ordered Items</h4>
 								</div>
 								<div class="orders pr-pt0">
-									<p class="showOnPrint pr-m0">Customer name:</p>
-			        		<input placeholder="Customer name" id="customer-name" type="text" class="validate" ng-model="customerName">
-			        		<input placeholder="Down payment" id="down-payment" type="number" class="validate hideOnPrint" ng-model="downPayment" min="0">
-			        		<!-- <h4 class="text14pxOnPrint showOnPrint">Ordered Items</h4> -->
+									<div class="hideOnPrint">
+										<p class="showOnPrint pr-m0">Customer name:</p>
+				        				<input placeholder="Customer name" id="customer-name" type="text" class="validate" ng-model="customerName">
+				        				<input placeholder="Down payment" id="down-payment" type="number" class="validate hideOnPrint" ng-model="downPayment" min="0">
+			        				</div>
+			        				<!-- <h4 class="text14pxOnPrint showOnPrint">Ordered Items</h4> -->
 									<table class="hideOnPrint">
 										<tr>
 											<th>Item</th>
@@ -108,7 +110,7 @@
 										</tr>
 									</table>
 									<p class="largeLetter">Total: Php. <span class="b">{{totalPrice}}</span></p>
-									<p>Down payment: Php. <span class="b">{{downPayment ? downPayment : 0}}</span></p>
+									<p class="hideOnPrint">Down payment: Php. <span class="b">{{downPayment ? downPayment : 0}}</span></p>
 									<p>------------------------</p>
 									<textarea class="notes" rows="4" ng-model="orderNotes"></textarea>
 									<!-- create table here and remove orders

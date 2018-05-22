@@ -28,6 +28,18 @@ switch($process){
 	case "Logout":{
 		session_destroy(); // php code
 	}break;
+	case "EditMaterialAddStock":{
+		updateMaterialAddStock($conn,$data);
+	}break;
+}
+function updateMaterialAddStock($c,$d){
+	$addedQty = $d->addedQuantity;
+	$sql = $c->prepare("UPDATE material_tbl SET quantity=quantity+? WHERE id=?");
+	$sql->bind_param('di',validateData($d->addedQuantity),validateData($d->id));
+	$msg = ($sql->execute() === TRUE) ? "Adding new Material affected on product success" : "Error: " . $sql . "<br>" . $c->error;
+	$sql = $c->prepare("INSERT INTO `logs_tbl`(event_desc, employee_id_fk) SELECT CONCAT('Add ".$d->addedQuantity." stock to ',name,' material'),".$_SESSION["employeeID"]." FROM material_tbl WHERE id = ".$d->id);
+	$sql->execute();
+	$sql->close();
 }
 
 // updateInventory($conn,13);// delete this

@@ -2,56 +2,43 @@ app.controller("inventoryManagement",function($scope,$http,dbOperations){
 	$scope.materials = [];
 	$scope.addMaterialFields = {};
 	$scope.editMaterialFields = {};
-	$scope.selectedMaterialIndex = -1;
-
 	function getMaterials(){
 		dbOperations.views("GetMaterials","").then(function(res){
 			$scope.materials = res;
-			// $('select').material_select();
 			$('.modal').modal();
 		});
 	}
-
-	$scope.materialIndex = function(i,id){
-		$scope.editMaterialFields = ($scope.materials)[i];
-		$scope.selectedMaterialIndex = $scope.selectedMaterialIndex===i ? -1 : i;
+	$scope.materialIndex = function(material){
+		$scope.editMaterialFields = $scope.editMaterialFields == material ? {} : material;
+		
+		console.log($scope.editMaterialFields);
 	}
-	$scope.editMaterialTrigger = function(){
-		if($scope.selectedMaterialIndex == -1){
-			alert("Select material first");
+	$scope.deleteMaterial = function(){
+		if($scope.editMaterialFields.id){
+			if(confirm("Are you sure you want to delete this material?")){
+				dbOperations.processData("RemoveMaterial",$scope.editMaterialFields).then(function(res){
+					getMaterials();
+					alert("Material deleted");
+				});
+			}
 		}
 		else{
-			$('#editMaterial').modal('open');
+			alert("Select material first");
 		}
 	}
-	$scope.editMaterial = function(){
-		dbOperations.processData("EditMaterial",$scope.editMaterialFields).then(function(res){
+	$scope.addNewMaterial = function(){
+		dbOperations.processData("AddNewMaterial",$scope.addMaterialFields).then(function(res){
+			alert("New material available.")
 			getMaterials();
 		});
 	}
-	$scope.deleteMaterial = function(){
-		if(confirm("Are you sure you want to delete this material?")){
-			dbOperations.processData("RemoveMaterial",$scope.editMaterialFields).then(function(res){
-				getMaterials();
-				alert("Material deleted");
-			});
-		}
+	$scope.addMaterialStockTrigger = function(){
+		if($scope.editMaterialFields.id){ $('#addMaterialStock').modal('open'); }
+		else{ alert("Select material first"); }
 	}
-	$scope.addNewMaterial = function(e){
-		e.preventDefault();
-		dbOperations.processData("AddNewMaterial",$scope.addMaterialFields).then(function(res){
-			alert("New material available.")
-			getMaterials();});
-	}
-	$scope.addMaterialStockTrigger = function(e){
-		e.preventDefault();
-		if($scope.selectedMaterialIndex == -1){
-			alert("Select material first");
-		}
-		else{
-			console.log("Dumaan dito");
-			$('#addMaterialStock').modal('open');
-		}
+	$scope.editMaterialTrigger = function(){
+		if($scope.editMaterialFields.id){ $('#editMaterial').modal('open'); }
+		else{ alert("Select material first"); }
 	}
 	$scope.addMaterialStock = function(e){
 		dbOperations.processData("EditMaterialAddStock",$scope.editMaterialFields).then(function(res){
@@ -59,7 +46,13 @@ app.controller("inventoryManagement",function($scope,$http,dbOperations){
 			getMaterials();
 			$('#addMaterialStock').modal('close');
 		});
-		console.log(editMaterialFields);
+	}
+	$scope.editMaterial = function(){
+		dbOperations.processData("EditMaterial",$scope.editMaterialFields).then(function(res){
+			alert("Material Stock updated.");
+			getMaterials();
+			$('#editMaterial').modal('close');
+		});
 	}
 	getMaterials();
 });

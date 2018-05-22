@@ -29,6 +29,7 @@ switch($process){
 	case "EditCategory": {updateCategory($conn,$data);}break;
 	case "EditItem": {updateItem($conn,$data);}break;
 	case "EditBranch": {updateBranch($conn,$data);}break;
+	
 	case "EditPosition": {updatePosition($conn,$data);}break;
 	case "RemoveEmployee":{deleteEmployee($conn,$data);}break;
 	case "RemoveItem":{deleteItem($conn,$data);}break;
@@ -37,10 +38,24 @@ switch($process){
 	case "EditMaterialAddStock":{updateMaterialAddStock($conn,$data);}break;
 	case "EditMaterial":{updateMaterial($conn,$data);}break;
 	case "EditMaterialAffectedPerItem":{updateMaterialAffectedPerItem($conn,$data);}break;
+	case "RemoveBranch": {deleteBranch($conn,$data);}break;
+	case "RemovePosition": {deletePosition($conn,$data);}break;
 	case "RemoveMaterial":{deleteMaterial($conn,$data);}break;
 	case "RemoveMaterialAffectedInItem":{deleteMaterialAffectedInItem($conn,$data);}break;
 }
 /**/
+function deletePosition($c,$d){
+	$sql = $c->prepare("UPDATE position_tbl SET active=0 WHERE id=?");
+	$sql->bind_param('i',validateData($d->id));
+	$msg = ($sql->execute() === TRUE) ? "Deleting Position success" : "Error: " . $sql . "<br>" . $c->error;
+	$sql->close();
+}
+function deleteBranch($c,$d){
+	$sql = $c->prepare("UPDATE branch_tbl SET active=0 WHERE id=?");
+	$sql->bind_param('i',validateData($d->id));
+	$msg = ($sql->execute() === TRUE) ? "Deleting Branch success" : "Error: " . $sql . "<br>" . $c->error;
+	$sql->close();
+}
 function deleteMaterialAffectedInItem($c,$d){
 	$sql = $c->prepare("UPDATE item_line_tbl SET active=0 WHERE id=?");
 	$sql->bind_param('i',validateData($d->id));

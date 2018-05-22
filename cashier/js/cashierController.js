@@ -70,9 +70,6 @@ operations.controller('cashier',function($scope,$http,$interval,dbOperations,sys
 		if(($scope.change+$scope.cash)>=0){
 			// if(receiptPrinted){ // for printing the receipt
 				$scope.order.cash = $scope.cash;
-
-
-
 				if($scope.order.id){
 					dbOperations.processData("orderPaid",$scope.order).then(function(res){
 						getUnclaimedOrders();
@@ -86,11 +83,6 @@ operations.controller('cashier',function($scope,$http,$interval,dbOperations,sys
 				else{
 					alert("Select order first");
 				}
-				
-
-
-
-
 			// } // for printing the receipt
 			// else{ // for printing the receipt
 			// 	alert("Print the receipt first"); // for printing the receipt
@@ -107,7 +99,28 @@ operations.controller('cashier',function($scope,$http,$interval,dbOperations,sys
 			window.location.href = '/';
 		});
 	}
-
+	// materials
+	function getMaterials(){
+		dbOperations.view("GetMaterials","").then(function(res){
+			$scope.materials = res;
+			$('.modal').modal();
+		});
+	}
+	$scope.materialIndex = function(material){
+		$scope.editMaterialFields = $scope.editMaterialFields == material ? {} : material;
+	}
+	$scope.addMaterialStockTrigger = function(){
+		if($scope.editMaterialFields.id){ $('#addMaterialStock').modal('open'); }
+		else{ alert("Select material first"); }
+	}
+	$scope.addMaterialStock = function(e){
+		dbOperations.processData("EditMaterialAddStock",$scope.editMaterialFields).then(function(res){
+			alert("Material Stock updated.");
+			getMaterials();
+			$('#addMaterialStock').modal('close');
+		});
+	}
+	getMaterials();
 
 
 

@@ -4,21 +4,21 @@
       <h4>Edit Item</h4>
       <div class="input-field col s12">
         <input placeholder="" ng-model="editItemFields.name" type="text" class="validate" maxlength="50" required>
-        <label for="name" class="active">name</label>
+        <label for="name" class="active">Name</label>
       </div>
       <div class="input-field col s12">
         <input placeholder="" ng-model="editItemFields.item_code" type="text" class="validate" maxlength="10">
-        <label for="item_code" class="active">item_code</label>
+        <label for="item_code" class="active">Item code</label>
       </div>
-      <div class="input-field col s12" class="select-browser-default" >
-        <label for="item_code" class="active">item_code</label>
-        <select  ng-model="editItemFields.category_fk">
-          <option ng-repeat="c in categories" value={{c.id}} {{c.id===editItemFields.category_fk ? 'selected' : ''}}>{{c.name}}</option>
-        </select>
+      <div class="input-field col s12">
+        <label for="item_code" class="active">Category</label>
+          <select 
+          ng-model="selectedCategory"
+          ng-options="c.name for c in categories track by c.id"></select>
       </div>
       <div class="input-field col s12">
         <input placeholder="" ng-model="editItemFields.price" type="number" class="validate" maxlength="11" step="0.01">
-        <label for="price" class="active">price</label>
+        <label for="price" class="active">Price</label>
       </div>
     </div>
     <div class="modal-footer">

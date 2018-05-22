@@ -9,7 +9,11 @@
 					<th>description</th>
 					<th>branch_code</th>
 				</tr>
-				<tr ng-repeat="branch in branches" data-id="{{branch.id}}" ng-click="branchIndex($index,branch.id)">
+				<tr 
+				ng-repeat="branch in branches"
+				data-id="{{branch.id}}"
+				ng-click="branchIndex(branch)"
+				ng-class="{'active': branch==editBranchFields}">
 					<td name="name">{{branch.name}}</td>
 					<td name="address">{{branch.address}}</td>
 					<td name="description">{{branch.description}}</td>
@@ -18,6 +22,6 @@
 			</tbody>
 		</table>
 	</div>
-	<a class="waves-effect waves-light btn" id="edit-branch-trigger">Edit</a>
-	<a class="waves-effect waves-light btn">Delete</a>
+	<a class="waves-effect waves-light btn" id="edit-branch-trigger" ng-click="editBranchTrigger()">Edit</a>
+	<a class="waves-effect waves-light btn" ng-click="removeBranch()">Delete</a>
 </div>
