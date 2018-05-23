@@ -1,6 +1,7 @@
 var reports = function($scope,$http,dbOperations,$interval){
 	$scope.selectedDate = new Date();
 	$scope.transactions = [];
+	$scope.inventoryReports = [];
 	$scope.totalSales = 0;
 	$scope.transactionNotes = "";
 	$scope.reportFilters = [
@@ -52,6 +53,14 @@ var reports = function($scope,$http,dbOperations,$interval){
 			// console.log(res);
 		});
 	}
+	function getInventoryEdits(){
+		dbOperations.view("GetInventoryActivityLog").then(function(res){
+			$scope.inventoryReports = res;
+			console.log("nandito na ako");
+			console.log($scope.inventoryReports);
+		});
+	}
+	getInventoryEdits();
 	getVoidTransactionsOn();
 }
 

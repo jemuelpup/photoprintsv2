@@ -45,7 +45,7 @@ operations.controller('operator',function($scope,$http,$timeout,dbOperations,sys
  		console.log($scope.categories);
  	})
  	dbOperations.view("getItemsWithCategory","").then(function(res) {
- 		console.log("Dumaan dito")
+ 		// console.log("Dumaan dito")
  		$scope.itemsWithCategory = res;
  		console.log($scope.itemsWithCategory);
  	})

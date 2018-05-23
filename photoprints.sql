@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2018 at 12:53 PM
+-- Generation Time: May 23, 2018 at 08:14 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `branch_tbl` (
 
 INSERT INTO `branch_tbl` (`id`, `name`, `address`, `description`, `branch_code`, `modified_by_fk`, `active`) VALUES
 (1, 'R.papa Branch', 'R.Papa St.', NULL, 'B06', 0, 1),
-(2, 'Perps Branch', 'V.Comcepcion St.', 'Perps', 'B1', 0, 1);
+(2, 'Perps Branch', 'V.Comcepcion St.', 'Perps', 'B1', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `category_tbl` (
 --
 
 INSERT INTO `category_tbl` (`id`, `name`, `category_code`, `description`, `date_modified`, `modified_by_fk`, `active`) VALUES
-(1, 'Document', 'D01', 'Document', '2018-02-03 23:20:56', NULL, 1),
+(1, 'Document', 'D01', 'Document123', '2018-05-11 05:33:13', 1, 1),
 (2, 'Rush_ID', 'ID01', 'ID packages', '2018-02-03 23:22:22', NULL, 1),
 (3, 'PhotoPaper', 'P01', 'Pictures', '2018-02-03 23:23:30', NULL, 1),
 (4, 'Tarp/Wide', 'TW01', 'Wide Format Prints', '2018-02-03 23:24:47', NULL, 1),
@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `employee_tbl` (
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `birth_day` date DEFAULT NULL,
   `gender` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee_tbl`
@@ -132,18 +132,20 @@ CREATE TABLE IF NOT EXISTS `employee_tbl` (
 INSERT INTO `employee_tbl` (`id`, `name`, `address`, `contact_number`, `email`, `position_fk`, `branch_fk`, `salary`, `date_modified`, `modified_by_fk`, `active`, `birth_day`, `gender`) VALUES
 (1, 'jemuel elimanco', 'ewan ko st', '4564564', 'jemuel@gmail.com', 3, 1, '12000.00', '2017-10-18 00:47:39', 0, 1, '1995-02-28', 1),
 (2, 'Jason Bondoy', 'Pasay', '', '', 6, 1, '123.00', '2018-02-03 23:02:14', 0, 1, '1980-08-07', 1),
-(3, 'Eunice Lao', 'Manila', '12345', '12345@gmail.com', 2, 1, '12345.00', '2018-02-03 23:04:18', 0, 1, '1988-08-07', 0),
+(3, 'Eunice Lao', 'Manila city', '12345', '12345@gmail.com', 2, 1, '12345.00', '2018-02-03 23:04:18', 0, 1, '1988-08-07', 0),
 (4, 'romar de jesus', 'manila', '123123', '123@yaoo.com', 2, 1, '123.00', '2018-02-26 01:00:01', 1, 0, '1998-05-04', 0),
 (5, 'json santos', 'manila', '123123', '123@yaoo.com', 6, 1, '123.00', '2018-02-03 23:12:29', 0, 1, '1998-05-04', 0),
 (6, 'Remar Orbita', 'Manila', '', '12345@gmail.com', 1, 1, '12345.00', '2018-02-04 01:45:56', 0, 1, '1999-10-09', 1),
-(7, 'alayssa', 'asd', 'asd', 'asd', 6, 2, '123.00', '2018-02-26 01:00:52', 0, 1, '2000-10-09', 0),
+(7, 'alayssa', 'asd', 'asd', 'asd', 6, 1, '123.00', '2018-02-26 01:00:52', 0, 1, '2000-10-09', 0),
 (8, '', '', '', '', 6, 2, '0.00', '2018-02-26 01:01:20', 1, 0, '0000-00-00', 0),
-(9, 'joseph', '324', '234', '234', 2, 2, '234.00', '2018-02-26 01:02:37', 0, 1, '2000-10-09', 1),
-(10, 'trainee', '123', '123', '3211', 2, 2, '123.00', '2018-02-26 01:03:14', 0, 1, '2000-10-09', 1),
-(11, 'genericbs', '123', '123', '123', 6, 2, '123.00', '2018-02-26 01:03:55', 0, 1, '2000-10-09', 1),
-(12, 'marie', '324', '234', '324', 2, 2, '234.00', '2018-02-26 01:04:34', 0, 1, '2000-10-09', 0),
+(9, 'joseph', '324', '234', '234', 2, 1, '234.00', '2018-02-26 01:02:37', 0, 1, '2000-10-09', 1),
+(10, 'trainee', '123', '123', '3211', 2, 1, '123.00', '2018-02-26 01:03:14', 0, 1, '2000-10-09', 1),
+(11, 'genericbs', '123', '123', '123', 6, 1, '123.00', '2018-02-26 01:03:55', 0, 1, '2000-10-09', 1),
+(12, 'marie', '324', '234', '324', 2, 0, '234.00', '2018-02-26 01:04:34', 0, 1, '2000-10-09', 0),
 (13, 'romar', '234', '234', '234', 2, 2, '234.00', '2018-02-26 01:05:19', 0, 1, '2000-10-09', 1),
-(14, 'jenny', '123123', '12313123', 'jen@gmail.com', 5, 1, '123.00', '2018-04-23 05:33:05', 0, 1, '1992-05-04', 0);
+(14, 'jenny', '123123', '12313123', 'jen@gmail.com', 5, 2, '123.00', '2018-04-23 05:33:05', 0, 1, '1992-05-04', 0),
+(15, 'test', 'qwe', '123123', '123123@gmail.com', 2, 2, '123.00', '2018-05-16 03:43:27', 1, 1, '2018-04-30', 1),
+(16, 'test', 'test', '123123', 'jsdf@gmail.com', 1, 1, '123.00', '2018-05-16 08:22:26', 1, 0, '2000-04-30', 1);
 
 -- --------------------------------------------------------
 
@@ -159,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `item_line_tbl` (
   `modified_by` smallint(6) NOT NULL DEFAULT '0',
   `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `active` tinyint(4) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_line_tbl`
@@ -172,7 +174,14 @@ INSERT INTO `item_line_tbl` (`id`, `item_id_fk`, `material_id_fk`, `material_qua
 (9, 29, 3, 1, 0, '2018-05-07 08:04:57', 1),
 (10, 3, 4, 1, 0, '2018-05-07 08:24:34', 1),
 (12, 132, 5, 1, 0, '2018-05-08 09:44:04', 1),
-(13, 132, 3, 1, 0, '2018-05-08 09:44:11', 1);
+(13, 132, 3, 1, 0, '2018-05-08 09:44:11', 1),
+(14, 81, 2, 1, 0, '2018-05-10 07:44:34', 1),
+(15, 133, 2, 1, 0, '2018-05-10 07:46:31', 0),
+(16, 133, 6, 1, 0, '2018-05-10 09:06:01', 1),
+(26, 134, 3, 3, 0, '2018-05-11 03:21:06', 1),
+(27, 2, 1, 1, 0, '2018-05-21 08:40:24', 1),
+(28, 4, 1, 1, 0, '2018-05-21 08:42:33', 1),
+(29, 1, 3, 1, 0, '2018-05-21 09:13:42', 0);
 
 -- --------------------------------------------------------
 
@@ -190,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `item_tbl` (
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `price` decimal(11,2) DEFAULT NULL,
   `price_changing` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item_tbl`
@@ -200,7 +209,7 @@ INSERT INTO `item_tbl` (`id`, `name`, `item_code`, `category_fk`, `date_modified
 (1, 'Black short plain text: (Php 1.50)', 'd0', 1, '2018-05-04 09:53:18', 1, 1, '1.50', 0),
 (2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2018-02-04 00:04:54', 1, 1, '2.00', 0),
 (3, 'Black long plain text: (Long-Php3.00)', 'd0', 1, '2018-02-04 00:04:54', 1, 1, '3.00', 0),
-(4, 'Black short with FULL image (Php3.00) ', 'd0', 5, '2018-02-04 00:04:54', 1, 1, '6.00', 0),
+(4, 'Black short with FULL image (Php3.00) ', 'd01', 1, '2018-02-04 00:04:54', 1, 1, '6.00', 0),
 (5, 'A4 with FULL image (A4-Php5.00)', 'd0', 1, '2018-02-04 00:04:54', 1, 1, '5.00', 0),
 (6, 'Long with FULL  image (Long-Php5.00)', 'd0', 1, '2018-02-04 00:04:54', 1, 1, '5.00', 0),
 (7, 'Short Colored plain text/resume plain white backgr', 'd0', 1, '2018-02-04 00:04:54', 1, 1, '5.00', 0),
@@ -277,7 +286,7 @@ INSERT INTO `item_tbl` (`id`, `name`, `item_code`, `category_fk`, `date_modified
 (78, 'a4 2 sided 500 pcs up ', 'M15', 7, '2018-02-04 00:37:26', 1, 1, '39.00', 0),
 (79, 'a4 2 sided 1000 pcs up', 'M16', 7, '2018-02-04 00:37:26', 1, 1, '35.00', 0),
 (80, 'a4 2 sided 5000 pcs up', 'M17', 7, '2018-02-04 00:37:26', 1, 1, '29.00', 0),
-(81, 'Tarpulin', 'W07', 4, '2018-02-04 00:48:38', 1, 1, '0.00', 0),
+(81, 'Tarpulin', 'W07', 4, '2018-02-04 00:48:38', 1, 1, '12.00', 0),
 (82, 'Matte paper', 'W01', 4, '2018-02-04 00:48:38', 1, 1, '0.00', 0),
 (83, 'Matte w/Laminate', 'W02', 4, '2018-02-04 00:48:38', 1, 1, '0.00', 0),
 (84, 'Matte w/laminate and sintra', 'W03', 4, '2018-02-04 00:48:38', 1, 1, '0.00', 0),
@@ -328,20 +337,37 @@ INSERT INTO `item_tbl` (`id`, `name`, `item_code`, `category_fk`, `date_modified
 (129, 'Name Tag', 'DC3', 2, '2018-02-26 03:34:08', 1, 1, '5.00', 0),
 (130, 'Calling Card (100pcs 1 Sided)', 'CC1', 6, '2018-03-01 02:35:08', 1, 1, '300.00', 0),
 (131, 'Calling Card (100pcs 2 Sided)', 'CC1', 6, '2018-03-01 02:35:19', 1, 1, '400.00', 0),
-(132, 'Tumbler', 't01', 5, '2018-03-27 08:08:14', 1, 1, '180.00', 0);
+(132, 'Tumbler', 't01', 5, '2018-03-27 08:08:14', 1, 1, '180.00', 0),
+(133, 'Tarpulin 6feet', NULL, 4, '2018-05-10 07:45:36', 1, 1, '0.00', 0),
+(134, 'test', '123', 4, '2018-05-11 03:10:00', 1, 1, '1.00', 0),
+(135, 'test2', '123', 4, '2018-05-11 03:15:36', 1, 1, '123.00', 0),
+(136, 'test3', '123', 4, '2018-05-11 03:21:29', 1, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `log_tbl`
+-- Table structure for table `logs_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `log_tbl` (
+CREATE TABLE IF NOT EXISTS `logs_tbl` (
 `id` int(11) NOT NULL,
-  `event` varchar(1000) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `active` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `event_desc` varchar(200) NOT NULL,
+  `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `employee_id_fk` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `logs_tbl`
+--
+
+INSERT INTO `logs_tbl` (`id`, `event_desc`, `date_modified`, `active`, `employee_id_fk`) VALUES
+(1, 'Add 2 stock to material Short bond paper', '2018-05-22 09:11:35', 1, 1),
+(2, 'Add 2 stock to material Short bond paper', '2018-05-22 09:14:33', 1, 11),
+(3, 'Add 120 stock to material Short bond paper', '2018-05-22 09:15:01', 1, 11),
+(4, 'Add 400 stock to material photo paper', '2018-05-22 09:15:57', 1, 11),
+(5, 'Add 50 stock to Short bond paper material', '2018-05-22 09:16:50', 1, 11),
+(6, 'Add 7 stock to Short bond paper material', '2018-05-23 03:22:48', 1, 11);
 
 -- --------------------------------------------------------
 
@@ -357,18 +383,21 @@ CREATE TABLE IF NOT EXISTS `material_tbl` (
   `modified_by` smallint(6) NOT NULL DEFAULT '0',
   `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `active` tinyint(4) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `material_tbl`
 --
 
 INSERT INTO `material_tbl` (`id`, `name`, `description`, `quantity`, `modified_by`, `date_modified`, `active`) VALUES
-(1, 'Short bond paper', '', 950, 0, '2018-04-30 06:38:01', 1),
-(2, 'tarpulin roll', 'tarp', 733, 0, '2018-05-04 07:51:33', 1),
-(3, 'photo paper', '123', 459.5, 0, '2018-05-07 07:28:53', 1),
-(4, 'long bond paper', NULL, 1185, 0, '2018-05-07 08:11:32', 1),
-(5, 'plastic tumbler', NULL, 48, 0, '2018-05-08 09:43:43', 1);
+(1, 'Short bond paper', 'test', 1080, 0, '2018-04-30 06:38:01', 1),
+(2, 'tarpulin 4feet', 'tarp', 855, 0, '2018-05-04 07:51:33', 1),
+(3, 'photo paper', '123', 972, 0, '2018-05-07 07:28:53', 1),
+(4, 'long bond paper', NULL, 1183, 0, '2018-05-07 08:11:32', 1),
+(5, 'plastic tumbler', NULL, 100, 0, '2018-05-08 09:43:43', 1),
+(6, 'tarpulin 6feet', 'tarp', 100, 0, '2018-05-10 07:31:39', 1),
+(7, 'testing', '1123123', 123, 0, '2018-05-16 08:09:56', 0),
+(8, 'test', '123', 123, 0, '2018-05-16 08:49:29', 0);
 
 -- --------------------------------------------------------
 
@@ -5630,7 +5659,51 @@ INSERT INTO `order_line_tbl` (`order_id_fk`, `item_id_fk`, `name`, `code`, `quan
 (3528, 1, 'Black short plain text: (Php 1.50)', 'd0', 10, '1.50', '0.00', '0.00'),
 (3529, 1, 'Black short plain text: (Php 1.50)', 'd0', 100, '1.50', '0.00', '0.00'),
 (3530, 132, 'Tumbler', 't01', 2, '180.00', '0.00', '0.00'),
-(3530, 1, 'Black short plain text: (Php 1.50)', 'd0', 50, '1.50', '0.00', '0.00');
+(3530, 1, 'Black short plain text: (Php 1.50)', 'd0', 50, '1.50', '0.00', '0.00'),
+(3531, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3532, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3533, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3534, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3535, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3536, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3537, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3538, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3539, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3540, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3541, 2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2.00', '0.00', '0.00'),
+(3542, 2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2.00', '0.00', '0.00'),
+(3543, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3544, 2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2.00', '0.00', '0.00'),
+(3545, 2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2.00', '0.00', '0.00'),
+(3546, 2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2.00', '0.00', '0.00'),
+(3547, 2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2.00', '0.00', '0.00'),
+(3548, 2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2.00', '0.00', '0.00'),
+(3549, 2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2.00', '0.00', '0.00'),
+(3550, 2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2.00', '0.00', '0.00'),
+(3551, 2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2.00', '0.00', '0.00'),
+(3552, 2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2.00', '0.00', '0.00'),
+(3553, 2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2.00', '0.00', '0.00'),
+(3554, 6, 'Long with FULL  image (Long-Php5.00)', 'd0', 1, '5.00', '0.00', '0.00'),
+(3555, 3, 'Black long plain text: (Long-Php3.00)', 'd0', 1, '3.00', '0.00', '0.00'),
+(3556, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3556, 2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2.00', '0.00', '0.00'),
+(3556, 4, 'Black short with FULL image (Php3.00) ', 'd01', 1, '6.00', '0.00', '0.00'),
+(3557, 3, 'Black long plain text: (Long-Php3.00)', 'd0', 1, '3.00', '0.00', '0.00'),
+(3557, 4, 'Black short with FULL image (Php3.00) ', 'd01', 1, '6.00', '0.00', '0.00'),
+(3558, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3558, 2, 'A4 plain text: (A4-Php2.00)', 'd0', 1, '2.00', '0.00', '0.00'),
+(3559, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3559, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3560, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3561, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3561, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3562, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3562, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3562, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3563, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00'),
+(3563, 1, 'Black short plain text: (Php 1.50)', 'd0', 2, '1.50', '0.00', '0.00'),
+(3564, 1, 'Black short plain text: (Php 1.50)', 'd0', 5, '1.50', '0.00', '0.00'),
+(3564, 1, 'Black short plain text: (Php 1.50)', 'd0', 1, '1.50', '0.00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -5652,7 +5725,7 @@ CREATE TABLE IF NOT EXISTS `order_tbl` (
   `down_payment` decimal(11,2) NOT NULL DEFAULT '0.00',
   `received_date` datetime DEFAULT NULL,
   `void_reason` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3531 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3565 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `order_tbl`
@@ -9195,7 +9268,41 @@ INSERT INTO `order_tbl` (`id`, `order_date`, `cashier_fk`, `branch_fk`, `operato
 (3527, '2018-05-08 02:30:24', 11, 1, 13, 0, '120.00', '', '150.00', '', '0.00', '2018-05-08 16:36:20', NULL),
 (3528, '2018-05-08 05:15:59', 11, 1, 13, 0, '15.00', '', '100.00', '', '0.00', '2018-05-08 16:36:30', NULL),
 (3529, '2018-05-08 08:35:22', 11, 1, 11, 0, '150.00', '', '200.00', '', '0.00', '2018-05-08 16:36:37', NULL),
-(3530, '2018-05-08 09:46:26', 11, 1, 11, 0, '435.00', '', '500.00', '', '0.00', '2018-05-08 18:18:59', NULL);
+(3530, '2018-05-08 09:46:26', 11, 1, 11, 0, '435.00', '', '500.00', '', '0.00', '2018-05-08 18:18:59', NULL),
+(3531, '2018-05-09 05:30:37', 11, 1, 11, 0, '1.50', '', '100.00', '', '0.00', '2018-05-23 10:42:42', NULL),
+(3532, '2018-05-09 05:33:59', 11, 1, 11, 0, '1.50', '', '100.00', '', '0.00', '2018-05-23 10:42:44', NULL),
+(3533, '2018-05-09 05:36:21', 11, 1, 11, 0, '1.50', '', '100.00', '', '0.00', '2018-05-23 10:42:47', NULL),
+(3534, '2018-05-09 06:03:04', 11, 1, 11, 0, '1.50', '', '100.00', '', '0.00', '2018-05-23 10:42:49', NULL),
+(3535, '2018-05-09 06:05:03', 11, 1, 11, 0, '1.50', '', '100.00', '', '0.00', '2018-05-23 10:42:53', NULL),
+(3536, '2018-05-09 06:10:01', 11, 1, 11, 0, '1.50', '', '100.00', '', '0.00', '2018-05-23 10:42:55', NULL),
+(3537, '2018-05-09 07:21:14', 11, 1, 11, 0, '1.50', '', '100.00', '', '0.00', '2018-05-23 10:42:58', NULL),
+(3538, '2018-05-09 07:22:13', 11, 1, 11, 0, '1.50', '', '100.00', '', '0.00', '2018-05-23 10:43:01', NULL),
+(3539, '2018-05-09 08:15:55', 11, 1, 11, 0, '1.50', '', '100.00', '', '0.00', '2018-05-23 10:43:04', NULL),
+(3540, '2018-05-09 08:37:20', 11, 1, 11, 0, '1.50', '', '100.00', '', '0.00', '2018-05-23 10:43:06', NULL),
+(3541, '2018-05-10 03:44:43', 11, 1, 11, 0, '2.00', '', '100.00', '', '0.00', '2018-05-23 10:43:09', NULL),
+(3542, '2018-05-10 03:53:51', 11, 1, 11, 0, '2.00', '', '10.00', '', '0.00', '2018-05-23 10:43:12', NULL),
+(3543, '2018-05-10 03:55:49', 11, 1, 11, 0, '1.50', '', '10.00', '', '0.00', '2018-05-23 10:43:15', NULL),
+(3544, '2018-05-10 03:59:42', 11, 1, 11, 0, '2.00', '', '5.00', '', '0.00', '2018-05-23 10:43:18', NULL),
+(3545, '2018-05-10 04:02:19', 11, 1, 11, 0, '2.00', '', '5.00', '', '0.00', '2018-05-23 10:43:21', NULL),
+(3546, '2018-05-10 04:04:33', 11, 1, 11, 0, '2.00', '', '5.00', '', '0.00', '2018-05-23 10:43:37', NULL),
+(3547, '2018-05-10 04:06:02', 11, 1, 11, 0, '2.00', '', '5.00', '', '0.00', '2018-05-23 10:43:23', NULL),
+(3548, '2018-05-10 04:06:35', 11, 1, 11, 0, '2.00', '', '5.00', '', '0.00', '2018-05-23 10:43:28', NULL),
+(3549, '2018-05-10 04:07:07', 11, 1, 11, 0, '2.00', '', '5.00', '', '0.00', '2018-05-23 10:43:31', NULL),
+(3550, '2018-05-10 04:08:03', 11, 1, 11, 0, '2.00', '', '5.00', '', '0.00', '2018-05-23 10:43:33', NULL),
+(3551, '2018-05-10 04:08:27', 11, 1, 11, 0, '2.00', '', '5.00', '', '0.00', '2018-05-23 10:43:40', NULL),
+(3552, '2018-05-10 04:08:52', 11, 1, 11, 0, '2.00', '', '5.00', '', '0.00', '2018-05-23 10:43:44', NULL),
+(3553, '2018-05-10 04:12:35', 11, 1, 11, 0, '2.00', '', '5.00', '', '0.00', '2018-05-23 10:43:47', NULL),
+(3554, '2018-05-10 04:13:00', 11, 1, 11, 0, '5.00', '', '5.00', '', '0.00', '2018-05-23 10:43:49', NULL),
+(3555, '2018-05-10 04:13:15', 11, 1, 11, 0, '3.00', '', '5.00', '', '0.00', '2018-05-23 10:43:51', NULL),
+(3556, '2018-05-22 05:10:24', 11, 1, 11, 0, '9.50', '', '10.00', '', '0.00', '2018-05-23 10:43:59', NULL),
+(3557, '2018-05-22 05:28:51', 11, 1, 11, 0, '9.00', '', '10.00', '', '0.00', '2018-05-23 10:44:06', NULL),
+(3558, '2018-05-22 05:29:54', 11, 1, 11, 0, '3.50', '', '10.00', '', '0.00', '2018-05-23 10:44:09', NULL),
+(3559, '2018-05-23 01:41:57', 11, 1, 11, 0, '3.00', '', '5.00', '', '0.00', '2018-05-23 10:44:14', NULL),
+(3560, '2018-05-23 01:42:46', 11, 1, 11, 0, '1.50', '', '2.00', '', '0.00', '2018-05-23 10:44:18', NULL),
+(3561, '2018-05-23 01:43:01', 11, 1, 11, 0, '3.00', '', '3.00', '', '0.00', '2018-05-23 10:44:22', NULL),
+(3562, '2018-05-23 01:43:32', 11, 1, 11, 0, '4.50', '', '5.00', '', '0.00', '2018-05-23 10:44:25', NULL),
+(3563, '2018-05-23 01:54:08', 11, 1, 11, 0, '4.50', '', '5.00', '', '0.00', '2018-05-23 10:44:29', NULL),
+(3564, '2018-05-23 02:26:36', 11, 1, 11, 0, '9.00', '', '10.00', '', '0.00', '2018-05-23 10:44:31', NULL);
 
 -- --------------------------------------------------------
 
@@ -9208,7 +9315,7 @@ CREATE TABLE IF NOT EXISTS `position_tbl` (
   `name` varchar(50) NOT NULL,
   `description` varchar(500) DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `position_tbl`
@@ -9220,7 +9327,9 @@ INSERT INTO `position_tbl` (`id`, `name`, `description`, `active`) VALUES
 (3, 'admin', 'Can access the whole buisness system', 1),
 (4, 'supervisor', 'Supervise the branch', 1),
 (5, 'Trainee', 'Training employee', 1),
-(6, 'Cashier/Operator', 'Acts as cashier and operator', 1);
+(6, 'Cashier/Operator', 'Acts as cashier and operator', 1),
+(7, 'test', '123', 0),
+(8, 'test 2', '123', 0);
 
 --
 -- Indexes for dumped tables
@@ -9263,9 +9372,9 @@ ALTER TABLE `item_tbl`
  ADD PRIMARY KEY (`id`), ADD KEY `category_fk` (`category_fk`);
 
 --
--- Indexes for table `log_tbl`
+-- Indexes for table `logs_tbl`
 --
-ALTER TABLE `log_tbl`
+ALTER TABLE `logs_tbl`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -9304,37 +9413,37 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT for table `employee_tbl`
 --
 ALTER TABLE `employee_tbl`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `item_line_tbl`
 --
 ALTER TABLE `item_line_tbl`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `item_tbl`
 --
 ALTER TABLE `item_tbl`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=133;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=137;
 --
--- AUTO_INCREMENT for table `log_tbl`
+-- AUTO_INCREMENT for table `logs_tbl`
 --
-ALTER TABLE `log_tbl`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `logs_tbl`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `material_tbl`
 --
 ALTER TABLE `material_tbl`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `order_tbl`
 --
 ALTER TABLE `order_tbl`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3531;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3565;
 --
 -- AUTO_INCREMENT for table `position_tbl`
 --
 ALTER TABLE `position_tbl`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- Constraints for dumped tables
 --

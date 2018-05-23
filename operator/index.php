@@ -45,7 +45,7 @@
 										</tr>
 									</thead>
 									<tbody ng-class="{'hideItems': hideItems === true}">
-										<tr ng-repeat="item in itemsWithCategory | filter:itemFilter | filter:{category_fk:selectedCategory}">
+										<tr ng-repeat="item in itemsWithCategory | filter:itemFilter | filter:{category_fk:selectedCategory}" ng-class="{'purple lighten-5':item.affected_materials==0}">
 											<td>{{item.name}}</td>
 											<td>{{item.item_code}}</td>
 											<td>{{item.price}}</td>

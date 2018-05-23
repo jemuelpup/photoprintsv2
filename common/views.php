@@ -32,7 +32,16 @@ switch($process){
 		selectEmployeeData($conn);
 	}
 	case "GetMaterials":{selectMaterial($conn);}break;
+	case "GetInventoryActivityLog":{
+		selectInventoryLog($conn);
+	}break;
 }/**/
+function selectInventoryLog($c){
+	$today = date('Y-m-d');
+	$nextDay = date('Y-m-d', strtotime("+1 day"));
+	$sql = "SELECT (SELECT name FROM `employee_tbl` WHERE id=l.employee_id_fk) as name,l.employee_id_fk, l.event_desc,l.date_modified FROM logs_tbl l WHERE l.date_modified BETWEEN ('".$today."') AND ('".$nextDay."')";
+	print_r(hasRows($c,$sql) ? json_encode(selectQuery($c,$sql)) : "");
+}
 // common function
 function getTotalSalesOn($c,$data){
 	print_r(getTotalSales($c,substr($data,0,10)));
@@ -61,7 +70,7 @@ function selectCategory($c){
 	print_r(hasRows($c,$sql) ? json_encode(selectQuery($c,$sql)) : "");
 }
 function selectCategoriesAndItems($c){
-	$sql = "SELECT i.id, i.name, i.item_code, i.category_fk, i.price, c.name as category_name FROM item_tbl i, category_tbl c WHERE i.active = 1 AND i.category_fk = c.id ORDER BY category_fk,id";
+	$sql = "SELECT i.id, i.name, i.item_code, i.category_fk, i.price, c.name as category_name, (SELECT COUNT(1) from item_line_tbl il where il.item_id_fk = i.id) as affected_materials FROM item_tbl i, category_tbl c WHERE i.active = 1 AND i.category_fk = c.id ORDER BY category_fk,id";
 	print_r(hasRows($c,$sql) ? json_encode(selectQuery($c,$sql)) : "");
 }
 function selectUnclaimedOrders($c){

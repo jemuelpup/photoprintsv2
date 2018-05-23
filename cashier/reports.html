@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="/plugin/materialize-css/dist/css/materialize.min.css">
 	<link rel="stylesheet" href="/plugin/materialize/css/materialFont.css">
 	<link rel="stylesheet" href="/common/css/common.css">
+	<link rel="stylesheet" href="/cashier/css/reports.css">
 	<script src="/plugin/angular/angular.min.js"></script>
 	<style>
 	@media print {
@@ -53,32 +54,55 @@
 								<td>{{transaction.received_date | date}}</td>
 							</tr>
 						</table>
-						<p><b>Total Sales: </b>{{totalSales}}</p>
+						<p><b>Total Sales: </b>Php. {{totalSales}}</p>
+					</div>
+					<div class="col s12">
 						<h2>Void Transactions</h2>
-							<div class="data-table-container">
-								<table class="table-data">
-									<tr>
-										<th>ID</th>
-										<th>branch</th>
-										<th>Cashier</th>
-										<th>Operator</th>
-										<th>Customer</th>
-										<th>DP</th>
-										<th>payment</th>
-										<th>amount</th>
-									</tr>
-									<tr ng-repeat="void in voidTransactions" ng-class="transaction.notes.length>0 ? 'hasOrderNotes':''">
-										<td>{{void.id}}</td>
-										<td>{{void.branch_name}}</td>
-										<td>{{void.cashier_name}}</td>
-										<td>{{void.operator_name}}</td>
-										<td>{{void.customer_name}}</td>
-										<td>{{void.down_payment}}</td>
-										<td>{{void.payment}}</td>
-										<td>{{void.total_amount}}</td>
-									</tr>
-								</table>
-							</div>
+						<div class="data-table-container">
+							<table class="table-data">
+								<tr>
+									<th>ID</th>
+									<th>branch</th>
+									<th>Cashier</th>
+									<th>Operator</th>
+									<th>Customer</th>
+									<th>DP</th>
+									<th>payment</th>
+									<th>amount</th>
+								</tr>
+								<tr ng-repeat="void in voidTransactions" ng-class="transaction.notes.length>0 ? 'hasOrderNotes':''">
+									<td>{{void.id}}</td>
+									<td>{{void.branch_name}}</td>
+									<td>{{void.cashier_name}}</td>
+									<td>{{void.operator_name}}</td>
+									<td>{{void.customer_name}}</td>
+									<td>{{void.down_payment}}</td>
+									<td>{{void.payment}}</td>
+									<td>{{void.total_amount}}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="col s12">
+						<h2>Inventory logs</h2>
+						<div class="logsList">
+						    <div class="data-table-container">
+						        <table>
+						            <tbody>
+						                <tr>
+						                    <th>employee_id_fk</th>
+						                    <th>event_desc</th>
+						                    <th>date_modified</th>
+						                </tr>
+						                <tr ng-repeat="x in inventoryReports">
+						                    <td>{{x.name}}</td>
+						                    <td>{{x.event_desc}}</td>
+						                    <td>{{x.date_modified}}</td>
+						                </tr>
+						            </tbody>
+						        </table>
+						    </div>
+						</div>
 					</div>
 				</div>
 			</div>

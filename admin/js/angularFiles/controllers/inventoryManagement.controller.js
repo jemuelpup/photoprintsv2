@@ -10,8 +10,6 @@ app.controller("inventoryManagement",function($scope,$http,dbOperations){
 	}
 	$scope.materialIndex = function(material){
 		$scope.editMaterialFields = $scope.editMaterialFields == material ? {} : material;
-		
-		console.log($scope.editMaterialFields);
 	}
 	$scope.deleteMaterial = function(){
 		if($scope.editMaterialFields.id){
@@ -53,6 +51,9 @@ app.controller("inventoryManagement",function($scope,$http,dbOperations){
 			getMaterials();
 			$('#editMaterial').modal('close');
 		});
+	}
+	$scope.getMaterials = function(){
+		getMaterials();
 	}
 	getMaterials();
 });

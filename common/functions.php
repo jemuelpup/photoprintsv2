@@ -44,7 +44,7 @@ function updateMaterialAddStock($c,$d){
 
 // updateInventory($conn,13);// delete this
 function updateInventory($c,$orderID){
-	$sql = "SELECT ol.item_id_fk,(SUM(ol.quantity)*SUM(il.material_quantity_needed)) as material_used, il.material_id_fk FROM order_line_tbl ol, item_line_tbl il WHERE il.item_id_fk = ol.item_id_fk AND ol.order_id_fk = $orderID AND il.active = 1 GROUP BY material_id_fk" ;
+	$sql = "SELECT ol.item_id_fk,(SUM(ol.quantity*il.material_quantity_needed)) as material_used, il.material_id_fk FROM order_line_tbl ol, item_line_tbl il WHERE il.item_id_fk = ol.item_id_fk AND ol.order_id_fk = $orderID AND il.active = 1 GROUP BY material_id_fk" ;
 	if(hasRows($c,$sql)){
 		$orderedMaterials = selectQuery($c,$sql);
 		$multiUpdateQuery = "";

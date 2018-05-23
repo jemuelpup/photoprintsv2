@@ -17,6 +17,7 @@ operations.controller('cashier',function($scope,$http,$interval,dbOperations,sys
 	$scope.selectedOrder = {};
 	$scope.orderItems = [];
 	$scope.change = 0;
+
 	// check the update per second
 	var excecuteGet = true;
 	// var receiptPrinted = false; // for printing the receipt
@@ -68,26 +69,21 @@ operations.controller('cashier',function($scope,$http,$interval,dbOperations,sys
 	$scope.setOrderPaid = function(){
 		$scope.cash = $scope.cash ? $scope.cash : 0;
 		if(($scope.change+$scope.cash)>=0){
-			// if(receiptPrinted){ // for printing the receipt
-				$scope.order.cash = $scope.cash;
-				if($scope.order.id){
-					dbOperations.processData("orderPaid",$scope.order).then(function(res){
-						getUnclaimedOrders();
-						$scope.order = {};
-						$scope.orderItems = [];
-						$scope.cash = "";
-						receiptPrinted = false;
-						$scope.change = 0;
-					})
-				}
-				else{
-					alert("Select order first");
-				}
-			// } // for printing the receipt
-			// else{ // for printing the receipt
-			// 	alert("Print the receipt first"); // for printing the receipt
-			// } // for printing the receipt
-			
+			$scope.order.cash = $scope.cash;
+			if($scope.order.id){
+				dbOperations.processData("orderPaid",$scope.order).then(function(res){
+					getUnclaimedOrders();
+					$scope.order = {};
+					$scope.orderItems = [];
+					$scope.cash = "";
+					receiptPrinted = false;
+					$scope.change = 0;
+				})
+			}
+			else{
+				alert("Select order first");
+			}
+			getMaterials();
 		}
 		else{
 			$scope.cash = "";
@@ -120,10 +116,8 @@ operations.controller('cashier',function($scope,$http,$interval,dbOperations,sys
 			$('#addMaterialStock').modal('close');
 		});
 	}
+	
 	getMaterials();
-
-
-
 	getUnclaimedOrders();
 
 });
